@@ -12,10 +12,11 @@ interface UserFormData {
     password: string
 }
 
-interface FormErrors {
-    userId?: string,
-    password?: string
-}
+//TODO バリデーション
+// interface FormErrors {
+//     userId?: string,
+//     password?: string
+// }
 
 export default function LoginForm() {
     const router = useRouter();

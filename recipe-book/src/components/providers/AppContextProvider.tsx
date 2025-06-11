@@ -1,5 +1,6 @@
 'use client'
 
+import { User } from "@/types/entity";
 import { ReactNode, useState } from "react";
 import { AppContext } from "../../contexts/AppContext";
 

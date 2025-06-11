@@ -57,8 +57,8 @@ export default function TextBox({
     helperText?: ReactNode
     multiline?: boolean | undefined
     rows?: string | number | undefined
-    startAdornment?: any
-    endAdornment?: any
+    startAdornment?: ReactNode | string | number
+    endAdornment?: ReactNode | string | number
     onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> | undefined
 }) {
 
