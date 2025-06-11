@@ -1,0 +1,90 @@
+'use client'
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { FormControlPropsSizeOverrides } from "@mui/material";
+import { OverridableStringUnion } from "@mui/types";
+import { ChangeEventHandler, ReactNode, useState } from "react";
+import IconButton from "../../button/iconButton/IconButton";
+import TextBox from "../text/TextBox";
+
+/**
+ * パスワード入力ボックス
+ * 
+ * @param param.variant バリエーション
+ * @param param.disabled 状態
+ * @param param.error エラー
+ * @param param.helperText ヘルパーテキスト
+ * @param param.onChange 入力値変更イベント
+ * @returns パスワード入力ボックス
+ */
+export default function PasswordBox({
+    id,
+    name,
+    label,
+    variant,
+    size,
+    width,
+    disabled,
+    error,
+    helperText,
+    onChange
+}: {
+    id?: string
+    name?: string
+    label?: string
+    variant?: 'outlined' | 'filled' | 'standard' | undefined
+    size?: OverridableStringUnion<"small" | "medium", FormControlPropsSizeOverrides> | undefined
+    width?: number | string
+    disabled?: boolean | undefined
+    error?: boolean | undefined
+    helperText?: ReactNode
+    onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> | undefined
+}) {
+
+    //パスワード表示状態管理
+    const [showPassword, setShowPassword] = useState(false);
+
+    /**
+     * アイコンボタンクリックイベント
+     * 
+     * パスワードの表示状態を切り替えます。
+     * 
+     * @returns {void}
+     */
+    const handleClickIcon = () => setShowPassword(show => !show);
+
+    /**
+     * アイコンボタンマウスダウン・アップイベント
+     * 
+     * デフォルトのフォーカス移動を防ぎ、テキストフィールドからフォーカスが移動しないようにします。
+     * 
+     * @param e イベント
+     * @returns {void}
+     */
+    const handleMouseDownAndUp = (e: React.MouseEvent<HTMLButtonElement>) => e.preventDefault();
+
+    return (
+        <TextBox
+            id={id}
+            name={name}
+            label={label}
+            type={showPassword ? 'text' : 'password'}
+            size={size}
+            width={width}
+            variant={variant}
+            disabled={disabled}
+            error={error}
+            helperText={helperText}
+            endAdornment={
+                <IconButton
+                    icon={showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                    color="default"
+                    onClick={handleClickIcon}
+                    onMouseDown={handleMouseDownAndUp}
+                    onMouseUp={handleMouseDownAndUp}
+                />
+            }
+            onChange={onChange}
+        />
+    )
+}
