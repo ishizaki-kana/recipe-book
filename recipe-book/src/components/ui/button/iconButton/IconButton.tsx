@@ -1,4 +1,5 @@
-import { Tooltip } from "@mui/material"
+import theme from "@/styles/theme"
+import { Tooltip, tooltipClasses } from "@mui/material"
 import MuiIconButton, { IconButtonPropsColorOverrides, IconButtonPropsSizeOverrides } from "@mui/material/IconButton"
 import { Theme } from "@mui/material/styles"
 import { Box, SxProps } from "@mui/system"

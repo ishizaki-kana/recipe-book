@@ -12,7 +12,7 @@ import { ReactNode } from "react";
 export default function CenteredContainer({
     children,
     direction,
-    gap
+    gap,
 }: {
     children: ReactNode
     direction?: 'row' | 'column' | undefined
