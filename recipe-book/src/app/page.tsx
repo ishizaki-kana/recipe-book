@@ -9,11 +9,9 @@ import { Typography } from "@mui/material";
  */
 export default function Home() {
     return (
-        <CenteredContainer>
-            <CenteredContainer direction="column">
-                <Typography>RECIPE BOOK</Typography>
-                <StartButton />
-            </CenteredContainer>
+        <CenteredContainer direction="column" gap={2}>
+            <Typography variant="h5">RECIPE BOOK</Typography>
+            <StartButton />
         </CenteredContainer>
     )
 }

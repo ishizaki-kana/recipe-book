@@ -1,27 +1,10 @@
 import { Box, FilledInput, FormControl, FormControlPropsSizeOverrides, FormHelperText, Input, InputLabel, TextField } from "@mui/material";
 import { OverridableStringUnion } from "@mui/types";
-import { ChangeEventHandler, HTMLInputTypeAttribute, ReactNode } from "react";
+import { ChangeEventHandler, HTMLInputTypeAttribute, ReactNode, Ref } from "react";
 
 /**
  * テキスト入力ボックス
  * 
- * @param param.id ID
- * @param param.name 名前
- * @param param.label ラベル
- * @param param.type 種別
- * @param param.variant バリエーション
- * @param param.size 大きさ
- * @param param.width 横幅
- * @param param.required 入力必須
- * @param param.disabled 状態
- * @param param.readOnly 読み取り専用
- * @param param.error エラー
- * @param param.helperText ヘルパーテキスト
- * @param param.multiline 複数行
- * @param param.rows 行数 multiline = 'true' のときのみ有効
- * @param param.startAdornment 装飾（左）
- * @param param.endAdornment 装飾（右）
- * @param param.onChange 入力値変更イベント
  * @returns テキスト入力ボックス
  */
 export default function TextBox({
@@ -41,6 +24,7 @@ export default function TextBox({
     rows,
     startAdornment,
     endAdornment,
+    ref,
     onChange
 }: {
     id?: string
@@ -59,6 +43,7 @@ export default function TextBox({
     rows?: string | number | undefined
     startAdornment?: ReactNode | string | number
     endAdornment?: ReactNode | string | number
+    ref?: Ref<any> | undefined
     onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> | undefined
 }) {
 
@@ -78,6 +63,7 @@ export default function TextBox({
                 size={size}
                 fullWidth
                 helperText={helperText}
+                inputRef={ref}
                 slotProps={{
                     input: {
                         readOnly: readOnly,
@@ -99,6 +85,7 @@ export default function TextBox({
             rows: rows,
             startAdornment: startAdornment,
             endAdornment: endAdornment,
+            inputRef: ref,
             onChange: onChange
         }
 

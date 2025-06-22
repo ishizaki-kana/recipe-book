@@ -1,75 +1,81 @@
 'use client'
 import CenteredContainer from "@/components/layout/container/center/CenteredContainer";
+import Alert from "@/components/ui/alert/Alert";
 import Button from "@/components/ui/button/button/Button";
 import PasswordBox from "@/components/ui/input/password/PasswordBox";
 import TextBox from "@/components/ui/input/text/TextBox";
-import { useAppContext } from "@/hooks/useAppContext";
+import { apiPost } from "@/lib/fetch";
+import { ERROR_MESSAGES } from "@/lib/messages";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Box } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-interface UserFormData {
-    userId: string,
-    password: string
-}
+// バリデーションスキーマ
+const schema = z.object({
+    userId: z.string().min(1, ERROR_MESSAGES.REQUIRED_FIELD),
+    password: z.string().min(1, ERROR_MESSAGES.REQUIRED_FIELD)
+});
 
-//TODO バリデーション
-// interface FormErrors {
-//     userId?: string,
-//     password?: string
-// }
+// 入力型推論
+type LoginFormInput = z.infer<typeof schema>;
 
 export default function LoginForm() {
     const router = useRouter();
-    const { setLoginUser } = useAppContext();
-
-    //フォーム入力値管理
-    const [form, setForm] = useState<UserFormData>({
-        userId: '',
-        password: ''
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting }
+    } = useForm<LoginFormInput>({
+        resolver: zodResolver(schema)
     });
 
-    /**
-     * フォーム変更イベント
-     * 
-     * @param e イベント
-     * @return {void}
-     */
-    const handleForm = (e: ChangeEvent<HTMLInputElement>) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        });
+    // エラー管理
+    const [error, setError] = useState<string | null>(null);
+
+    const onSubmit = async (data: LoginFormInput) => {
+        try {
+            await apiPost('/auth/login', data);
+            router.push('/recipe');
+        } catch (e) {
+            const msg = e instanceof Error ? e.message : ERROR_MESSAGES.UNKNOWN_ERROR;
+            setError(msg);
+        }
     }
-
-    /**
-     * フォーム送信イベント
-     * 
-     * @returns {void}
-     */
-    const handleSubmit = () => {
-
-        //TODO ユーザー名
-        setLoginUser({ userId: form.userId, name: 'テスト' });
-        router.push(`/${form.userId}/recipe`);
-    }
-
 
     return (
-        <CenteredContainer direction="column" gap={2}>
-            <TextBox
-                name="userId"
-                label="ユーザーID"
-                width={'100%'}
-                onChange={handleForm} />
-            <PasswordBox
-                name="password"
-                label="パスワード"
-                width={'100%'}
-                onChange={handleForm} />
+        <form onSubmit={handleSubmit(onSubmit)} style={{ width: '100%' }}>
+            <CenteredContainer direction="column" gap={4}>
 
-            <Button onClick={handleSubmit} pt={1}>
-                ログイン
-            </Button>
-        </CenteredContainer>
+                {/* エラーメッセージ */}
+                <Alert severity="error" visible={!!error}>{error}</Alert>
+
+                <Box display={"flex"} flexDirection={"column"} justifyContent={"center"}
+                    gap={2} width={"60%"}>
+
+                    <TextBox
+                        label="ユーザーID"
+                        width={'100%'}
+                        {...register('userId')}
+                        error={!!errors.userId}
+                        helperText={errors.userId?.message} />
+                    <PasswordBox
+                        label="パスワード"
+                        width={'100%'}
+                        {...register('password')}
+                        error={!!errors.password}
+                        helperText={errors.password?.message} />
+
+                    <Button
+                        type="submit"
+                        loading={isSubmitting}
+                        pt={1} >
+                        ログイン
+                    </Button>
+                </Box>
+            </CenteredContainer>
+        </form>
     )
 }

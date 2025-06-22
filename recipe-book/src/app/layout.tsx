@@ -1,8 +1,7 @@
-import AppContextProvider from "@/components/providers/AppContextProvider";
 import EmotionCacheProvider from "@/components/providers/EmotionCacheProvider";
 import ThemeProvider from "@/components/providers/ThemeProvider";
 import "@/styles/globals.css";
-import { Box } from "@mui/material";
+import { Container } from "@mui/material";
 import type { Metadata } from "next";
 import { Geist, Noto_Sans_JP } from "next/font/google";
 
@@ -30,15 +29,13 @@ export default function RootLayout({
     <html lang="ja">
       <head />
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <AppContextProvider>
-          <EmotionCacheProvider>
-            <ThemeProvider>
-              <Box sx={{ height: '100vh' }}>
-                {children}
-              </Box>
-            </ThemeProvider>
-          </EmotionCacheProvider>
-        </AppContextProvider>
+        <EmotionCacheProvider>
+          <ThemeProvider>
+            <Container sx={{ height: '100vh' }}>
+              {children}
+            </Container>
+          </ThemeProvider>
+        </EmotionCacheProvider>
       </body>
     </html >
   );

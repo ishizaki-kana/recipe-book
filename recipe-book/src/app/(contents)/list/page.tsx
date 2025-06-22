@@ -1,4 +1,4 @@
-import ItemListCard from "@/components/features/list/itemListCard/ItemListCard";
+import ItemListCard from "@/components/features/contents/list/itemListCard/ItemListCard";
 import { faBacon, faCarrot, faCartShopping, faCheese, faFish, faSeedling } from "@fortawesome/free-solid-svg-icons";
 import { Box, Container } from "@mui/material";
 import { blue, brown, grey, red, teal, yellow } from "@mui/material/colors";
