@@ -18,6 +18,7 @@ import { MouseEventHandler, ReactNode } from "react"
 export default function Button({
     children,
     variant,
+    type,
     color,
     size,
     p,
@@ -28,10 +29,12 @@ export default function Button({
     startIcon,
     endIcon,
     disabled,
+    loading,
     onClick
 }: {
     children: ReactNode
     variant?: 'text' | 'contained' | 'outlined',
+    type?: "button" | "submit" | "reset" | undefined,
     color?: OverridableStringUnion<"inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning", ButtonPropsColorOverrides> | undefined
     size?: OverridableStringUnion<"small" | "medium" | "large", ButtonPropsSizeOverrides> | undefined
     p?: number | string
@@ -42,18 +45,24 @@ export default function Button({
     startIcon?: ReactNode
     endIcon?: ReactNode
     disabled?: boolean
+    loading?: boolean
     onClick?: MouseEventHandler<HTMLButtonElement> | undefined
 }) {
 
     return (
-        <Box p={p} pt={pt} pb={pb} pr={pr} pl={pl}>
+        <Box
+            display={"flex"} alignItems={"center"} justifyContent={"center"}
+            p={p} pt={pt} pb={pb} pr={pr} pl={pl}>
+
             <MuiButton
                 variant={variant ? variant : 'contained'}
+                type={type}
                 color={color}
                 size={size}
                 startIcon={startIcon}
                 endIcon={endIcon}
                 disabled={disabled ? disabled : false}
+                loading={loading}
                 onClick={onClick}>
                 {children}
             </MuiButton>

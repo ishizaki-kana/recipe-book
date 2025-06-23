@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 /**
  * 子要素を上下左右中央に配置するコンテナ
  * 
- * 高さは親要素に依存します。
+ * 横幅・高さは親要素に依存します。
  * 
  * @param param.children 子要素
  * @returns コンテナ
@@ -25,6 +25,7 @@ export default function CenteredContainer({
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: '100%',
+                width: '100%',
                 flexDirection: direction,
                 gap: gap
             }}>

@@ -3,18 +3,13 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { FormControlPropsSizeOverrides } from "@mui/material";
 import { OverridableStringUnion } from "@mui/types";
-import { ChangeEventHandler, ReactNode, useState } from "react";
+import { ChangeEventHandler, ReactNode, Ref, useState } from "react";
 import IconButton from "../../button/iconButton/IconButton";
 import TextBox from "../text/TextBox";
 
 /**
  * パスワード入力ボックス
  * 
- * @param param.variant バリエーション
- * @param param.disabled 状態
- * @param param.error エラー
- * @param param.helperText ヘルパーテキスト
- * @param param.onChange 入力値変更イベント
  * @returns パスワード入力ボックス
  */
 export default function PasswordBox({
@@ -27,6 +22,7 @@ export default function PasswordBox({
     disabled,
     error,
     helperText,
+    ref,
     onChange
 }: {
     id?: string
@@ -38,6 +34,7 @@ export default function PasswordBox({
     disabled?: boolean | undefined
     error?: boolean | undefined
     helperText?: ReactNode
+    ref?: Ref<any> | undefined
     onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> | undefined
 }) {
 
@@ -84,6 +81,7 @@ export default function PasswordBox({
                     onMouseUp={handleMouseDownAndUp}
                 />
             }
+            ref={ref}
             onChange={onChange}
         />
     )

@@ -1,14 +1,19 @@
 
+import { User } from "@/generated/prisma";
 import EggAltIcon from "@mui/icons-material/EggAlt";
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import Menu from "./Menu";
 
-export default function Header() {
+export default function Header({
+    user
+}: {
+    user: User
+}) {
 
     return (
         <AppBar component={"nav"}>
             <Toolbar>
-                <Menu />
+                <Menu user={user} />
                 <Box display={"flex"} gap={1} alignItems={"center"}>
                     <EggAltIcon />
                     <Typography
