@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import { ReactNode } from "react";
 
@@ -8,15 +9,17 @@ export default function Alert({
 }: {
     children: ReactNode
     severity?: 'success' | 'info' | 'warning' | 'error'
-    visible: boolean
+    visible?: boolean
 }) {
 
     if (!visible) return null;
 
     return (
-        <MuiAlert
-            severity={severity}>
-            {children}
-        </MuiAlert>
+        <Box mb={3}>
+            <MuiAlert
+                severity={severity}>
+                {children}
+            </MuiAlert>
+        </Box>
     );
 }

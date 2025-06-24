@@ -1,0 +1,23 @@
+import { handleApi } from "@/lib/api";
+import { createListItem } from "@/repositories/listItemRepository";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function POST(req: NextRequest) {
+    return handleApi(async () => {
+        const body = await req.json();
+
+        // 複数作成
+        if ('datalist' in body) {
+            const { datalist }: { datalist: { data: any }[] } = body;
+            const createdListItems = await Promise.all(
+                datalist.map(({ data }) => createListItem(data))
+            );
+            return NextResponse.json(createdListItems, { status: 200 });
+        }
+
+        // 単体作成
+        const { data } = body;
+        const createdListItem = await createListItem(data);
+        return NextResponse.json(createdListItem, { status: 200 });
+    })
+}

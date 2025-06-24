@@ -8,9 +8,6 @@ export async function middleware(req: NextRequest) {
     const isLoggedIn = !!payload && typeof payload == 'object' && 'userId' in payload;
     const { pathname } = req.nextUrl;
 
-    console.log(isLoggedIn)
-    console.log(pathname)
-
     // ログイン済み状態でログインページへ移動したとき
     if (pathname === '/login' && isLoggedIn) {
         return NextResponse.redirect(new URL('/recipe', req.url));

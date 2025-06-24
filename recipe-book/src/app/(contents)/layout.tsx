@@ -1,4 +1,4 @@
-import Header from "@/components/layout/header/Header";
+import Header from "@/components/layout/header/header/Header";
 import { getUserFromAuthToken } from "@/lib/auth";
 import "@/styles/globals.css";
 import { Box } from "@mui/material";
@@ -26,7 +26,7 @@ export default async function RootLayout({
     return (
         <Box sx={{ display: "flex" }}>
             <Header user={user} />
-            <Box component={"main"} sx={{ p: 3, pt: 10 }}>
+            <Box component={"main"} sx={{ p: 3, pt: 12, pb: 5 }} width={"100%"} height={"100vh"}>
                 {children}
             </Box>
         </Box>

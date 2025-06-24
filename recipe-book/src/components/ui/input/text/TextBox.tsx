@@ -122,7 +122,7 @@ export default function TextBox({
     }
 
     return (
-        <Box width={width}>
+        <Box width={width} sx={{ py: 1 }}>
             {input}
         </Box>
     )
