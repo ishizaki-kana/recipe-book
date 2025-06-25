@@ -36,7 +36,7 @@ export default function SelectBox({
     error?: boolean
     helperText?: ReactNode
     value?: unknown
-    ref?: Ref<any>
+    ref?: Ref<HTMLSelectElement>
     items?: SelectItem[]
     disableDefaultOption?: boolean
     onChange?: ((event: ChangeEvent<HTMLInputElement> | (Event & { target: { value: unknown; name: string; }; }), child: ReactNode) => void) | undefined

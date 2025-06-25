@@ -1,4 +1,4 @@
-import IconButton from "@/components/ui/button/iconButton/IconButton";
+import IconButton from "@/components/ui/button/IconButton";
 import { apiGet } from "@/lib/fetch";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useRouter } from "next/navigation";

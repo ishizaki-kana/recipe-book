@@ -22,6 +22,12 @@ declare module '@mui/material/Button' {
     }
 }
 
+declare module '@mui/material/CircularProgress' {
+    interface CircularProgressPropsColorOverrides {
+        ui: true;
+    }
+}
+
 const theme = createTheme({
     palette: {
         primary: {

@@ -43,7 +43,7 @@ export default function TextBox({
     rows?: string | number | undefined
     startAdornment?: ReactNode | string | number
     endAdornment?: ReactNode | string | number
-    ref?: Ref<any> | undefined
+    ref?: Ref<HTMLInputElement> | undefined
     onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> | undefined
 }) {
 

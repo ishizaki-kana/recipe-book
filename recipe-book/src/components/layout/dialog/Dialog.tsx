@@ -1,8 +1,8 @@
-import Button from "@/components/ui/button/button/Button";
-import IconButton from "@/components/ui/button/iconButton/IconButton";
+import Button from "@/components/ui/button/Button";
+import IconButton from "@/components/ui/button/IconButton";
 import CloseIcon from '@mui/icons-material/Close';
 import { DialogActions, DialogContent, DialogTitle, ModalProps, SlotProps } from "@mui/material";
-import MuiDialog, { DialogOwnerState, DialogRootSlotPropsOverrides } from "@mui/material/Dialog";
+import MuiDialog, { DialogBackdropSlotPropsOverrides, DialogContainerSlotPropsOverrides, DialogOwnerState, DialogPaperSlotPropsOverrides, DialogRootSlotPropsOverrides } from "@mui/material/Dialog";
 import { ElementType, JSX, ReactNode } from "react";
 
 export default function Dialog({
@@ -31,10 +31,26 @@ export default function Dialog({
             DialogRootSlotPropsOverrides,
             DialogOwnerState
         >;
-        backdrop?: SlotProps<any, any, any>;
-        container?: SlotProps<any, any, any>;
-        transition?: SlotProps<any, any, any>;
-        paper?: SlotProps<any, any, any>;
+        backdrop?: SlotProps<
+            'div',
+            DialogBackdropSlotPropsOverrides,
+            DialogOwnerState
+        >;
+        container?: SlotProps<
+            'div',
+            DialogContainerSlotPropsOverrides,
+            DialogOwnerState
+        >;
+        transition?: SlotProps<
+            typeof import('@mui/material/Fade').default,
+            object,
+            DialogOwnerState
+        >;
+        paper?: SlotProps<
+            'div',
+            DialogPaperSlotPropsOverrides,
+            DialogOwnerState
+        >;
     };
     handleClose?: () => void;
 }) {

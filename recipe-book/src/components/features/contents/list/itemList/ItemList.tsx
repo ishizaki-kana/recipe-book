@@ -1,85 +1,49 @@
 'use client'
 import Snackbar from "@/components/ui/snackbar/Snackbar";
 import { ListCategory, ListItem } from "@/generated/prisma";
-import { apiPost } from "@/lib/fetch";
 import { iconMap } from "@/lib/icon";
-import { ERROR_MESSAGES, formatMessage } from "@/lib/messages";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box, ButtonGroup, List, ListSubheader, Typography } from "@mui/material";
-import { useState } from "react";
-import AddDialog from "../addDialog/AddDialog";
-import BulkToggleStatusButton from "../bulkToggleStatusButton/BulkToggleStatusButton";
-import DeleteButton from "../deleteButton/DeleteButton";
-import ItemListItem from "../itemListItem/ItemListItem";
+import { useItemList } from "../useItemList";
+import AddDialog from "./buttons/AddDialog";
+import BulkToggleStatusButton from "./buttons/BulkToggleStatusButton";
+import DeleteButton from "./buttons/DeleteButton";
+import ItemListItem from "./item/ItemListItem";
 
 export default function ItemList({
     listCategories,
-    listItems
+    initialListItems
 }: {
     listCategories: ListCategory[],
-    listItems: ListItem[]
+    initialListItems: ListItem[]
 }) {
 
-    //チェック状態管理
-    const [checked, setChecked] = useState<number[]>(
-        listItems.filter((item) => item.isDone).map((item) => item.itemId)
-    );
-
-    //エラー管理
-    const [error, setError] = useState<string | null>(null);
-
-    /**
-     * チェック状態変更イベント
-     * 
-     * クリックされたアイテムがチェックされていないとき、配列にIDを追加します。
-     * チェックされているとき、配列からIDを削除します。
-     * 
-     * @param id 対象のアイテムのID
-     * @returns {void}
-     */
-    const handleToggle = async (id: number) => {
-        const currentIndex = checked.indexOf(id);
-        const oldChecked = [...checked];
-        const newChecked = [...checked];
-
-        if (currentIndex === -1) {
-            newChecked.push(id);
-        } else {
-            newChecked.splice(currentIndex, 1);
-        }
-
-        setChecked(newChecked);
-
-        try {
-            await apiPost('/list-item/modify', { id: id, data: { isDone: currentIndex === -1 } });
-        } catch (e) {
-            console.error(e);
-
-            // 元に戻す
-            setChecked(oldChecked);
-
-            const msg = e instanceof Error ? formatMessage(ERROR_MESSAGES.UPDATE_FAILED, 'リストアイテム') : ERROR_MESSAGES.UNKNOWN_ERROR;
-            setError(msg);
-        }
-    };
+    const {
+        categorizedItems,
+        error,
+        addListItem,
+        toggleListItems,
+        deleteListItems,
+        setError
+    } = useItemList(listCategories, initialListItems);
 
     return (
         <>
             <ButtonGroup variant="outlined">
-                <AddDialog listCategories={listCategories} />
+                <AddDialog
+                    listCategories={listCategories}
+                    addListItem={addListItem} />
                 <BulkToggleStatusButton
-                    listItems={listItems}
-                    checked={checked}
-                    setChecked={setChecked}
+                    categorizedListItems={categorizedItems}
+                    toggleListItems={toggleListItems}
                     setError={setError} />
-                <BulkToggleStatusButton
-                    markAsDone
-                    listItems={listItems}
-                    checked={checked}
-                    setChecked={setChecked}
+                <BulkToggleStatusButton markAsDone
+                    categorizedListItems={categorizedItems}
+                    toggleListItems={toggleListItems}
                     setError={setError} />
                 <DeleteButton
-                    listItems={listItems}
+                    categorizedListItems={categorizedItems}
+                    deleteListItems={deleteListItems}
                     setError={setError} />
             </ButtonGroup>
 
@@ -94,37 +58,26 @@ export default function ItemList({
                 }}
                 subheader={<li />}
             >
-                {listCategories
-                    .sort((a, b) => a.listCategoryId - b.listCategoryId)
-                    .map((category) => {
-
-                        // アイテムを持たないカテゴリは表示しない
-                        const items = listItems.filter((item) => item.listCategoryId === category.listCategoryId);
-
-                        if (items.length === 0) {
-                            return null;
-                        }
-
-                        return (
-                            <li key={category.listCategoryId}>
-                                <ul>
-                                    <ListSubheader sx={{ bgcolor: category.color, borderRadius: '5px', my: 1 }}>
-                                        <Box display={'flex'} flexDirection={'row'} alignItems={'center'} gap={1.5} py={1}>
-                                            <FontAwesomeIcon icon={iconMap[category.iconName as keyof typeof iconMap]} color={"#fff"} />
-                                            <Typography color="#fff" variant="subtitle2">{category.categoryName}</Typography>
-                                        </Box>
-                                    </ListSubheader>
-                                    {listItems
-                                        .filter((item) => item.listCategoryId === category.listCategoryId)
-                                        .sort((a, b) => a.itemName.localeCompare(b.itemName))
-                                        .map((item) => (
-                                            <ItemListItem key={item.itemId} item={item} checked={checked} handleToggle={handleToggle} />
-                                        ))}
-                                </ul>
-                            </li>
-                        )
-                    })}
-
+                {categorizedItems.map(({ category, items }) => (
+                    <li key={category.listCategoryId}>
+                        <ul>
+                            <ListSubheader sx={{ bgcolor: category.color, borderRadius: '5px', my: 1 }}>
+                                <Box display={'flex'} flexDirection={'row'} alignItems={'center'} gap={1.5} py={1}>
+                                    <FontAwesomeIcon icon={iconMap[category.iconName as keyof typeof iconMap]} color={"#fff"} />
+                                    <Typography color="#fff" variant="subtitle2">{category.categoryName}</Typography>
+                                </Box>
+                            </ListSubheader>
+                            {items.map((item) => (
+                                <ItemListItem
+                                    key={item.itemId}
+                                    item={item}
+                                    toggleListItems={toggleListItems}
+                                    setError={setError} />
+                            ))}
+                        </ul>
+                    </li>
+                )
+                )}
             </List>
 
             <Snackbar

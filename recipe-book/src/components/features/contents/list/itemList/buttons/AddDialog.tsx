@@ -1,10 +1,10 @@
 'use client'
 import Dialog from "@/components/layout/dialog/Dialog";
 import Alert from "@/components/ui/alert/Alert";
-import Button from "@/components/ui/button/button/Button";
-import TextBox from "@/components/ui/input/text/TextBox";
+import Button from "@/components/ui/button/Button";
+import TextBox from "@/components/ui/input/TextBox";
 import SelectBox, { SelectItem } from "@/components/ui/select/SelectBox";
-import { ListCategory } from "@/generated/prisma";
+import { ListCategory, ListItem } from "@/generated/prisma";
 import { apiPost } from "@/lib/fetch";
 import { ERROR_MESSAGES } from "@/lib/messages";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,9 +28,11 @@ const schema = z.object({
 type AddDialogInput = z.infer<typeof schema>;
 
 export default function AddDialog({
-    listCategories
+    listCategories,
+    addListItem
 }: {
     listCategories: ListCategory[]
+    addListItem: (item: ListItem) => void
 }) {
 
     const router = useRouter();
@@ -58,10 +60,11 @@ export default function AddDialog({
     // フォーム送信イベント
     const onSubmit = async (data: AddDialogInput) => {
         try {
-            await apiPost('/list-item/create', { data: data });
+            // リストアイテム追加
+            const item: ListItem = await apiPost('/list-item/create', { data: data });
+            addListItem(item)
 
             reset();        // 入力値リセット
-            router.refresh();       // リスト再読み込み
             setError(null);     // エラーメッセージクリア
             setOpen(false);     // ダイアログ非表示
         } catch (e) {

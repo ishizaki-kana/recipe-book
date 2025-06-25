@@ -1,5 +1,5 @@
 import ItemList from "@/components/features/contents/list/itemList/ItemList";
-import CenteredContainer from "@/components/layout/container/center/CenteredContainer";
+import CenteredContainer from "@/components/layout/container/CenteredContainer";
 import { getAllListCategories } from "@/repositories/listCategoryRepository";
 import { getAllListItems } from "@/repositories/listItemRepository";
 import { Box, Paper } from "@mui/material";
@@ -30,7 +30,7 @@ export default async function Home() {
                         py: 4
                     }}
                 >
-                    <ItemList listItems={listItems} listCategories={listCategories} />
+                    <ItemList initialListItems={listItems} listCategories={listCategories} />
                 </Box>
             </Paper>
         </CenteredContainer >

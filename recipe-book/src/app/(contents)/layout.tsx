@@ -1,4 +1,4 @@
-import Header from "@/components/layout/header/header/Header";
+import Header from "@/components/layout/header/Header";
 import { getUserFromAuthToken } from "@/lib/auth";
 import "@/styles/globals.css";
 import { Box } from "@mui/material";

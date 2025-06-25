@@ -1,3 +1,4 @@
+import { ListItem } from "@/generated/prisma";
 import { handleApi } from "@/lib/api";
 import { createListItem } from "@/repositories/listItemRepository";
 import { NextRequest, NextResponse } from "next/server";
@@ -8,7 +9,7 @@ export async function POST(req: NextRequest) {
 
         // 複数作成
         if ('datalist' in body) {
-            const { datalist }: { datalist: { data: any }[] } = body;
+            const { datalist }: { datalist: { data: ListItem }[] } = body;
             const createdListItems = await Promise.all(
                 datalist.map(({ data }) => createListItem(data))
             );

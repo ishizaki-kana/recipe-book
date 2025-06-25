@@ -1,5 +1,5 @@
 import StartButton from "@/components/features/index/StartButton";
-import CenteredContainer from "@/components/layout/container/center/CenteredContainer";
+import CenteredContainer from "@/components/layout/container/CenteredContainer";
 import { Typography } from "@mui/material";
 
 /**

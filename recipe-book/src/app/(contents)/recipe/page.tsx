@@ -1,4 +1,4 @@
-import Textbox from '@/components/ui/input/text/TextBox';
+import Textbox from '@/components/ui/input/TextBox';
 
 export default function Home() {
   return (

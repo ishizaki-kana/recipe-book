@@ -1,7 +1,7 @@
 import { User } from "@/generated/prisma";
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import LogoutButton from "../logoutButton/LogoutButton";
+import LogoutButton from "./logout/LogoutButton";
 
 export default function NavDrawer({
     user,

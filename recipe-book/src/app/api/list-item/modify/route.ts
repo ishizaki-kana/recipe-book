@@ -1,3 +1,4 @@
+import { ListItem } from "@/generated/prisma";
 import { handleApi } from "@/lib/api";
 import { updateListItem } from "@/repositories/listItemRepository";
 import { NextRequest, NextResponse } from "next/server";
@@ -8,7 +9,7 @@ export async function POST(req: NextRequest) {
 
         // 複数更新
         if ('datalist' in body) {
-            const { datalist }: { datalist: { id: number, data: any }[] } = body;
+            const { datalist }: { datalist: { id: number, data: ListItem }[] } = body;
             const updatedListItems = await Promise.all(
                 datalist.map(({ id, data }) => updateListItem(id, data))
             );

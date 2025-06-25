@@ -1,11 +1,11 @@
 'use client'
+import IconButton from "@/components/ui/button/IconButton";
+import TextBox from "@/components/ui/input/TextBox";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { FormControlPropsSizeOverrides } from "@mui/material";
 import { OverridableStringUnion } from "@mui/types";
 import { ChangeEventHandler, ReactNode, Ref, useState } from "react";
-import IconButton from "../../button/iconButton/IconButton";
-import TextBox from "../text/TextBox";
 
 /**
  * パスワード入力ボックス
@@ -34,7 +34,7 @@ export default function PasswordBox({
     disabled?: boolean | undefined
     error?: boolean | undefined
     helperText?: ReactNode
-    ref?: Ref<any> | undefined
+    ref?: Ref<HTMLInputElement> | undefined
     onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> | undefined
 }) {
 
