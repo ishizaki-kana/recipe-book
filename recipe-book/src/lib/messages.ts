@@ -2,6 +2,9 @@
 export const ERROR_MESSAGES = {
     REQUIRED_FIELD: '入力してください',
     AUTH_FAILED: 'ログインに失敗しました。ユーザーIDまたはパスワードが違います。',
+    CREATE_FAILED: '{0}の作成に失敗しました。',
+    UPDATE_FAILED: '{0}の更新に失敗しました。',
+    DELETE_FAILED: '{0}の削除に失敗しました。',
     NOT_FOUND: '{0}が見つかりませんでした。',
     INVALID_VALUE: '{0}が無効です。',
     SERVER_ERROR: 'サーバーでエラーが発生しました。',

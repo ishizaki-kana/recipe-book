@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE "list_item" ADD COLUMN     "recipeName" TEXT,
+ALTER COLUMN "unit" DROP NOT NULL,
+ALTER COLUMN "unit" DROP DEFAULT,
+ALTER COLUMN "volume" DROP NOT NULL,
+ALTER COLUMN "volume" DROP DEFAULT;

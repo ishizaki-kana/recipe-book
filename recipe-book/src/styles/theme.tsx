@@ -1,4 +1,26 @@
-import { createTheme } from "@mui/material";
+import { createTheme, PaletteColor, PaletteColorOptions } from "@mui/material";
+
+declare module '@mui/material/styles' {
+    interface Palette {
+        ui: PaletteColor;
+    }
+
+    interface PaletteOptions {
+        ui?: PaletteColorOptions;
+    }
+}
+
+declare module '@mui/material/IconButton' {
+    interface IconButtonPropsColorOverrides {
+        ui: true;
+    }
+}
+
+declare module '@mui/material/Button' {
+    interface ButtonPropsColorOverrides {
+        ui: true;
+    }
+}
 
 const theme = createTheme({
     palette: {
@@ -12,7 +34,13 @@ const theme = createTheme({
             light: '#eec6cb',
             main: '#eab8bf',
             dark: '#a38085',
-            contrastText: '#000'
+            contrastText: '#333'
+        },
+        ui: {
+            light: '#eeeeee',
+            main: '#757575',
+            dark: '#424242',
+            contrastText: '#333'
         }
     }
 });

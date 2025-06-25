@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, SxProps, Theme } from "@mui/material";
 import { ReactNode } from "react";
 
 /**
@@ -13,10 +13,12 @@ export default function CenteredContainer({
     children,
     direction,
     gap,
+    sx
 }: {
     children: ReactNode
     direction?: 'row' | 'column' | undefined
     gap?: number
+    sx?: SxProps<Theme> | undefined
 }) {
     return (
         <Box
@@ -27,7 +29,8 @@ export default function CenteredContainer({
                 height: '100%',
                 width: '100%',
                 flexDirection: direction,
-                gap: gap
+                gap: gap,
+                ...sx
             }}>
             {children}
         </Box>

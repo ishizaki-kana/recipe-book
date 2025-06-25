@@ -1,5 +1,4 @@
-import theme from "@/styles/theme"
-import { Tooltip, tooltipClasses } from "@mui/material"
+import { Tooltip } from "@mui/material"
 import MuiIconButton, { IconButtonPropsColorOverrides, IconButtonPropsSizeOverrides } from "@mui/material/IconButton"
 import { Theme } from "@mui/material/styles"
 import { Box, SxProps } from "@mui/system"
@@ -38,7 +37,7 @@ export default function IconButton({
     onMouseUp
 }: {
     icon: ReactNode
-    color?: OverridableStringUnion<"inherit" | "default" | "primary" | "secondary" | "error" | "info" | "success" | "warning", IconButtonPropsColorOverrides> | undefined
+    color?: OverridableStringUnion<"inherit" | "default" | "primary" | "secondary" | "error" | "info" | "success" | "warning" | "ui", IconButtonPropsColorOverrides> | undefined
     size?: OverridableStringUnion<"small" | "medium" | "large", IconButtonPropsSizeOverrides> | undefined
     edge?: false | "start" | "end" | undefined
     sx?: SxProps<Theme> | undefined

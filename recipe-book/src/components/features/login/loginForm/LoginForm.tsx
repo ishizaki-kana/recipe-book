@@ -1,5 +1,4 @@
 'use client'
-import CenteredContainer from "@/components/layout/container/center/CenteredContainer";
 import Alert from "@/components/ui/alert/Alert";
 import Button from "@/components/ui/button/button/Button";
 import PasswordBox from "@/components/ui/input/password/PasswordBox";
@@ -35,6 +34,7 @@ export default function LoginForm() {
     // エラー管理
     const [error, setError] = useState<string | null>(null);
 
+    // フォーム送信イベント
     const onSubmit = async (data: LoginFormInput) => {
         try {
             await apiPost('/auth/login', data);
@@ -46,14 +46,14 @@ export default function LoginForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} style={{ width: '100%' }}>
-            <CenteredContainer direction="column" gap={4}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <Box display={"flex"} flexDirection={"column"}>
 
                 {/* エラーメッセージ */}
                 <Alert severity="error" visible={!!error}>{error}</Alert>
 
                 <Box display={"flex"} flexDirection={"column"} justifyContent={"center"}
-                    gap={2} width={"60%"}>
+                    gap={1}>
 
                     <TextBox
                         label="ユーザーID"
@@ -75,7 +75,7 @@ export default function LoginForm() {
                         ログイン
                     </Button>
                 </Box>
-            </CenteredContainer>
+            </Box>
         </form>
     )
 }

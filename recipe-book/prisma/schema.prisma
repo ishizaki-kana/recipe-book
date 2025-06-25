@@ -14,10 +14,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ユーザー
 model User {
   userId   String @id @map("user_id")
-  name     String
+  userName String @map("user_name")
   password String
 
   @@map("user")
+}
+
+// リストアイテム
+model ListItem {
+  itemId         Int     @id @default(autoincrement()) @map("item_id")
+  itemName       String  @map("item_name")
+  volume         String?
+  recipeName     String? @map("recipe_name")
+  listCategoryId Int     @map("list_category_id")
+  isDone         Boolean @default(false) @map("is_done")
+
+  list_category ListCategory @relation(fields: [listCategoryId], references: [listCategoryId], onDelete: Cascade)
+
+  @@map("list_item")
+}
+
+// リストカテゴリー
+model ListCategory {
+  listCategoryId Int    @id @default(autoincrement()) @map("list_category_id")
+  categoryName   String @map("category_name")
+  iconName       String @map("icon_name")
+  color          String
+
+  listItems ListItem[]
+
+  @@map("list_category")
 }
