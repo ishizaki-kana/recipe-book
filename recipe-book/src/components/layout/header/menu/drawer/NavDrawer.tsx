@@ -1,5 +1,6 @@
-import { User } from "@/generated/prisma";
+'use client'
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material";
+import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import LogoutButton from "./logout/LogoutButton";
 

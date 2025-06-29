@@ -1,6 +1,6 @@
-import { User } from "@/generated/prisma";
 import EggAltIcon from "@mui/icons-material/EggAlt";
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { User } from "@prisma/client";
 import Menu from "./menu/Menu";
 
 export default function Header({

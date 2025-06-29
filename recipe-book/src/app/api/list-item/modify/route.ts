@@ -1,6 +1,6 @@
-import { ListItem } from "@/generated/prisma";
 import { handleApi } from "@/lib/api";
 import { updateListItem } from "@/repositories/listItemRepository";
+import { ListItem } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {

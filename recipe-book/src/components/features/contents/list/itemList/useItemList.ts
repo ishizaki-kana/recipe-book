@@ -1,4 +1,4 @@
-import { ListCategory, ListItem } from "@/generated/prisma";
+import { ListCategory, ListItem } from "@prisma/client";
 import { useMemo, useState } from "react";
 
 export function useItemList(
@@ -31,7 +31,7 @@ export function useItemList(
      */
     const toggleListItems = (ids: number[], isDone: boolean) => {
         setListItems((prev) =>
-            prev.map((item) => (ids.includes(item.itemId) ? { ...item, isDone } : item))
+            prev.map((item) => (ids.includes(item.id) ? { ...item, isDone } : item))
         );
     };
 
@@ -42,7 +42,7 @@ export function useItemList(
      * @returns {void}
      */
     const deleteListItems = (ids: number[]) => {
-        setListItems((prev) => prev.filter((item) => !ids.includes(item.itemId)));
+        setListItems((prev) => prev.filter((item) => !ids.includes(item.id)));
     };
 
     /**
@@ -54,10 +54,10 @@ export function useItemList(
      */
     const categorizedItems = useMemo(() => {
         return listCategories
-            .sort((a, b) => a.listCategoryId - b.listCategoryId)
+            .sort((a, b) => a.id - b.id)
             .map(category => {
-                const items = listItems.filter(item => item.listCategoryId === category.listCategoryId)
-                    .sort((a, b) => a.itemName.localeCompare(b.itemName))
+                const items = listItems.filter(item => item.categoryId === category.id)
+                    .sort((a, b) => a.name.localeCompare(b.name))
                 return { category, items };
             })
             .filter(({ items }) => items.length > 0)

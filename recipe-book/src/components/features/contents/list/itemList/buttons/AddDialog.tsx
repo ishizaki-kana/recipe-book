@@ -4,13 +4,12 @@ import Alert from "@/components/ui/alert/Alert";
 import Button from "@/components/ui/button/Button";
 import TextBox from "@/components/ui/input/TextBox";
 import SelectBox, { SelectItem } from "@/components/ui/select/SelectBox";
-import { ListCategory, ListItem } from "@/generated/prisma";
 import { apiPost } from "@/lib/fetch";
 import { ERROR_MESSAGES } from "@/lib/messages";
 import { zodResolver } from "@hookform/resolvers/zod";
 import AddIcon from "@mui/icons-material/Add";
 import { Box } from "@mui/material";
-import { useRouter } from "next/navigation";
+import { ListCategory, ListItem } from "@prisma/client";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -35,8 +34,6 @@ export default function AddDialog({
     addListItem: (item: ListItem) => void
 }) {
 
-    const router = useRouter();
-
     const {
         control,
         register,
@@ -48,8 +45,8 @@ export default function AddDialog({
     });
 
     const categories: SelectItem[] = listCategories.map((category) => ({
-        label: category.categoryName,
-        value: category.listCategoryId.toString()
+        label: category.name,
+        value: category.id.toString()
     }));
 
     // 開閉状態管理

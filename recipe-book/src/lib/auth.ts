@@ -86,7 +86,7 @@ export async function getUserFromAuthToken() {
 
     // DBからデータ取得
     const user = await prisma.user.findUnique({
-        where: { userId: decoded.userId as string },
+        where: { id: decoded.userId as string },
     });
 
     if (!user) {

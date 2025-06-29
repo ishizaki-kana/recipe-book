@@ -1,10 +1,10 @@
 'use client';
 import Button from "@/components/ui/button/Button";
-import { ListCategory, ListItem } from "@/generated/prisma";
 import { apiPost } from "@/lib/fetch";
 import { ERROR_MESSAGES, formatMessage } from "@/lib/messages";
 import CheckIcon from "@mui/icons-material/Check";
 import UndoIcon from "@mui/icons-material/Undo";
+import { ListCategory, ListItem } from "@prisma/client";
 import { useState } from "react";
 
 export default function BulkToggleStatusButton({
@@ -37,12 +37,12 @@ export default function BulkToggleStatusButton({
             // すべてのアイテムの完了状態を更新
             await Promise.all(targetItems.map(item => {
                 return apiPost('/list-item/modify', {
-                    id: item.itemId,
+                    id: item.id,
                     data: { isDone: markAsDone }
                 });
             }));
 
-            toggleListItems(targetItems.map(item => item.itemId), markAsDone);
+            toggleListItems(targetItems.map(item => item.id), markAsDone);
 
         } catch (e) {
             console.error(e);

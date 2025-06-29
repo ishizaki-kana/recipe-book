@@ -1,10 +1,10 @@
 'use client'
 import Checkbox from "@/components/ui/checkbox/Checkbox";
-import { ListItem } from "@/generated/prisma";
 import { apiPost } from "@/lib/fetch";
 import { ERROR_MESSAGES, formatMessage } from "@/lib/messages";
 import { Box, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import MuiListItem from "@mui/material/ListItem";
+import { ListItem } from "@prisma/client";
 import { useState } from "react";
 
 export default function ItemListItem({
@@ -20,7 +20,7 @@ export default function ItemListItem({
     // ローディング管理
     const [loading, setLoading] = useState(false);
 
-    const id = `checkbox-list-label-${item.itemId}`
+    const id = `checkbox-list-label-${item.id}`
 
     const onClick = async () => {
         try {
@@ -29,11 +29,11 @@ export default function ItemListItem({
 
             // リストアイテム更新
             await apiPost('/list-item/modify', {
-                id: item.itemId,
+                id: item.id,
                 data: { isDone: !item.isDone }
             });
 
-            toggleListItems([item.itemId], !item.isDone);
+            toggleListItems([item.id], !item.isDone);
 
         } catch (e) {
             console.error(e);
@@ -45,7 +45,7 @@ export default function ItemListItem({
     }
 
     return (
-        <MuiListItem key={item.itemId} disablePadding>
+        <MuiListItem key={item.id} disablePadding>
             <ListItemButton role={undefined} onClick={onClick} dense>
                 <ListItemIcon>
                     <Checkbox
@@ -62,7 +62,7 @@ export default function ItemListItem({
                         gap={1.5}
                         width={'100%'}>
                         <span>
-                            {item.itemName}
+                            {item.name}
                         </span>
                         <span>
                             {item.volume}

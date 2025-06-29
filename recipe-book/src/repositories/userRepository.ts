@@ -1,5 +1,5 @@
-import { User } from "@/generated/prisma";
 import { prisma } from "@/lib/prisma";
+import { User } from "@prisma/client";
 
 /**
  * すべてのユーザーを取得
@@ -13,12 +13,12 @@ export async function getAllUsers() {
 /**
  * ユーザーIDを元に一致するユーザーを取得
  * 
- * @param userId ユーザーID
+ * @param id ユーザーID
  * @returns ユーザー
  */
-export async function getUserById(userId: string) {
+export async function getUserById(id: string) {
     return await prisma.user.findUnique({
-        where: { userId }
+        where: { id }
     });
 }
 
@@ -37,13 +37,13 @@ export async function createUser(data: User) {
 /**
  * ユーザー更新
  * 
- * @param userId ユーザーID
+ * @param id ユーザーID
  * @param data データ
  * @returns 更新されたユーザーデータ
  */
-export async function updateUser(userId: string, data: User) {
+export async function updateUser(id: string, data: User) {
     return await prisma.user.update({
-        where: { userId },
+        where: { id },
         data
     });
 }
@@ -51,11 +51,11 @@ export async function updateUser(userId: string, data: User) {
 /**
  * ユーザー削除
  * 
- * @param userId ユーザーID
+ * @param id ユーザーID
  * @returns 削除されたユーザーデータ
  */
-export async function deleteUser(userId: string) {
+export async function deleteUser(id: string) {
     return await prisma.user.delete({
-        where: { userId }
+        where: { id }
     });
 }

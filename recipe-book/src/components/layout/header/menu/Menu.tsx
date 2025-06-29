@@ -1,11 +1,11 @@
 'use client'
 
 import IconButton from "@/components/ui/button/IconButton";
-import { User } from "@/generated/prisma";
+import { User } from "@prisma/client";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
-import NavDrawer from "./dawer/NavDrawer";
+import NavDrawer from "./drawer/NavDrawer";
 
 const navLinks = [
     { text: 'レシピ', path: '/recipe' },

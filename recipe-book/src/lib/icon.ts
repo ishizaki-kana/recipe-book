@@ -1,4 +1,4 @@
-import { faBacon, faCarrot, faCartShopping, faCheese, faFish, faSeedling } from "@fortawesome/free-solid-svg-icons";
+import { faBacon, faBowlFood, faCarrot, faCartShopping, faCheese, faFish, faSeedling } from "@fortawesome/free-solid-svg-icons";
 
 export const iconMap = {
     carrot: faCarrot,
@@ -6,5 +6,6 @@ export const iconMap = {
     fish: faFish,
     cheese: faCheese,
     seedling: faSeedling,
-    cart: faCartShopping
+    cart: faCartShopping,
+    rice: faBowlFood
 };

@@ -15,35 +15,59 @@ datasource db {
 
 // ユーザー
 model User {
-  userId   String @id @map("user_id")
-  userName String @map("user_name")
+  id       String @id
+  name     String
   password String
 
   @@map("user")
 }
 
-// リストアイテム
-model ListItem {
-  itemId         Int     @id @default(autoincrement()) @map("item_id")
-  itemName       String  @map("item_name")
-  volume         String?
-  recipeName     String? @map("recipe_name")
-  listCategoryId Int     @map("list_category_id")
-  isDone         Boolean @default(false) @map("is_done")
+// レシピカテゴリ
+model RecipeCategory {
+  id    Int    @id @default(autoincrement())
+  name  String
+  icon  String
+  color String
 
-  list_category ListCategory @relation(fields: [listCategoryId], references: [listCategoryId], onDelete: Cascade)
+  recipes Recipe[]
 
-  @@map("list_item")
+  @@map("recipe_category")
+}
+
+// レシピ
+model Recipe {
+  id         Int     @id @default(autoincrement())
+  name       String  @default("")
+  categoryId Int     @map("category_id")
+  imageUrl   String? @map("image_url")
+
+  category RecipeCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@map("recipe")
 }
 
 // リストカテゴリー
 model ListCategory {
-  listCategoryId Int    @id @default(autoincrement()) @map("list_category_id")
-  categoryName   String @map("category_name")
-  iconName       String @map("icon_name")
-  color          String
+  id    Int    @id @default(autoincrement())
+  name  String
+  icon  String
+  color String
 
   listItems ListItem[]
 
   @@map("list_category")
+}
+
+// リストアイテム
+model ListItem {
+  id         Int     @id @default(autoincrement())
+  name       String
+  volume     String?
+  recipeName String?
+  categoryId Int     @map("category_id")
+  isDone     Boolean @default(false) @map("is_done")
+
+  category ListCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@map("list_item")
 }
