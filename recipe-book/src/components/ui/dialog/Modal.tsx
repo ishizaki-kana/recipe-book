@@ -2,10 +2,10 @@ import Button from "@/components/ui/button/Button";
 import IconButton from "@/components/ui/button/IconButton";
 import CloseIcon from '@mui/icons-material/Close';
 import { DialogActions, DialogContent, DialogTitle, ModalProps, SlotProps } from "@mui/material";
-import MuiDialog, { DialogBackdropSlotPropsOverrides, DialogContainerSlotPropsOverrides, DialogOwnerState, DialogPaperSlotPropsOverrides, DialogRootSlotPropsOverrides } from "@mui/material/Dialog";
+import Dialog, { DialogBackdropSlotPropsOverrides, DialogContainerSlotPropsOverrides, DialogOwnerState, DialogPaperSlotPropsOverrides, DialogRootSlotPropsOverrides } from "@mui/material/Dialog";
 import { ElementType, JSX, ReactNode } from "react";
 
-export default function Dialog({
+export default function Modal({
     children,
     open,
     title,
@@ -71,7 +71,7 @@ export default function Dialog({
     }
 
     return (
-        <MuiDialog open={open} onClose={onClose} slotProps={slotProps}>
+        <Dialog open={open} onClose={onClose} slotProps={slotProps}>
             <DialogTitle
                 sx={{ px: 2, py: 1.5, borderBottom: "1px solid #ccc" }}
                 color={"ui.contrastText"}
@@ -113,6 +113,6 @@ export default function Dialog({
                     )}
                 </DialogActions>
             )}
-        </MuiDialog>
+        </Dialog>
     );
 }

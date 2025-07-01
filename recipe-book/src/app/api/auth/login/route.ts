@@ -10,8 +10,7 @@ import { NextResponse } from 'next/server';
  * 
  * ユーザー認証を行い、トークンをCookieに保存します。
  * 
- * userId: ユーザーID 
- * password: パスワード
+ * { userId: ユーザーID, password: パスワード }
  * 
  * @param req リクエスト 
  * @returns レスポンス

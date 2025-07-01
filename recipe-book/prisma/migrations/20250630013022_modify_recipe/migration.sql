@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "recipe" ALTER COLUMN "calories" DROP DEFAULT,
+ALTER COLUMN "shelfLife" DROP DEFAULT;

@@ -1,8 +1,8 @@
 'use client'
-import Alert from "@/components/ui/alert/Alert";
 import Button from "@/components/ui/button/Button";
-import PasswordBox from "@/components/ui/input/PasswordBox";
-import TextBox from "@/components/ui/input/TextBox";
+import Alert from "@/components/ui/feedback/Alert";
+import PasswordBox from "@/components/ui/form/input/PasswordBox";
+import TextBox from "@/components/ui/form/input/TextBox";
 import { apiPost } from "@/lib/fetch";
 import { ERROR_MESSAGES } from "@/lib/messages";
 import { zodResolver } from "@hookform/resolvers/zod";

@@ -3,6 +3,16 @@ import { updateListItem } from "@/repositories/listItemRepository";
 import { ListItem } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
+/**
+ * リストアイテム編集
+ * 
+ * 単体更新: { id: リストアイテムID, data: リストアイテム }
+ * 
+ * 複数更新: { datalist: { id: リストアイテムID, data: リストアイテム }[] }
+ * 
+ * @param req リクエスト 
+ * @returns レスポンス
+ */
 export async function POST(req: NextRequest) {
     return handleApi(async () => {
         const body = await req.json();

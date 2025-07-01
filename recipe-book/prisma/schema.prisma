@@ -37,9 +37,11 @@ model RecipeCategory {
 // レシピ
 model Recipe {
   id         Int     @id @default(autoincrement())
-  name       String  @default("")
+  name       String
   categoryId Int     @map("category_id")
   imageUrl   String? @map("image_url")
+  shelfLife  String?
+  calories   Int?
 
   category RecipeCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 

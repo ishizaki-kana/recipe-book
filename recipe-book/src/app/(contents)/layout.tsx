@@ -1,5 +1,5 @@
+import CenteredContainer from "@/components/layout/container/CenteredContainer";
 import Header from "@/components/layout/header/Header";
-import { getUserFromAuthToken } from "@/lib/auth";
 import "@/styles/globals.css";
 import { Box } from "@mui/material";
 import type { Metadata } from "next";
@@ -10,13 +10,15 @@ export const metadata: Metadata = {
     description: "わたしのレシピ本",
 };
 
-export default async function RootLayout({
+export default async function ContentsLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
 
-    const user = await getUserFromAuthToken();
+    //const user = await getUserFromAuthToken();
+    // TODO : テストデータ
+    const user = { id: 'test', name: 'test user', password: 'passtest' };
 
     // ログイン情報が無効のとき
     if (!user) {
@@ -24,10 +26,13 @@ export default async function RootLayout({
     }
 
     return (
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", height: "100%" }}>
             <Header user={user} />
-            <Box component={"main"} sx={{ p: 3, pt: 12, pb: 5 }} width={"100%"} height={"100vh"}>
-                {children}
+            <Box component={"main"}
+                sx={{ width: '100%', height: '100%', pt: 8 }}>
+                <CenteredContainer sx={{ py: 2, px: 4, overflow: 'auto' }}>
+                    {children}
+                </CenteredContainer>
             </Box>
         </Box>
     );
