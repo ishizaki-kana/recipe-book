@@ -1,6 +1,6 @@
-import { Tooltip } from "@mui/material"
+import { Theme, Tooltip } from "@mui/material"
 import MuiIconButton, { IconButtonPropsColorOverrides, IconButtonPropsSizeOverrides } from "@mui/material/IconButton"
-import { Theme } from "@mui/material/styles"
+
 import { Box, SxProps } from "@mui/system"
 import { OverridableStringUnion } from "@mui/types"
 import { MouseEventHandler, ReactNode } from "react"
@@ -40,7 +40,7 @@ export default function IconButton({
     color?: OverridableStringUnion<"inherit" | "default" | "primary" | "secondary" | "error" | "info" | "success" | "warning" | "ui", IconButtonPropsColorOverrides> | undefined
     size?: OverridableStringUnion<"small" | "medium" | "large", IconButtonPropsSizeOverrides> | undefined
     edge?: false | "start" | "end" | undefined
-    sx?: SxProps<Theme> | undefined
+    sx?: SxProps<Theme>
     tooltip?: boolean | undefined
     tipTitle?: string | undefined
     tipPlacement?: 'bottom' | 'left' | 'right' | 'top' | undefined

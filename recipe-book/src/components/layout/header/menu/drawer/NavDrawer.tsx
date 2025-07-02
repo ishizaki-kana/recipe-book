@@ -67,7 +67,7 @@ export default function NavDrawer({
                         alignItems={"center"}
                         justifyContent={"space-between"}
                         sx={{ bgcolor: 'white', borderRadius: '5px', pl: 2, pr: 2, pt: 1, pb: 1 }}>
-                        <Typography>{user?.userName}</Typography>
+                        <Typography>{user.name}</Typography>
 
                         <LogoutButton />
                     </Box>

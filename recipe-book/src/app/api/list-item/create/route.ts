@@ -3,6 +3,16 @@ import { createListItem } from "@/repositories/listItemRepository";
 import { ListItem } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
+/**
+ * リストアイテム作成 (/api/list-item/create)
+ * 
+ * 単体作成: { data: リストアイテム }
+ * 
+ * 複数作成: { datalist: { data: リストアイテム }[] }
+ * 
+ * @param req リクエスト
+ * @returns レスポンス
+ */
 export async function POST(req: NextRequest) {
     return handleApi(async () => {
         const body = await req.json();

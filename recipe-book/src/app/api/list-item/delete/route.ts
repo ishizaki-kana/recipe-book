@@ -2,6 +2,16 @@ import { handleApi } from "@/lib/api";
 import { deleteAllListItems, deleteListItem } from "@/repositories/listItemRepository";
 import { NextRequest, NextResponse } from "next/server";
 
+/**
+ * リストアイテム削除 (/api/list-item/delete)
+ * 
+ * 単体削除: { id: リストアイテムID }
+ * 
+ * 複数削除: { ids: リストアイテムIDリスト }
+ * 
+ * @param req リクエスト
+ * @returns レスポンス
+ */
 export async function POST(req: NextRequest) {
     return handleApi(async () => {
         const body = await req.json();

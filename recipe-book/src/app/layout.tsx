@@ -1,7 +1,7 @@
 import EmotionCacheProvider from "@/components/providers/EmotionCacheProvider";
 import ThemeProvider from "@/components/providers/ThemeProvider";
 import "@/styles/globals.css";
-import { Container } from "@mui/material";
+import { Box } from "@mui/material";
 import type { Metadata } from "next";
 import { Geist, Noto_Sans_JP } from "next/font/google";
 
@@ -16,7 +16,7 @@ const geistMono = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "ログイン",
+  title: "RECIPE BOOK",
   description: "わたしのレシピ本",
 };
 
@@ -31,9 +31,9 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <EmotionCacheProvider>
           <ThemeProvider>
-            <Container sx={{ height: '100vh' }}>
+            <Box sx={{ height: '100vh', width: '100%' }}>
               {children}
-            </Container>
+            </Box>
           </ThemeProvider>
         </EmotionCacheProvider>
       </body>

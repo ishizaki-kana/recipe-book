@@ -1,11 +1,11 @@
 'use client'
 import IconButton from "@/components/ui/button/IconButton";
-import TextBox from "@/components/ui/input/TextBox";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { FormControlPropsSizeOverrides } from "@mui/material";
 import { OverridableStringUnion } from "@mui/types";
 import { ChangeEventHandler, ReactNode, Ref, useState } from "react";
+import TextBox from "./TextBox";
 
 /**
  * パスワード入力ボックス

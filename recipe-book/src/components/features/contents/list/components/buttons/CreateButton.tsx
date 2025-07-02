@@ -1,37 +1,29 @@
 'use client'
-import Dialog from "@/components/layout/dialog/Dialog";
-import Alert from "@/components/ui/alert/Alert";
-import Button from "@/components/ui/button/Button";
-import TextBox from "@/components/ui/input/TextBox";
-import SelectBox, { SelectItem } from "@/components/ui/select/SelectBox";
-import { apiPost } from "@/lib/fetch";
+import Modal from "@/components/ui/dialog/Modal";
+import Alert from "@/components/ui/feedback/Alert";
+import TextBox from "@/components/ui/form/input/TextBox";
+import SelectBox, { SelectItem } from "@/components/ui/form/select/SelectBox";
 import { ERROR_MESSAGES } from "@/lib/messages";
 import { zodResolver } from "@hookform/resolvers/zod";
 import AddIcon from "@mui/icons-material/Add";
 import { Box } from "@mui/material";
-import { ListCategory, ListItem } from "@prisma/client";
+import { ListCategory } from "@prisma/client";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { z } from "zod";
+import { createSchema } from "../../schema";
+import { CreateFormInput } from "../../type";
+import ListButton from "./ListButton";
 
 // TODO カテゴリの選択をアイテム名から推測して自動でできるといい
 
-//バリデーションスキーマ
-const schema = z.object({
-    itemName: z.string().min(1, '入力してください'),
-    volume: z.string(),
-    listCategoryId: z.coerce.number().min(1, '選択してください'),
-});
-
-// 入力型推論
-type AddDialogInput = z.infer<typeof schema>;
-
-export default function AddDialog({
+export default function CreateButton({
     listCategories,
-    addListItem
+    createItemRemote,
+    isMobile
 }: {
     listCategories: ListCategory[]
-    addListItem: (item: ListItem) => void
+    createItemRemote: (item: CreateFormInput) => void
+    isMobile: boolean
 }) {
 
     const {
@@ -40,8 +32,8 @@ export default function AddDialog({
         reset,
         handleSubmit,
         formState: { errors, isSubmitting }
-    } = useForm<AddDialogInput>({
-        resolver: zodResolver(schema)
+    } = useForm<CreateFormInput>({
+        resolver: zodResolver(createSchema)
     });
 
     const categories: SelectItem[] = listCategories.map((category) => ({
@@ -54,19 +46,17 @@ export default function AddDialog({
     // エラー管理
     const [error, setError] = useState<string | null>(null);
 
-    // フォーム送信イベント
-    const onSubmit = async (data: AddDialogInput) => {
+    // クリックイベント
+    const onSubmit = async (data: CreateFormInput) => {
         try {
+
             // リストアイテム追加
-            const item: ListItem = await apiPost('/list-item/create', { data: data });
-            addListItem(item)
+            createItemRemote(data);
 
             reset();        // 入力値リセット
             setError(null);     // エラーメッセージクリア
             setOpen(false);     // ダイアログ非表示
         } catch (e) {
-            console.error(e);
-
             const mag = e instanceof Error ? e.message : ERROR_MESSAGES.UNKNOWN_ERROR;
             setError(mag);
         }
@@ -74,11 +64,13 @@ export default function AddDialog({
 
     return (
         <>
-            <Button variant="outlined" startIcon={<AddIcon />} onClick={() => setOpen(true)}>
-                項目を追加
-            </Button>
+            <ListButton
+                text={"項目を追加"}
+                icon={<AddIcon />}
+                isMobile={isMobile}
+                onClick={() => setOpen(true)} />
 
-            <Dialog
+            <Modal
                 open={open}
                 disableBackDropClick
                 title="リストアイテム追加"
@@ -98,7 +90,7 @@ export default function AddDialog({
 
                     {/* フォーム */}
                     <Box display={"flex"} flexDirection={"column"} gap={1}>
-                        <Controller name="listCategoryId" control={control} render={({ field, fieldState }) => (
+                        <Controller name="categoryId" control={control} render={({ field, fieldState }) => (
                             <SelectBox
                                 id="category"
                                 label="カテゴリー"
@@ -115,9 +107,9 @@ export default function AddDialog({
                             <TextBox
                                 label="アイテム名"
                                 width={"70%"}
-                                {...register('itemName')}
-                                error={!!errors.itemName}
-                                helperText={errors.itemName?.message}
+                                {...register('name')}
+                                error={!!errors.name}
+                                helperText={errors.name?.message}
                             />
                             <TextBox
                                 label="数量"
@@ -129,7 +121,7 @@ export default function AddDialog({
                         </Box>
                     </Box>
                 </Box>
-            </Dialog>
+            </Modal>
         </>
     );
 }

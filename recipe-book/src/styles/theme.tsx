@@ -1,12 +1,25 @@
 import { createTheme, PaletteColor, PaletteColorOptions } from "@mui/material";
+import { blue, blueGrey, brown, orange, red, teal } from "@mui/material/colors";
 
 declare module '@mui/material/styles' {
     interface Palette {
         ui: PaletteColor;
+        red: PaletteColor;
+        blue: PaletteColor;
+        teal: PaletteColor;
+        orange: PaletteColor;
+        brown: PaletteColor;
+        blueGrey: PaletteColor;
     }
 
     interface PaletteOptions {
         ui?: PaletteColorOptions;
+        red?: PaletteColorOptions;
+        blue?: PaletteColorOptions;
+        teal?: PaletteColorOptions;
+        orange?: PaletteColorOptions;
+        brown?: PaletteColorOptions;
+        blueGrey?: PaletteColorOptions;
     }
 }
 
@@ -47,6 +60,30 @@ const theme = createTheme({
             main: '#757575',
             dark: '#424242',
             contrastText: '#333'
+        },
+        red: {
+            light: red[100],
+            main: red[300]
+        },
+        blue: {
+            light: blue[100],
+            main: blue[300]
+        },
+        teal: {
+            light: teal[100],
+            main: teal[300]
+        },
+        orange: {
+            light: orange[100],
+            main: orange[300]
+        },
+        brown: {
+            light: brown[100],
+            main: brown[300]
+        },
+        blueGrey: {
+            light: blueGrey[100],
+            main: blueGrey[300]
         }
     }
 });
