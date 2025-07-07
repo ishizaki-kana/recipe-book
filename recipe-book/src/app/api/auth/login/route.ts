@@ -1,8 +1,8 @@
-import { handleApi } from '@/lib/api';
+import { API_HEADERS, handleApi } from '@/lib/api';
 import { signToken } from '@/lib/auth';
+import { ERROR_MESSAGES } from '@/lib/constants/messages';
 import { COOKIE_KEYS, setCookie } from '@/lib/cookie';
-import { ERROR_MESSAGES } from '@/lib/messages';
-import { getUserById } from '@/repositories/userRepository';
+import { userRepository } from '@/lib/repositories/userRepository';
 import { NextResponse } from 'next/server';
 
 /**
@@ -18,7 +18,7 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request) {
     return handleApi(async () => {
         const { userId, password } = await req.json();
-        const user = await getUserById(userId);
+        const user = await userRepository.findById(userId);
 
         // パスワードが一致しないとき、401エラー
         if (!user || user.password !== password) {
@@ -30,7 +30,10 @@ export async function POST(req: Request) {
 
         // 成功したとき、JWTトークン発行しCookieに保存
         const token = signToken({ userId: user.id });
-        const res = NextResponse.json({}, { status: 200 });
+        const res = NextResponse.json({}, {
+            status: 200,
+            headers: API_HEADERS
+        });
         return setCookie(res, COOKIE_KEYS.AUTH_TOKEN, token);
     });
 }

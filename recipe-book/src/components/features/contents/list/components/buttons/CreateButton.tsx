@@ -3,7 +3,7 @@ import Modal from "@/components/ui/dialog/Modal";
 import Alert from "@/components/ui/feedback/Alert";
 import TextBox from "@/components/ui/form/input/TextBox";
 import SelectBox, { SelectItem } from "@/components/ui/form/select/SelectBox";
-import { ERROR_MESSAGES } from "@/lib/messages";
+import { ERROR_MESSAGES } from "@/lib/constants/messages";
 import { zodResolver } from "@hookform/resolvers/zod";
 import AddIcon from "@mui/icons-material/Add";
 import { Box } from "@mui/material";

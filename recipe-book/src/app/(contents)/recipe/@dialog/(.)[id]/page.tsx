@@ -1,14 +1,5 @@
-import RecipeDialog from "@/components/features/contents/recipe/dialog/RecipeDialog";
-
-// TODO : テストデータ
-const recipe: RecipeDetailType = {
-    id: 6,
-    name: 'しらたき塩焼きそば',
-    imageUrl: null,
-    shelfLife: '冷凍1週間',
-    calories: null,
-    category: { id: 3, name: '副菜', icon: 'seedling', color: 'teal' }
-}
+import RecipeDialog from "@/components/features/contents/recipe/detail/RecipeDialog";
+import { getRecipeDetail } from "@/repositories/recipeRepository";
 
 export default async function RecipeDialogPage({
     params
@@ -16,7 +7,11 @@ export default async function RecipeDialogPage({
     params: { id: string }
 }) {
     const { id } = await params;
-    //const recipe = await getRecipeDetail(Number(id));
+    const recipe = await getRecipeDetail(Number(id));
+
+    if (!recipe) {
+        return null;
+    }
 
     return (
         <RecipeDialog recipe={recipe} />

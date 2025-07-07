@@ -1,5 +1,5 @@
 import FlexContainer from "@/components/layout/container/FlexContainer"
-import { getIcon } from "@/lib/icon"
+import { getIcon } from "@/lib/constants/icon"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { List, ListSubheader, Typography } from "@mui/material"
 import { categorizedItem } from "../../type"

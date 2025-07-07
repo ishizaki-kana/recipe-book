@@ -43,9 +43,53 @@ model Recipe {
   shelfLife  String?
   calories   Int?
 
+  ingredients RecipeIngredient[]
+  steps       RecipeStep[]
+
   category RecipeCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   @@map("recipe")
+}
+
+// レシピ材料
+model RecipeIngredient {
+  id       Int     @id @default(autoincrement())
+  recipeId Int     @map("recipe_id")
+  name     String
+  volume   String?
+  order    Int?
+
+  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@map("recipe_ingredient")
+}
+
+// レシピ工程
+model RecipeStep {
+  id         Int    @id @default(autoincrement())
+  recipeId   Int    @map("recipe_id")
+  stepNumber Int    @map("step_number")
+  text       String
+
+  seasonings RecipeSeasoning[]
+
+  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@unique([recipeId, stepNumber], name: "recipe_step_unique") // ユニーク制約: 同じレシピ内でのステップ番号は一意
+  @@map("recipe_step")
+}
+
+// レシピ調味料
+model RecipeSeasoning {
+  id     Int     @id @default(autoincrement())
+  stepId Int     @map("step_id")
+  name   String
+  volume String?
+  order  Int?
+
+  step RecipeStep @relation(fields: [stepId], references: [id], onDelete: Cascade)
+
+  @@map("recipe_seasoning")
 }
 
 // リストカテゴリー

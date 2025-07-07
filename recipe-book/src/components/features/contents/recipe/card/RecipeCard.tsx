@@ -1,10 +1,10 @@
 'use client'
 import FlexContainer from "@/components/layout/container/FlexContainer";
 import Chip, { ChipColors } from "@/components/ui/display/Chip";
+import { RecipeSummaryType } from "@/types/entity";
 import { Card, CardActionArea, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { getFullImageUrl } from "../util";
 
 export default function RecipeCard({
     recipe
@@ -16,9 +16,6 @@ export default function RecipeCard({
     // 選択状態管理
     const [selected, setSelected] = useState(false);
 
-    // 画像のURL
-    const imageUrl = getFullImageUrl(recipe.imageUrl);
-
     // クリックイベント
     const handleClick = () => {
         setSelected(!selected);
@@ -27,13 +24,13 @@ export default function RecipeCard({
 
     return (
         <Card raised
-            sx={{ width: '100%', height: '300px', display: 'flex', flexDirection: 'column' }}>
+            sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
             <CardActionArea
                 data-active={selected}
                 onClick={handleClick}
                 sx={{
                     height: '100%', display: 'flex', flexDirection: 'column',
-                    alignItems: 'flex-start', justifyContent: 'flex-start'
+                    alignItems: 'flex-start', justifyContent: 'flex-start', pb: 2
                 }}>
 
                 <CardHeader
@@ -49,7 +46,7 @@ export default function RecipeCard({
                     width={'100%'}
                     height={165}
                     alt={`${recipe.name}の画像`}
-                    image={imageUrl}
+                    image={recipe.imageUrl}
                     sx={{ objectFit: 'cover' }}
                 />
 

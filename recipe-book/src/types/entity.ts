@@ -1,7 +1,7 @@
-type RecipeSummaryType = {
+export type RecipeSummaryType = {
     id: number;
     name: string;
-    imageUrl: string | null;
+    imageUrl: string;
     shelfLife: string | null;
     calories: number | null;
     category: {
@@ -12,10 +12,10 @@ type RecipeSummaryType = {
     }
 }
 
-type RecipeDetailType = {
+export type RecipeDetailType = {
     id: number;
     name: string;
-    imageUrl: string | null;
+    imageUrl: string;
     shelfLife: string | null;
     calories: number | null;
     category: {
@@ -23,5 +23,19 @@ type RecipeDetailType = {
         name: string;
         icon: string;
         color: string;
-    }
+    },
+    ingredients: {
+        id: number;
+        name: string;
+        volume: string | null;
+    }[],
+    steps: {
+        id: number;
+        text: string;
+        seasonings: {
+            id: number;
+            name: string;
+            volume: string | null;
+        }[] | null;
+    }[]
 }

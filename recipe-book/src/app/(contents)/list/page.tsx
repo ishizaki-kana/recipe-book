@@ -1,80 +1,13 @@
 import ItemListContainer from "@/components/features/contents/list/components/ItemListContainer";
 import CenteredContainer from "@/components/layout/container/CenteredContainer";
 import FlexContainer from "@/components/layout/container/FlexContainer";
+import { apiGet } from "@/lib/fetch";
 import { Paper } from "@mui/material";
-
-// TODO : テストデータ
-const listCategories = [
-    { id: 1, name: '野菜', icon: 'carrot', color: 'teal' },
-    { id: 2, name: '肉', icon: 'bacon', color: 'red' },
-    { id: 3, name: '魚', icon: 'fish', color: 'blue' },
-    { id: 4, name: '乳製品', icon: 'cheese', color: 'orange' },
-    { id: 5, name: '調味料', icon: 'seedling', color: 'brown' },
-    { id: 6, name: 'その他', icon: 'cart', color: 'blueGrey' }
-]
-
-const listItems = [
-    {
-        id: 2,
-        name: 'test',
-        volume: '200g',
-        recipeName: null,
-        categoryId: 2,
-        isDone: false
-    },
-    {
-        id: 4,
-        name: 'テスト',
-        volume: '2本',
-        recipeName: null,
-        categoryId: 1,
-        isDone: false
-    },
-    {
-        id: 5,
-        name: 'テスト',
-        volume: '200g',
-        recipeName: null,
-        categoryId: 4,
-        isDone: false
-    },
-    {
-        id: 6,
-        name: 'test',
-        volume: '200g',
-        recipeName: null,
-        categoryId: 5,
-        isDone: false
-    },
-    {
-        id: 7,
-        name: 'test',
-        volume: '200g',
-        recipeName: null,
-        categoryId: 6,
-        isDone: false
-    },
-    {
-        id: 8,
-        name: 'test',
-        volume: '200g',
-        recipeName: null,
-        categoryId: 3,
-        isDone: false
-    },
-    {
-        id: 9,
-        name: 'test',
-        volume: '200g',
-        recipeName: null,
-        categoryId: 2,
-        isDone: false
-    }
-]
+import { ListCategory, ListItem } from "@prisma/client";
 
 export default async function ListPage() {
-    //const listCategories = await getAllListCategories();
-    //const listItems = await getAllListItems();
+    const listCategories: ListCategory[] = await apiGet('/list-category/find?all=true');
+    const listItems: ListItem[] = await apiGet('/list-item/find?all=true');
 
     return (
         <CenteredContainer sx={{ py: 2 }}>

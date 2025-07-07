@@ -1,5 +1,5 @@
 import { ApiError } from "@/types/error";
-import { ERROR_MESSAGES } from "./messages";
+import { ERROR_MESSAGES } from "./constants/messages";
 
 const url = '/api';
 

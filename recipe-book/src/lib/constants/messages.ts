@@ -1,6 +1,8 @@
 
 export const ERROR_MESSAGES = {
     REQUIRED_FIELD: '入力してください',
+    REQUIRED_PARAM: '{0}パラメータが不足しています',
+    REQUIRED_ANY_PARAMS: '{0}パラメータのいずれかが必要です',
     AUTH_FAILED: 'ログインに失敗しました。ユーザーIDまたはパスワードが違います。',
     CREATE_FAILED: '{0}の作成に失敗しました。',
     UPDATE_FAILED: '{0}の更新に失敗しました。',
