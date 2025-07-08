@@ -3,7 +3,7 @@ import { z } from "zod";
 import { createSchema } from "./schema";
 
 /**
- * カテゴリごとに分類されたリストアイテムタイプ
+ * カテゴリごとに分類されたリストアイテム型
  */
 export type categorizedItem = {
     category: ListCategory,
@@ -11,7 +11,7 @@ export type categorizedItem = {
 }
 
 /**
- * リストアイテム新規登録フォームタイプ
+ * リストアイテム新規登録フォーム入力型
  */
 export type CreateFormInput = z.infer<typeof createSchema>;
 

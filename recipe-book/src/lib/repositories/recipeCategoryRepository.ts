@@ -1,9 +1,9 @@
-import { ListCategory } from "@prisma/client";
+import { RecipeCategory } from "@prisma/client";
 import { createRepository } from "./baseRepository";
 
-const base = createRepository<ListCategory>('listCategory', '/list');
+const base = createRepository<RecipeCategory>('recipeCategory', '/recipe');
 
-export const listCategoryRepository = {
+export const recipeCategoryRepository = {
     ...base,
 
     findAllByConditions: undefined,

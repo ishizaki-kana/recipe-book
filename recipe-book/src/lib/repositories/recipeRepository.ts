@@ -1,4 +1,4 @@
-import { RecipeDetailType, RecipeSummaryType } from "@/types/entity";
+import { RecipeDetail, RecipeSummary } from "@/types/entity";
 import { Recipe } from "@prisma/client";
 import { prisma } from "../db/prisma";
 import { createRepository } from "./baseRepository";
@@ -14,15 +14,17 @@ export const recipeRepository = {
     create: undefined,
     update: undefined,
     delete: undefined,
-    deleteMany: undefined,
+    deleteAll: undefined,
 
     /**
      * すべてのレシピの概要リスト取得
      * 
      * @returns レシピ概要リスト
      */
-    findAllRecipeSummaries: async (): Promise<RecipeSummaryType[]> => {
+    findAllRecipeSummariesByConditions: async (conditions: Partial<Recipe>): Promise<RecipeSummary[]> => {
+        console.log(conditions);
         const result = await prisma.recipe.findMany({
+            where: conditions,
             select: {
                 id: true,
                 name: true,
@@ -50,7 +52,7 @@ export const recipeRepository = {
      * 
      * @returns レシピ詳細 | null
      */
-    findRecipeDetail: async (id: number): Promise<RecipeDetailType | null> => {
+    findRecipeDetail: async (id: number): Promise<RecipeDetail | null> => {
         const recipe = await prisma.recipe.findUnique({
             where: {
                 id

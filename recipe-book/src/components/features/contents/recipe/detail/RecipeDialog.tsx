@@ -1,5 +1,5 @@
 'use client'
-import { RecipeDetailType } from "@/types/entity";
+import { RecipeDetail } from "@/types/entity";
 import { Box, DialogContent, DialogTitle } from "@mui/material";
 import MuiDialog from "@mui/material/Dialog";
 import { useRouter } from "next/navigation";
@@ -11,7 +11,7 @@ import StepList from "./item/StepList";
 export default function RecipeDialog({
     recipe
 }: {
-    recipe: RecipeDetailType
+    recipe: RecipeDetail
 }) {
     const router = useRouter();
 
@@ -26,7 +26,7 @@ export default function RecipeDialog({
             onClose={handleClose}>
 
             <DialogTitle sx={{ borderBottom: '1px solid #ccc' }}>
-                <RecipeTitle title={recipe.name} category={recipe.category} />
+                <RecipeTitle recipe={recipe} />
             </DialogTitle>
 
             <DialogContent>

@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prisma": "npx prisma studio",
     "update prisma": "npx prisma migrate dev",
     "generate prisma": "npx prisma generate"
   },

@@ -90,7 +90,7 @@ export function createRepository<
          * @param ids 削除対象のIDリスト
          * @returns 削除されたレコードリスト
          */
-        deleteMany: async (ids: T['id'][]): Promise<T> => {
+        deleteAll: async (ids: T['id'][]): Promise<T> => {
             const result = await repo.deleteMany({ where: { id: { in: ids } } });
             revalidatePath(revalidateTarget);
             return result;

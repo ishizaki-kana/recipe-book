@@ -8,8 +8,4 @@ export const listItemRepository = {
 
     findAllByConditions: undefined,
     findById: undefined,
-    create: undefined,
-    update: undefined,
-    delete: undefined,
-    deleteMany: undefined
 }

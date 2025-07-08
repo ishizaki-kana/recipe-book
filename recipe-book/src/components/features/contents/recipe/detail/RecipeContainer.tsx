@@ -1,5 +1,5 @@
 import CenteredContainer from "@/components/layout/container/CenteredContainer";
-import { RecipeDetailType } from "@/types/entity";
+import { RecipeDetail } from "@/types/entity";
 import { Box, Divider, Paper, Stack } from "@mui/material";
 import IngredientList from "./item/IngredientList";
 import RecipeImage from "./item/RecipeImage";
@@ -9,7 +9,7 @@ import StepList from "./item/StepList";
 export default function RecipeContainer({
     recipe
 }: {
-    recipe: RecipeDetailType
+    recipe: RecipeDetail
 }) {
 
     return (
@@ -20,12 +20,12 @@ export default function RecipeContainer({
 
                 {/* title */}
                 <Box sx={{ px: 3, py: 2 }}>
-                    <RecipeTitle title={recipe.name} category={recipe.category} />
+                    <RecipeTitle recipe={recipe} />
                 </Box>
                 <Divider />
 
                 {/* content */}
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, my: 3, mx: 2 }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, my: 4, mx: 4 }}>
                     <Box sx={{ display: 'flex', gap: 2 }}>
                         <RecipeImage imageUrl={recipe.imageUrl} recipeName={recipe.name} />
                         <IngredientList ingredients={recipe.ingredients} />

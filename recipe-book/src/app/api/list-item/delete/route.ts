@@ -1,5 +1,5 @@
 import { handleApi } from "@/lib/api";
-import { deleteAllListItems, deleteListItem } from "@/repositories/listItemRepository";
+import { listItemRepository } from "@/lib/repositories/listItemRepository";
 import { NextRequest, NextResponse } from "next/server";
 
 /**
@@ -19,13 +19,13 @@ export async function POST(req: NextRequest) {
         // 複数削除
         if ('ids' in body) {
             const ids: number[] = body.ids;
-            const deletedListItems = await deleteAllListItems(ids);
+            const deletedListItems = await listItemRepository.deleteAll(ids);
             return NextResponse.json(deletedListItems, { status: 200 });
         }
 
         // 単体削除
         const { id } = body;
-        const deletedListItem = await deleteListItem(id);
+        const deletedListItem = await listItemRepository.delete(id);
         return NextResponse.json(deletedListItem, { status: 200 });
     })
 }

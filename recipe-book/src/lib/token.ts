@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import { verifyToken } from "./auth";
 import { ERROR_MESSAGES, formatMessage } from "./constants/messages";
 import { COOKIE_KEYS, getCookie } from "./cookie";
@@ -26,7 +27,7 @@ export async function getUserFromAuthToken() {
         return null;
     }
 
-    const user = await apiGet(`/user/find?id=${decoded.userId}`);
+    const user: User = await apiGet(`/user/find?id=${decoded.userId}`);
 
     if (!user) {
         console.error(formatMessage(ERROR_MESSAGES.NOT_FOUND, 'ユーザー'));
