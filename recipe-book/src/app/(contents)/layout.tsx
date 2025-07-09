@@ -1,5 +1,6 @@
 import CenteredContainer from "@/components/layout/container/CenteredContainer";
 import Header from "@/components/layout/header/Header";
+import { getUserFromAuthToken } from "@/lib/token";
 import "@/styles/globals.css";
 import { Box } from "@mui/material";
 import type { Metadata } from "next";
@@ -16,9 +17,7 @@ export default async function ContentsLayout({
     children: React.ReactNode;
 }>) {
 
-    //const user = await getUserFromAuthToken();
-    // TODO : テストデータ
-    const user = { id: 'test', name: 'test user', password: 'passtest' };
+    const user = await getUserFromAuthToken();
 
     // ログイン情報が無効のとき
     if (!user) {

@@ -1,5 +1,5 @@
 import { handleApi } from "@/lib/api";
-import { updateListItem } from "@/repositories/listItemRepository";
+import { listItemRepository } from "@/lib/repositories/listItemRepository";
 import { ListItem } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -21,14 +21,14 @@ export async function POST(req: NextRequest) {
         if ('datalist' in body) {
             const { datalist }: { datalist: { id: number, data: ListItem }[] } = body;
             const updatedListItems = await Promise.all(
-                datalist.map(({ id, data }) => updateListItem(id, data))
+                datalist.map(({ id, data }) => listItemRepository.update(id, data))
             );
             return NextResponse.json(updatedListItems, { status: 200 });
         }
 
         // 単体更新
         const { id, data } = body;
-        const updatedListItem = await updateListItem(id, data);
+        const updatedListItem = await listItemRepository.update(id, data);
         return NextResponse.json(updatedListItem, { status: 200 });
     })
 }

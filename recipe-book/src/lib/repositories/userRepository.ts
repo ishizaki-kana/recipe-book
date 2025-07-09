@@ -10,5 +10,5 @@ export const userRepository = {
     create: undefined,
     update: undefined,
     delete: undefined,
-    deleteMany: undefined
+    deleteAll: undefined
 };

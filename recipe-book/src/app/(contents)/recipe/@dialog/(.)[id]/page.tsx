@@ -1,5 +1,6 @@
 import RecipeDialog from "@/components/features/contents/recipe/detail/RecipeDialog";
-import { getRecipeDetail } from "@/repositories/recipeRepository";
+import { apiGet } from "@/lib/fetch";
+import { RecipeDetailType } from "@/types/entity";
 
 export default async function RecipeDialogPage({
     params
@@ -7,7 +8,7 @@ export default async function RecipeDialogPage({
     params: { id: string }
 }) {
     const { id } = await params;
-    const recipe = await getRecipeDetail(Number(id));
+    const recipe: RecipeDetailType = await apiGet(`/recipe/find?id=${id}`);
 
     if (!recipe) {
         return null;

@@ -68,7 +68,7 @@ export function useItemList(
         try {
 
             // アイテムの完了状態を更新
-            await apiPost('/list-item/modify', {
+            await apiPost('/list-item/update', {
                 id,
                 data: { isDone }
             });
@@ -93,14 +93,14 @@ export function useItemList(
         onFinally: () => void
     ) => {
         try {
-            const targetIds = isDone ? getDoneIds(categorizedItems) : getUndoneIds(categorizedItems);
+            const targetIds = isDone ? getUndoneIds(categorizedItems) : getDoneIds(categorizedItems);
 
             // すでにすべての項目が未完了または完了済みの時
             if (targetIds.length === 0) return;
 
             // すべてのアイテムの完了状態を更新
             await Promise.all(targetIds.map(id =>
-                apiPost('/list-item/modify', {
+                apiPost('/list-item/update', {
                     id,
                     data: { isDone }
                 })

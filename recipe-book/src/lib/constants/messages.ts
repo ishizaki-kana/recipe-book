@@ -7,6 +7,7 @@ export const ERROR_MESSAGES = {
     CREATE_FAILED: '{0}の作成に失敗しました。',
     UPDATE_FAILED: '{0}の更新に失敗しました。',
     DELETE_FAILED: '{0}の削除に失敗しました。',
+    SEARCH_FAILED: '{0}の検索に失敗しました。',
     NOT_FOUND: '{0}が見つかりませんでした。',
     INVALID_VALUE: '{0}が無効です。',
     SERVER_ERROR: 'サーバーでエラーが発生しました。',

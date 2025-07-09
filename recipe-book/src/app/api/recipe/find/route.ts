@@ -6,8 +6,8 @@ import { NextResponse } from "next/server";
 /**
  * レシピ取得 (/api/recipe/find)
  * 
- * { all: 全件取得フラグ }
  * { id: ID }
+ * { conditions: 条件 }
  * 
  * @param req リクエスト
  * @returns レスポンス
@@ -15,7 +15,7 @@ import { NextResponse } from "next/server";
 export async function GET(req: Request) {
     return handleApi(async () => {
         const { searchParams } = await getRequestParams(req, {
-            requiredAnyParams: ['all', 'id']
+            requiredAnyParams: ['id', 'conditions']
         });
 
         const id = searchParams.get('id');
@@ -35,7 +35,9 @@ export async function GET(req: Request) {
             }
         }
 
-        const recipes = await recipeRepository.findAllRecipeSummaries();
+        const conditions = JSON.parse(searchParams.get('conditions')!);
+        const recipes = await recipeRepository.findAllRecipeSummariesByConditions(conditions);
+        console.log(recipes);
         return NextResponse.json(recipes, {
             status: 200,
             headers: API_HEADERS

@@ -14,7 +14,7 @@ const url = '/api';
 export async function apiGet<T>(
     endpoint: string
 ): Promise<T> {
-    const res = await fetch(`${url}${endpoint}`, {
+    const res = await fetch(`${getBaseUrl()}${url}${endpoint}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ export async function apiPost<T>(
     endpoint: string,
     body: unknown
 ): Promise<T> {
-    const res = await fetch(`${url}${endpoint}`, {
+    const res = await fetch(`${getBaseUrl()}${url}${endpoint}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -46,6 +46,22 @@ export async function apiPost<T>(
     });
 
     return await handleResponse<T>(res);
+}
+
+export function getBaseUrl(): string {
+
+    // クライアント
+    if (typeof window !== 'undefined') {
+        return window.location.origin;
+    }
+
+    // サーバー
+    if (process.env.VERCEL_URL) {
+        return `https://${process.env.VERCEL_URL}`;
+    }
+
+    // ローカル
+    return 'http://localhost:3000';
 }
 
 //

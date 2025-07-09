@@ -1,5 +1,5 @@
 import { handleApi } from "@/lib/api";
-import { createListItem } from "@/repositories/listItemRepository";
+import { listItemRepository } from "@/lib/repositories/listItemRepository";
 import { ListItem } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -21,14 +21,14 @@ export async function POST(req: NextRequest) {
         if ('datalist' in body) {
             const { datalist }: { datalist: { data: ListItem }[] } = body;
             const createdListItems = await Promise.all(
-                datalist.map(({ data }) => createListItem(data))
+                datalist.map(({ data }) => listItemRepository.create(data))
             );
             return NextResponse.json(createdListItems, { status: 200 });
         }
 
         // 単体作成
         const { data } = body;
-        const createdListItem = await createListItem(data);
+        const createdListItem = await listItemRepository.create(data);
         return NextResponse.json(createdListItem, { status: 200 });
     })
 }

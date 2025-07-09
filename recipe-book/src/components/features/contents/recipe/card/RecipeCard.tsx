@@ -1,7 +1,7 @@
 'use client'
 import FlexContainer from "@/components/layout/container/FlexContainer";
 import Chip, { ChipColors } from "@/components/ui/display/Chip";
-import { RecipeSummaryType } from "@/types/entity";
+import { RecipeSummary } from "@/types/entity";
 import { Card, CardActionArea, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -9,7 +9,7 @@ import { useState } from "react";
 export default function RecipeCard({
     recipe
 }: {
-    recipe: RecipeSummaryType
+    recipe: RecipeSummary
 }) {
     const router = useRouter();
 
@@ -23,7 +23,7 @@ export default function RecipeCard({
     }
 
     return (
-        <Card raised
+        <Card raised elevation={3}
             sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
             <CardActionArea
                 data-active={selected}

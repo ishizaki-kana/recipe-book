@@ -1,44 +1,35 @@
-import { Box, List, ListItem, Typography } from "@mui/material";
+import { StepSummary } from "@/types/entity";
+import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
 
 export default function StepList({
     steps
 }: {
-    steps: {
-        id: number;
-        text: string;
-        seasonings: {
-            id: number;
-            name: string;
-            volume: string | null;
-        }[] | null;
-    }[]
+    steps: StepSummary[]
 }) {
 
     return (
-        <Box>
+        <List>
             {steps.map((step) => (
-                <Box key={step.id} sx={{ mb: 2 }}>
-                    <Typography variant="body1" fontWeight={600}>
-                        {`Step ${step.id}: ${step.text}`}
-                    </Typography>
-                    {step.seasonings && step.seasonings.length > 0 && (
-                        <List>
-                            {step.seasonings.map(seasoning => (
-                                <ListItem key={seasoning.id} disablePadding>
-                                    <Box sx={{ display: 'flex', width: '100%' }}>
-                                        <Typography variant="body2" sx={{ flexGrow: 1 }}>
-                                            {seasoning.name}
-                                        </Typography>
-                                        <Typography variant="body2">
-                                            {seasoning.volume}
-                                        </Typography>
-                                    </Box>
-                                </ListItem>
-                            ))}
-                        </List>
-                    )}
-                </Box>
+                <div key={step.id}>
+                    <ListItem alignItems="center">
+                        <ListItemAvatar>
+                            <Avatar sx={{ width: 28, height: 28, bgcolor: 'primary.main' }}>{step.stepNumber}</Avatar>
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary={step.text}
+                            secondary={step.seasonings && step.seasonings.length > 0 && (
+                                <List>
+                                    {step.seasonings.map(seasoning => (
+                                        <ListItem key={seasoning.id} disablePadding>
+                                            <ListItemText secondary={`${seasoning.name} - ${seasoning.volume}`} />
+                                        </ListItem>
+                                    ))}
+                                </List>
+                            )} />
+                    </ListItem>
+                    <Divider />
+                </div>
             ))}
-        </Box>
+        </List>
     )
 }

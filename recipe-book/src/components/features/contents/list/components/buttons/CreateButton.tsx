@@ -6,7 +6,7 @@ import SelectBox, { SelectItem } from "@/components/ui/form/select/SelectBox";
 import { ERROR_MESSAGES } from "@/lib/constants/messages";
 import { zodResolver } from "@hookform/resolvers/zod";
 import AddIcon from "@mui/icons-material/Add";
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { ListCategory } from "@prisma/client";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -89,7 +89,7 @@ export default function CreateButton({
                     <Alert severity="error" visible={!!error}>{error}</Alert>
 
                     {/* フォーム */}
-                    <Box display={"flex"} flexDirection={"column"} gap={1}>
+                    <Stack gap={1}>
                         <Controller name="categoryId" control={control} render={({ field, fieldState }) => (
                             <SelectBox
                                 id="category"
@@ -119,7 +119,7 @@ export default function CreateButton({
                                 helperText={errors.volume?.message}
                             />
                         </Box>
-                    </Box>
+                    </Stack>
                 </Box>
             </Modal>
         </>
