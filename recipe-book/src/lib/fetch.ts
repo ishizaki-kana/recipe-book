@@ -83,7 +83,7 @@ async function handleResponse<T>(res: Response): Promise<T> {
 
         try {
             const error: ApiError = await res.json();
-            errorMsg = error.message || errorMsg;
+            errorMsg = res.url + ' ' + error.message || errorMsg;
         } catch {
             errorMsg = res.statusText || errorMsg;
         }

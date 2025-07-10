@@ -37,7 +37,7 @@ export async function GET(req: Request) {
 
         const conditions = JSON.parse(searchParams.get('conditions')!);
         const recipes = await recipeRepository.findAllRecipeSummariesByConditions(conditions);
-        console.log(recipes);
+
         return NextResponse.json(recipes, {
             status: 200,
             headers: API_HEADERS

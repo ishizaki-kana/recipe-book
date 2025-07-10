@@ -14,9 +14,9 @@ export default function RecipeContainer({
 
     return (
         <CenteredContainer sx={{ py: 2 }}>
-            <Paper elevation={5}
+            <Paper elevation={10}
                 component={Stack}
-                sx={{ height: '100%', width: '100%' }}>
+                sx={{ height: '100%', width: '100%', overflow: 'auto' }}>
 
                 {/* title */}
                 <Box sx={{ px: 3, py: 2 }}>

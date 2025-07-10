@@ -1,5 +1,6 @@
 import RecipeCard from '@/components/features/contents/recipe/card/RecipeCard';
 import SearchContainer from '@/components/features/contents/recipe/search/SearchContainer';
+import { RecipeSearchInput } from '@/components/features/contents/recipe/types';
 import { apiGet } from '@/lib/fetch';
 import { RecipeSummary } from '@/types/entity';
 import { Box, Grid } from '@mui/material';
@@ -12,26 +13,34 @@ export default async function RecipeBookPage({
 }) {
 
   // パラメータ取得
-  const keyword = searchParams.keyword ?? '';
-  const categoryIds = searchParams.categoryIds ? searchParams.categoryIds.split(',') : [];
+  const keyword = searchParams?.keyword ?? '';
+  const categoryIds = searchParams?.categoryIds?.split(',') ?? [];
+  const searchInput: RecipeSearchInput = {
+    keyword,
+    categoryIds: categoryIds.map(id => Number(id))
+  }
 
-  let param = 'all=true';
-  if (keyword || categoryIds.length > 0) {
-    const conditions = {
-      name: { contains: keyword },
-      categoryId: { in: categoryIds }
-    }
+  const conditions: Record<string, any> = {}
+  if (keyword.trim()) {
+    const keywords = keyword.split(/\s+/).filter(Boolean);
+    const keywordConditions = keywords.flatMap(w => [
+      { name: { contains: w } },
+      { ingredients: { some: { name: { contains: w } } } }
+    ]);
+    conditions.OR = keywordConditions;
+  }
 
-    param = `conditions=${encodeURIComponent(JSON.stringify(conditions))}`
+  if (categoryIds.length > 0) {
+    conditions.categoryId = { in: searchInput.categoryIds }
   }
 
   const recipeCategories: RecipeCategory[] = await apiGet('/recipe-category/find?all=true');
-  const recipes: RecipeSummary[] = await apiGet(`/recipe/find?${param}`);
+  const recipes: RecipeSummary[] = await apiGet(`/recipe/find?conditions=${encodeURIComponent(JSON.stringify(conditions))}`);
 
   return (
-    <Box sx={{ height: '100%' }}>
+    <Box sx={{ height: '100%', width: '100%' }}>
 
-      <SearchContainer categories={recipeCategories} />
+      <SearchContainer categories={recipeCategories} searchInput={searchInput} />
 
       <Grid container rowSpacing={3} columnSpacing={5}
         columns={{ xs: 1, sm: 3, md: 4, lg: 5 }}

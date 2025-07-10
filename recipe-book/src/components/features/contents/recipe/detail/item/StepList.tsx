@@ -1,5 +1,5 @@
 import { StepSummary } from "@/types/entity";
-import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
+import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
 
 export default function StepList({
     steps
@@ -11,9 +11,9 @@ export default function StepList({
         <List>
             {steps.map((step) => (
                 <div key={step.id}>
-                    <ListItem alignItems="center">
-                        <ListItemAvatar>
-                            <Avatar sx={{ width: 28, height: 28, bgcolor: 'primary.main' }}>{step.stepNumber}</Avatar>
+                    <ListItem alignItems='flex-start'>
+                        <ListItemAvatar sx={{ mt: 0.4 }}>
+                            <Avatar sx={{ width: 30, height: 30, bgcolor: 'primary.main' }}>{step.stepNumber}</Avatar>
                         </ListItemAvatar>
                         <ListItemText
                             primary={step.text}
@@ -21,7 +21,9 @@ export default function StepList({
                                 <List>
                                     {step.seasonings.map(seasoning => (
                                         <ListItem key={seasoning.id} disablePadding>
-                                            <ListItemText secondary={`${seasoning.name} - ${seasoning.volume}`} />
+                                            <Typography component={'span'} fontSize={14}>
+                                                {seasoning.name} - {seasoning.volume}
+                                            </Typography>
                                         </ListItem>
                                     ))}
                                 </List>

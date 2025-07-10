@@ -9,21 +9,19 @@ import { useRecipe } from "../hooks";
 import { RecipeSearchInput } from "../types";
 
 export default function SearchForm({
-    categories
+    categories,
+    searchInput
 }: {
     categories: RecipeCategory[]
+    searchInput: RecipeSearchInput
 }) {
     const {
         register,
         handleSubmit,
-        reset,
         control,
         formState: { isSubmitting }
     } = useForm<RecipeSearchInput>({
-        defaultValues: {
-            keyword: '',
-            categoryIds: []
-        }
+        defaultValues: searchInput
     });
 
     const { error, search } = useRecipe();
@@ -31,7 +29,6 @@ export default function SearchForm({
     // 検索ボタンクリックイベント
     const onSubmit = async (data: RecipeSearchInput) => {
         search(data);
-        reset();
     }
 
     return (
