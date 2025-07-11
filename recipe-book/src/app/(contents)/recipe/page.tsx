@@ -37,7 +37,9 @@ export default async function RecipeBookPage({
   }
 
   const recipeCategories: RecipeCategory[] = await apiGet('/recipe-category/find?all=true');
+  console.log(recipeCategories)
   const recipes: RecipeSummary[] = await apiGet(`/recipe/find?conditions=${encodeURIComponent(JSON.stringify(conditions))}`);
+  console.log(recipes)
 
   return (
     <Box sx={{ height: '100%', width: '100%' }}>

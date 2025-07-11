@@ -21,9 +21,9 @@ export function setCookie(res: Response, key: string, value: string) {
         'Set-Cookie',
         serialize(key, value, {
             httpOnly: true,     // JSでアクセスできない
-            secure: process.env.NODE_ENV === 'production',       // HTTP通信環境時のみCookieを送信
+            secure: true,
             maxAge: 60 * 60 * 24,       // 有効期限 1日
-            sameSite: 'lax',     // 外部リンクやGETでのみクッキーが送信される
+            sameSite: 'none',
             path: '/',      // /にCookieを設定
         })
     );
