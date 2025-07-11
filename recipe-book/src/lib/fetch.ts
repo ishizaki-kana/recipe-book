@@ -14,14 +14,6 @@ const url = '/api';
 export async function apiGet<T>(
     endpoint: string
 ): Promise<T> {
-
-    // ビルド時はダミーデータを返す
-    if (process.env.NODE_ENV === 'production' ||
-        process.env.NEXT_PHASE === 'phase-production-build' ||
-        typeof window === 'undefined' && process.env.NODE_ENV !== 'development') {
-        return [] as T;
-    }
-
     const res = await fetch(`${getBaseUrl()}${url}${endpoint}`, {
         method: 'GET',
         headers: {
