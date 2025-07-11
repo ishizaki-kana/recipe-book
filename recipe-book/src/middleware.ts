@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyTokenEdge } from './lib/auth';
+import { verifyToken } from './lib/auth';
 import { COOKIE_KEYS } from './lib/cookie';
 
 /**
@@ -17,7 +17,7 @@ export async function middleware(req: NextRequest) {
 
     // cookieからトークンを取得し、検証
     const token = req.cookies.get(COOKIE_KEYS.AUTH_TOKEN)?.value;
-    const payload = token ? await verifyTokenEdge(token) : null;
+    const payload = token ? await verifyToken(token) : null;
     const isLoggedIn = !!payload && typeof payload == 'object' && 'userId' in payload;
 
     // ログイン済み状態でログインページへ移動したとき、レシピ一覧画面へ自動遷移

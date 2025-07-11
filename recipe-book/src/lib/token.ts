@@ -21,7 +21,7 @@ export async function getUserFromAuthToken() {
     }
 
     // トークンが無効またはトークン内のデータに userId が含まれていないとき、エラー
-    const decoded = verifyToken(token);
+    const decoded = await verifyToken(token);
     if (!decoded || typeof decoded !== 'object' || !('userId' in decoded)) {
         console.error(formatMessage(ERROR_MESSAGES.INVALID_VALUE, 'トークン'));
         return null;
