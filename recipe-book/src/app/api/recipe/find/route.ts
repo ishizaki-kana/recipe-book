@@ -1,4 +1,4 @@
-import { API_HEADERS, getRequestParams, handleApi } from "@/lib/api";
+import { getRequestParams, handleApi } from "@/lib/api";
 import { ERROR_MESSAGES, formatMessage } from "@/lib/constants/messages";
 import { recipeRepository } from "@/lib/repositories/recipeRepository";
 import { NextResponse } from "next/server";
@@ -28,19 +28,13 @@ export async function GET(req: Request) {
                     { status: 404 }
                 );
             } else {
-                return NextResponse.json(recipe, {
-                    status: 200,
-                    headers: API_HEADERS
-                });
+                return NextResponse.json(recipe, { status: 200 });
             }
         }
 
         const conditions = JSON.parse(searchParams.get('conditions')!);
         const recipes = await recipeRepository.findAllRecipeSummariesByConditions(conditions);
 
-        return NextResponse.json(recipes, {
-            status: 200,
-            headers: API_HEADERS
-        });
+        return NextResponse.json(recipes, { status: 200 });
     })
 }

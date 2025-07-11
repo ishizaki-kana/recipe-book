@@ -1,4 +1,4 @@
-import { API_HEADERS, getRequestParams, handleApi } from "@/lib/api";
+import { getRequestParams, handleApi } from "@/lib/api";
 import { ERROR_MESSAGES, formatMessage } from "@/lib/constants/messages";
 import { userRepository } from "@/lib/repositories/userRepository";
 import { NextResponse } from "next/server";
@@ -28,9 +28,6 @@ export async function GET(req: Request) {
             );
         }
 
-        return NextResponse.json(user, {
-            status: 200,
-            headers: API_HEADERS
-        });
+        return NextResponse.json(user, { status: 200 });
     })
 }

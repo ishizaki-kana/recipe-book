@@ -4,23 +4,25 @@ import { RecipeSearchInput } from '@/components/features/contents/recipe/types';
 import { apiGet } from '@/lib/fetch';
 import { RecipeSummary } from '@/types/entity';
 import { Box, Grid } from '@mui/material';
-import { RecipeCategory } from '@prisma/client';
+import { Prisma, RecipeCategory } from '@prisma/client';
 
 export default async function RecipeBookPage({
   searchParams
 }: {
-  searchParams: { keyword?: string, categoryIds?: string }
+  searchParams: Promise<{ keyword?: string, categoryIds?: string }>
 }) {
 
+  const resolvedSearchParams = await searchParams;
+
   // パラメータ取得
-  const keyword = searchParams?.keyword ?? '';
-  const categoryIds = searchParams?.categoryIds?.split(',') ?? [];
+  const keyword = resolvedSearchParams?.keyword ?? '';
+  const categoryIds = resolvedSearchParams?.categoryIds?.split(',') ?? [];
   const searchInput: RecipeSearchInput = {
     keyword,
     categoryIds: categoryIds.map(id => Number(id))
   }
 
-  const conditions: Record<string, any> = {}
+  const conditions: Prisma.RecipeWhereInput = {}
   if (keyword.trim()) {
     const keywords = keyword.split(/\s+/).filter(Boolean);
     const keywordConditions = keywords.flatMap(w => [

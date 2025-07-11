@@ -1,4 +1,4 @@
-import { API_HEADERS, handleApi } from '@/lib/api';
+import { handleApi } from '@/lib/api';
 import { signToken } from '@/lib/auth';
 import { ERROR_MESSAGES } from '@/lib/constants/messages';
 import { COOKIE_KEYS, setCookie } from '@/lib/cookie';
@@ -30,10 +30,7 @@ export async function POST(req: Request) {
 
         // 成功したとき、JWTトークン発行しCookieに保存
         const token = signToken({ userId: user.id });
-        const res = NextResponse.json({}, {
-            status: 200,
-            headers: API_HEADERS
-        });
+        const res = NextResponse.json({}, { status: 200 });
         return setCookie(res, COOKIE_KEYS.AUTH_TOKEN, token);
     });
 }

@@ -1,9 +1,10 @@
+import { ApiError } from "next/dist/server/api-utils";
 import { NextResponse } from "next/server";
 import { ERROR_MESSAGES, formatMessage } from "./constants/messages";
 
 type HandlerFn = () => Promise<Response>;
 
-export const API_HEADERS = {
+const API_HEADERS = {
     'Cache-Control': 'public, max-age=0, s-maxage=60, state-while-revalite=30'
 }
 
@@ -16,18 +17,31 @@ export const API_HEADERS = {
  */
 export async function handleApi(handler: HandlerFn): Promise<Response> {
     try {
-        return await handler();
-    } catch (e: any) {
+        const res = await handler();
+        const headers = new Headers(res.headers);
+        Object.entries(API_HEADERS).forEach(([key, value]) => headers.set(key, value));
+
+        return new Response(res.body, {
+            status: res.status,
+            statusText: res.statusText,
+            headers: headers
+        });
+    } catch (e: unknown) {
+
         console.error("APIエラー", e);
 
+        const error = e instanceof ApiError
+            ? e
+            : new ApiError(500, ERROR_MESSAGES.SERVER_ERROR);
+
         return NextResponse.json(
-            { message: e?.message || ERROR_MESSAGES.SERVER_ERROR },
-            { status: e?.status || 400 }
+            { message: error.message },
+            { status: error.statusCode }
         );
     }
 }
 
-export async function getRequestParams<T extends Record<string, any>>(
+export async function getRequestParams<T extends Record<string, unknown>>(
     req: Request,
     options?: {
         requiredParams?: string[]
@@ -47,6 +61,7 @@ export async function getRequestParams<T extends Record<string, any>>(
         try {
             json = await req.json();
         } catch (e) {
+            console.error(e)
             // TODO
         }
     }

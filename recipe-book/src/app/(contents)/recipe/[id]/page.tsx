@@ -5,7 +5,7 @@ import { RecipeDetail } from "@/types/entity";
 export default async function RecipePage({
     params
 }: {
-    params: { id: string }
+    params: Promise<{ id: string }>
 }) {
     const { id } = await params;
     const recipe: RecipeDetail = await apiGet(`/recipe/find?id=${id}`);
