@@ -1,15 +1,15 @@
 import ItemListContainer from "@/components/features/contents/list/components/ItemListContainer";
 import CenteredContainer from "@/components/layout/container/CenteredContainer";
 import FlexContainer from "@/components/layout/container/FlexContainer";
-import { apiGet } from "@/lib/fetch";
+import { apiGetServer } from "@/lib/fetchServer";
 import { Paper } from "@mui/material";
 import { ListCategory, ListItem } from "@prisma/client";
 
 export const dynamic = 'force-dynamic';
 
 export default async function ListPage() {
-    const listCategories: ListCategory[] = await apiGet('/list-category/find?all=true');
-    const listItems: ListItem[] = await apiGet('/list-item/find?all=true');
+    const listCategories: ListCategory[] = await apiGetServer('/list-category/find?all=true');
+    const listItems: ListItem[] = await apiGetServer('/list-item/find?all=true');
 
     return (
         <CenteredContainer sx={{ py: 2 }}>

@@ -1,7 +1,7 @@
 import RecipeCard from '@/components/features/contents/recipe/card/RecipeCard';
 import SearchContainer from '@/components/features/contents/recipe/search/SearchContainer';
 import { RecipeSearchInput } from '@/components/features/contents/recipe/types';
-import { apiGet } from '@/lib/fetch';
+import { apiGetServer } from '@/lib/fetchServer';
 import { RecipeSummary } from '@/types/entity';
 import { Box, Grid } from '@mui/material';
 import { Prisma, RecipeCategory } from '@prisma/client';
@@ -36,9 +36,9 @@ export default async function RecipeBookPage({
     conditions.categoryId = { in: searchInput.categoryIds }
   }
 
-  const recipeCategories: RecipeCategory[] = await apiGet('/recipe-category/find?all=true');
+  const recipeCategories: RecipeCategory[] = await apiGetServer('/recipe-category/find?all=true');
   console.log(recipeCategories)
-  const recipes: RecipeSummary[] = await apiGet(`/recipe/find?conditions=${encodeURIComponent(JSON.stringify(conditions))}`);
+  const recipes: RecipeSummary[] = await apiGetServer(`/recipe/find?conditions=${encodeURIComponent(JSON.stringify(conditions))}`);
   console.log(recipes)
 
   return (

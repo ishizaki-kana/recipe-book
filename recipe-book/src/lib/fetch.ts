@@ -14,15 +14,10 @@ const url = '/api';
 export async function apiGet<T>(
     endpoint: string
 ): Promise<T> {
-    console.log('baseUrl', getBaseUrl())
     const res = await fetch(`${getBaseUrl()}${url}${endpoint}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': getBaseUrl(),
-            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-            'Access-Control-Allow-Credentials': 'true'
         },
         cache: 'no-store'
     });
