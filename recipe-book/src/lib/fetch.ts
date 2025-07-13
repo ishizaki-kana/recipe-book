@@ -17,8 +17,9 @@ export async function apiGet<T>(
     const res = await fetch(`${getBaseUrl()}${url}${endpoint}`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json'
-        }
+            'Content-Type': 'application/json',
+        },
+        cache: 'no-store'
     });
 
     return await handleResponse<T>(res);

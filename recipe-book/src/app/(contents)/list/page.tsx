@@ -5,6 +5,8 @@ import { apiGet } from "@/lib/fetch";
 import { Paper } from "@mui/material";
 import { ListCategory, ListItem } from "@prisma/client";
 
+export const dynamic = 'force-dynamic';
+
 export default async function ListPage() {
     const listCategories: ListCategory[] = await apiGet('/list-category/find?all=true');
     const listItems: ListItem[] = await apiGet('/list-item/find?all=true');

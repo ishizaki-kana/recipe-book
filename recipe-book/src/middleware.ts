@@ -14,7 +14,6 @@ import { COOKIE_KEYS } from './lib/cookie';
  */
 export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
-    console.log(pathname)
 
     // cookieからトークンを取得し、検証
     const token = req.cookies.get(COOKIE_KEYS.AUTH_TOKEN)?.value;
