@@ -118,7 +118,7 @@ function setResponseHeader(res: Response, req: Request) {
     res.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.headers.set('Access-Control-Allow-Credentials', 'true');
-    res.headers.set('Cache - Control', 'public, max - age=0, s - maxage=60, state -while-revalite= 30');
+    res.headers.set('Cache-Control', 'public, max - age=0, s - maxage=60, state -while-revalite= 30');
 
     return res;
 }
