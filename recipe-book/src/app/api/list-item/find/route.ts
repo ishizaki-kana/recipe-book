@@ -3,7 +3,7 @@ import { listItemRepository } from "@/lib/repositories/listItemRepository";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-    return handleApi(async () => {
+    return handleApi(req, async () => {
         await getRequestParams(req, { requiredParams: ['all'] })
 
         const items = await listItemRepository.findAll();

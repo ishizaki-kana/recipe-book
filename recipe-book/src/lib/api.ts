@@ -1,12 +1,8 @@
 import { ApiError } from "next/dist/server/api-utils";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { ERROR_MESSAGES, formatMessage } from "./constants/messages";
 
 type HandlerFn = () => Promise<Response>;
-
-const API_HEADERS = {
-    'Cache-Control': 'public, max-age=0, s-maxage=60, state-while-revalite=30'
-}
 
 /**
  * API共通エラーハンドラー
@@ -15,7 +11,7 @@ const API_HEADERS = {
  * @param handler 実行する非同期APIハンドラ関数
  * @returns 正常時はハンドラのレスポンス、エラー時は500エラーレスポンス
  */
-export async function handleApi(handler: HandlerFn, req: NextRequest): Promise<Response> {
+export async function handleApi(req: Request, handler: HandlerFn): Promise<Response> {
     try {
         const res = await handler();
         return setResponseHeader(res, req);
@@ -106,7 +102,7 @@ export async function getRequestParams<T extends Record<string, unknown>>(
 // private
 //
 
-function setResponseHeader(res: Response, req: NextRequest) {
+function setResponseHeader(res: Response, req: Request) {
 
     const origin = req.headers.get('origin');
     console.log('origin', origin)
@@ -122,6 +118,7 @@ function setResponseHeader(res: Response, req: NextRequest) {
     res.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.headers.set('Access-Control-Allow-Credentials', 'true');
+    res.headers.set('Cache - Control', 'public, max - age=0, s - maxage=60, state -while-revalite= 30');
 
     return res;
 }

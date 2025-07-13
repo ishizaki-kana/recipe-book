@@ -9,8 +9,8 @@ import { NextResponse } from "next/server";
  * 
  * @returns レスポンス
  */
-export async function GET() {
-    return handleApi(async () => {
+export async function GET(req: Request) {
+    return handleApi(req, async () => {
 
         // Cookieデータ削除
         const res = NextResponse.json({}, { status: 200 });

@@ -14,7 +14,7 @@ import { NextRequest, NextResponse } from "next/server";
  * @returns レスポンス
  */
 export async function POST(req: NextRequest) {
-    return handleApi(async () => {
+    return handleApi(req, async () => {
         const body = await req.json();
 
         // 複数更新

@@ -3,7 +3,7 @@ import { listCategoryRepository } from "@/lib/repositories/listCategoryRepositor
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-    return handleApi(async () => {
+    return handleApi(req, async () => {
         await getRequestParams(req, { requiredParams: ['all'] })
 
         const categories = await listCategoryRepository.findAll();

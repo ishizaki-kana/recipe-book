@@ -13,7 +13,7 @@ import { NextResponse } from "next/server";
  * @returns レスポンス
  */
 export async function GET(req: Request) {
-    return handleApi(async () => {
+    return handleApi(req, async () => {
         const { searchParams } = await getRequestParams(req, {
             requiredAnyParams: ['id', 'conditions']
         });
