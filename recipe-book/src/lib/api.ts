@@ -1,5 +1,5 @@
 import { ApiError } from "next/dist/server/api-utils";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { ERROR_MESSAGES, formatMessage } from "./constants/messages";
 
 type HandlerFn = () => Promise<Response>;
@@ -15,17 +15,11 @@ const API_HEADERS = {
  * @param handler 実行する非同期APIハンドラ関数
  * @returns 正常時はハンドラのレスポンス、エラー時は500エラーレスポンス
  */
-export async function handleApi(handler: HandlerFn): Promise<Response> {
+export async function handleApi(handler: HandlerFn, req: NextRequest): Promise<Response> {
     try {
         const res = await handler();
-        const headers = new Headers(res.headers);
-        Object.entries(API_HEADERS).forEach(([key, value]) => headers.set(key, value));
+        return setResponseHeader(res, req);
 
-        return new Response(res.body, {
-            status: res.status,
-            statusText: res.statusText,
-            headers: headers
-        });
     } catch (e: unknown) {
 
         console.error("APIエラー", e);
@@ -41,6 +35,13 @@ export async function handleApi(handler: HandlerFn): Promise<Response> {
     }
 }
 
+/**
+ * パラメータ取得
+ * 
+ * @param req リクエスト
+ * @param options オプション
+ * @returns 
+ */
 export async function getRequestParams<T extends Record<string, unknown>>(
     req: Request,
     options?: {
@@ -99,4 +100,28 @@ export async function getRequestParams<T extends Record<string, unknown>>(
     }
 
     return { searchParams, json };
+}
+
+//
+// private
+//
+
+function setResponseHeader(res: Response, req: NextRequest) {
+
+    const origin = req.headers.get('origin');
+    console.log('origin', origin)
+    const allowedOrigins = [
+        'https://recipe-book-git-develop-ishizakikanas-projects.vercel.app',
+        'http://localhost:3000'
+    ];
+
+    if (allowedOrigins.includes(origin || '')) {
+        res.headers.set('Access-Control-Allow-Origin', origin || '*');
+    }
+
+    res.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.headers.set('Access-Control-Allow-Credentials', 'true');
+
+    return res;
 }
