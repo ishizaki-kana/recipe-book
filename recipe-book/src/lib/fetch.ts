@@ -67,7 +67,7 @@ export function getBaseUrl(): string {
 
     // サーバー
     if (process.env.VERCEL_URL) {
-        return `https://${process.env.VERCEL_URL}`;
+        return `https://recipe-book-git-develop-ishizakikanas-projects.vercel.app`;
     }
 
     // ローカル
