@@ -2,6 +2,9 @@ import { Box } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import { ReactNode } from "react";
 
+/**
+ * アラート
+ */
 export default function Alert({
     children,
     severity,

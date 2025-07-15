@@ -1,10 +1,13 @@
-import Button from "@/components/ui/button/Button";
-import IconButton from "@/components/ui/button/IconButton";
+import Button from "@/components/ui/button/button/Button";
+import IconButton from "@/components/ui/button/iconButton/IconButton";
 import CloseIcon from '@mui/icons-material/Close';
 import { DialogActions, DialogContent, DialogTitle, ModalProps, SlotProps } from "@mui/material";
 import Dialog, { DialogBackdropSlotPropsOverrides, DialogContainerSlotPropsOverrides, DialogOwnerState, DialogPaperSlotPropsOverrides, DialogRootSlotPropsOverrides } from "@mui/material/Dialog";
 import { ElementType, JSX, ReactNode } from "react";
 
+/**
+ * モーダル
+ */
 export default function Modal({
     children,
     open,
@@ -15,7 +18,7 @@ export default function Modal({
     disableEscapeKeyDown = false,
     loading,
     slotProps,
-    handleClose
+    onClose
 }: {
     children?: ReactNode
     open: boolean;
@@ -52,11 +55,11 @@ export default function Modal({
             DialogOwnerState
         >;
     };
-    handleClose?: () => void;
+    onClose?: () => void;
 }) {
 
     // 非表示イベント
-    const onClose = (
+    const handleClose = (
         e: object,
         reason: "backdropClick" | "escapeKeyDown"
     ) => {
@@ -67,11 +70,11 @@ export default function Modal({
         // ESCキー無効フラグが有効なとき、ESCキーイベントを無効化
         if (disableEscapeKeyDown && reason === "escapeKeyDown") return;
 
-        handleClose?.();
+        onClose?.();
     }
 
     return (
-        <Dialog open={open} onClose={onClose} slotProps={slotProps}>
+        <Dialog open={open} onClose={handleClose} slotProps={slotProps}>
             <DialogTitle
                 sx={{ px: 2, py: 1.5, borderBottom: "1px solid #ccc" }}
                 color={"ui.contrastText"}
@@ -83,10 +86,10 @@ export default function Modal({
                 <IconButton
                     color={'ui'}
                     icon={<CloseIcon />}
-                    onClick={handleClose} />
+                    onClick={onClose} />
             </DialogTitle>
 
-            <DialogContent>
+            <DialogContent sx={{ mt: 2 }}>
                 {children}
             </DialogContent>
 
@@ -98,7 +101,7 @@ export default function Modal({
                         <Button
                             color={"ui"}
                             variant="text"
-                            onClick={handleClose}>
+                            onClick={onClose}>
                             キャンセル
                         </Button>
                     )}

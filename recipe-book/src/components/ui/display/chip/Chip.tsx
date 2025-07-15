@@ -3,6 +3,9 @@ import MuiChip from "@mui/material/Chip";
 
 export type ChipColors = 'red' | 'blue' | 'teal' | 'orange' | 'brown' | 'blueGrey'
 
+/**
+ * チップ
+ */
 export default function Chip({
     label,
     color

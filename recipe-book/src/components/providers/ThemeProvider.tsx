@@ -2,6 +2,9 @@
 import theme from "@/styles/theme";
 import { CssBaseline, ThemeProvider as MuiThemeProvider } from "@mui/material";
 
+/**
+ * テーマプロバイダ
+ */
 export default function ThemeProvider({
     children
 }: {

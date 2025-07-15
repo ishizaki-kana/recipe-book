@@ -1,6 +1,6 @@
 'use client'
 import FlexContainer from "@/components/layout/container/FlexContainer";
-import Chip, { ChipColors } from "@/components/ui/display/Chip";
+import Chip, { ChipColors } from "@/components/ui/display/chip/Chip";
 import { RecipeSummary } from "@/types/entity";
 import { Card, CardActionArea, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";

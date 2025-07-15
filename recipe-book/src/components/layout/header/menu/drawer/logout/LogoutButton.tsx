@@ -1,19 +1,18 @@
 'use client'
-import IconButton from "@/components/ui/button/IconButton";
-import { apiGet } from "@/lib/fetch";
+import IconButton from "@/components/ui/button/iconButton/IconButton";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useRouter } from "next/navigation";
+import { useLogout } from "../../../hooks";
 
-export default function LogoutButton() {
-    const router = useRouter();
-
-    /**
-     * クリックイベント
-     */
-    const handleLogoutButton = async () => {
-        await apiGet('/auth/logout');
-        router.push('/login');
-    };
+/**
+ * ログアウトボタン
+ */
+export default function LogoutButton({
+    onLogout
+}: {
+    onLogout?: () => void
+}) {
+    const { logout } = useLogout();
+    const handleClick = () => onLogout && logout;
 
     return (
         <IconButton
@@ -21,6 +20,7 @@ export default function LogoutButton() {
             tooltip
             tipTitle="ログアウト"
             tipOffset={[0, -14]}
-            onClick={handleLogoutButton} />
+            ariaLabel="ログアウト"
+            onClick={handleClick} />
     )
 }

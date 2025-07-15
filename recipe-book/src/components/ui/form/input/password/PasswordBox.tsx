@@ -1,16 +1,14 @@
 'use client'
-import IconButton from "@/components/ui/button/IconButton";
+import IconButton from "@/components/ui/button/iconButton/IconButton";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { FormControlPropsSizeOverrides } from "@mui/material";
 import { OverridableStringUnion } from "@mui/types";
 import { ChangeEventHandler, ReactNode, Ref, useState } from "react";
-import TextBox from "./TextBox";
+import TextBox from "../text/TextBox";
 
 /**
  * パスワード入力ボックス
- * 
- * @returns パスワード入力ボックス
  */
 export default function PasswordBox({
     id,
@@ -28,14 +26,14 @@ export default function PasswordBox({
     id?: string
     name?: string
     label?: string
-    variant?: 'outlined' | 'filled' | 'standard' | undefined
-    size?: OverridableStringUnion<"small" | "medium", FormControlPropsSizeOverrides> | undefined
+    variant?: 'outlined' | 'filled' | 'standard'
+    size?: OverridableStringUnion<"small" | "medium", FormControlPropsSizeOverrides>
     width?: number | string
-    disabled?: boolean | undefined
-    error?: boolean | undefined
+    disabled?: boolean
+    error?: boolean
     helperText?: ReactNode
-    ref?: Ref<HTMLInputElement> | undefined
-    onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> | undefined
+    ref?: Ref<HTMLInputElement>
+    onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
 }) {
 
     //パスワード表示状態管理

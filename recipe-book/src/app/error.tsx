@@ -1,7 +1,7 @@
 'use client'
 
 import FlexContainer from '@/components/layout/container/FlexContainer'
-import Button from '@/components/ui/button/Button'
+import Button from '@/components/ui/button/button/Button'
 import { Container, Typography } from '@mui/material'
 import { useEffect } from 'react'
 

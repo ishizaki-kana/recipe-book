@@ -3,6 +3,9 @@ import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import { User } from "@prisma/client";
 import Menu from "./menu/Menu";
 
+/**
+ * ヘッダー
+ */
 export default function Header({
     user
 }: {
