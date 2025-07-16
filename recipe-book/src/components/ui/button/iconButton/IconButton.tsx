@@ -43,7 +43,7 @@ export default function IconButton({
             size={size}
             edge={edge}
             sx={sx}
-            aria-label={ariaLabel}
+            aria-label={tipTitle ? tipTitle : ariaLabel}
             onClick={onClick}
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}>

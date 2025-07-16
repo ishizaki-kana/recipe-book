@@ -1,33 +1,26 @@
 'use client'
-import { Box, Drawer, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material";
+import { Box, Drawer, Typography } from "@mui/material";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import LogoutButton from "./logout/LogoutButton";
+import { useMenu } from "../../../hooks";
+import MenuLinks from "../links/MenuLinks";
+import LogoutButton from "../logout/LogoutButton";
 
 export default function NavDrawer({
     user,
     navLinks,
     drawerOpen,
     handleDrawerToggle,
-    closeDrawer
+    navigate
 }: {
     user: User,
     navLinks: { text: string, path: string }[],
     drawerOpen: boolean,
     handleDrawerToggle: () => void
-    closeDrawer: () => void
+    navigate: (path: string) => void
 }) {
     const router = useRouter();
-
-    /**
-     * メニューリンククリックイベント
-     * 
-     * @param path リンクのパス
-     */
-    const handleMenuLinkClick = (path: string) => {
-        router.push(path);
-        closeDrawer();
-    }
+    const { logout } = useMenu();
 
     return (
 
@@ -53,15 +46,7 @@ export default function NavDrawer({
                         bgcolor: 'primary.main'
                     }}>
 
-                    <List>
-                        {navLinks.map(link => (
-                            <ListItem key={link.text} disablePadding>
-                                <ListItemButton onClick={() => handleMenuLinkClick(link.path)}>
-                                    <ListItemText primary={link.text} sx={{ color: 'white' }} />
-                                </ListItemButton>
-                            </ListItem>
-                        ))}
-                    </List>
+                    <MenuLinks />
 
                     <Box display={"flex"}
                         alignItems={"center"}

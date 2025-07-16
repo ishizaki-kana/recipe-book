@@ -1,5 +1,5 @@
 import CenteredContainer from "@/components/layout/container/CenteredContainer";
-import Header from "@/components/layout/header/Header";
+import Header from "@/components/layout/header/components/Header";
 import { getUserFromAuthToken } from "@/lib/token";
 import "@/styles/globals.css";
 import { Box } from "@mui/material";

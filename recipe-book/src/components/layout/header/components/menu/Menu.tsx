@@ -1,16 +1,12 @@
 'use client'
 
 import IconButton from "@/components/ui/button/iconButton/IconButton";
-import { User } from "@prisma/client";
-
 import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
-import NavDrawer from "./drawer/NavDrawer";
+import { User } from "@prisma/client";
+import { useMenu } from "../../hooks";
+import NavDrawer from "../drawer/NavDrawer";
 
-const navLinks = [
-    { text: 'レシピ', path: '/recipe' },
-    { text: 'カレンダー', path: '/calendar' },
-    { text: '買い物リスト', path: '/list' }];
+
 
 export default function Menu({
     user
@@ -18,16 +14,7 @@ export default function Menu({
     user: User
 }) {
 
-    //ドロワーの開閉状態
-    const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
-
-    /**
-     * ドロワー開閉イベント
-     */
-    const handleDrawerToggle = () => {
-        setDrawerOpen((prevState) => !prevState);
-    };
-
+    const { drawerOpen, handleDrawerToggle, navigate } = useMenu();
     return (
         <>
             <IconButton
@@ -43,7 +30,7 @@ export default function Menu({
                 navLinks={navLinks}
                 drawerOpen={drawerOpen}
                 handleDrawerToggle={handleDrawerToggle}
-                closeDrawer={() => setDrawerOpen(false)} />
+                navigate={navigate} />
         </>
     )
 }

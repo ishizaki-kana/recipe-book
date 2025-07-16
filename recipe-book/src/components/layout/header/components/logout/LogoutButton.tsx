@@ -1,7 +1,7 @@
 'use client'
 import IconButton from "@/components/ui/button/iconButton/IconButton";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useLogout } from "../../../hooks";
+import { useLogout } from "../../hooks/useLogout";
 
 /**
  * ログアウトボタン
@@ -12,15 +12,19 @@ export default function LogoutButton({
     onLogout?: () => void
 }) {
     const { logout } = useLogout();
-    const handleClick = () => onLogout && logout;
+
+    const onClick = () => {
+        onLogout?.();
+        logout();
+    }
 
     return (
         <IconButton
             icon={<LogoutIcon />}
             tooltip
             tipTitle="ログアウト"
+            tipPlacement="top"
             tipOffset={[0, -14]}
-            ariaLabel="ログアウト"
-            onClick={handleClick} />
+            onClick={onClick} />
     )
 }
