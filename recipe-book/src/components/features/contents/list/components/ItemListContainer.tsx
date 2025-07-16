@@ -1,5 +1,5 @@
 'use client'
-import Snackbar from "@/components/ui/feedback/Snackbar";
+import Snackbar from "@/components/ui/feedback/snackbar/Snackbar";
 import { ListCategory, ListItem } from "@prisma/client";
 import { useItemList } from "../hooks";
 import ListButtonContainer from "./buttons/ListButtonContainer";
@@ -39,7 +39,7 @@ export default function ItemListContainer({
                 open={!!error}
                 message={error ? error : ''}
                 severity="error"
-                handleClose={() => setError(null)} />
+                onClose={() => setError(null)} />
         </>
     )
 }

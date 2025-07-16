@@ -1,7 +1,7 @@
 'use client'
 import Modal from "@/components/ui/dialog/Modal";
-import Alert from "@/components/ui/feedback/Alert";
-import TextBox from "@/components/ui/form/input/TextBox";
+import Alert from "@/components/ui/feedback/alert/Alert";
+import TextBox from "@/components/ui/form/input/text/TextBox";
 import SelectBox, { SelectItem } from "@/components/ui/form/select/SelectBox";
 import { ERROR_MESSAGES } from "@/lib/constants/messages";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -81,9 +81,9 @@ export default function CreateButton({
                         onSubmit: handleSubmit(onSubmit)
                     }
                 }}
-                handleClose={() => setOpen(false)}>
+                onClose={() => setOpen(false)}>
 
-                <Box sx={{ px: 3, pt: 4, pb: 2 }}>
+                <Box sx={{ px: 3, pt: 2, pb: 1 }}>
 
                     {/* エラーメッセージ */}
                     <Alert severity="error" visible={!!error}>{error}</Alert>

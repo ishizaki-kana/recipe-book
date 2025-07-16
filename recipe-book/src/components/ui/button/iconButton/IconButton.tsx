@@ -1,25 +1,11 @@
-import { Theme, Tooltip } from "@mui/material"
+import { Box, Theme, Tooltip } from "@mui/material"
 import MuiIconButton, { IconButtonPropsColorOverrides, IconButtonPropsSizeOverrides } from "@mui/material/IconButton"
-
-import { Box, SxProps } from "@mui/system"
+import { SxProps } from "@mui/system"
 import { OverridableStringUnion } from "@mui/types"
 import { MouseEventHandler, ReactNode } from "react"
 
 /**
  * アイコンボタン
- * 
- * @param param.children 子要素
- * @param param.color 色
- * @param param.size 大きさ
- * @param param.edge マージンの打ち消し
- * @param param.sx スタイル
- * @param param.tooltip ツールチップの有無
- * @param param.tipTitle ツールチップのテキスト
- * @param param.tipPlacement ツールチップの表示場所
- * @param param.tipOffset ツールチップの表示位置
- * @param param.ariaLabel ARIAラベル
- * @param param.onClick クリックイベント
- * @returns アイコンボタン
  */
 export default function IconButton({
     icon,
@@ -37,18 +23,18 @@ export default function IconButton({
     onMouseUp
 }: {
     icon: ReactNode
-    color?: OverridableStringUnion<"inherit" | "default" | "primary" | "secondary" | "error" | "info" | "success" | "warning" | "ui", IconButtonPropsColorOverrides> | undefined
-    size?: OverridableStringUnion<"small" | "medium" | "large", IconButtonPropsSizeOverrides> | undefined
-    edge?: false | "start" | "end" | undefined
+    color?: OverridableStringUnion<"inherit" | "default" | "primary" | "secondary" | "error" | "info" | "success" | "warning" | "ui", IconButtonPropsColorOverrides>
+    size?: OverridableStringUnion<"small" | "medium" | "large", IconButtonPropsSizeOverrides>
+    edge?: false | "start" | "end"
     sx?: SxProps<Theme>
-    tooltip?: boolean | undefined
-    tipTitle?: string | undefined
-    tipPlacement?: 'bottom' | 'left' | 'right' | 'top' | undefined
+    tooltip?: boolean
+    tipTitle?: string
+    tipPlacement?: 'bottom' | 'left' | 'right' | 'top'
     tipOffset?: [number, number]
-    ariaLabel?: string | undefined
-    onClick?: MouseEventHandler<HTMLButtonElement> | undefined
-    onMouseDown?: MouseEventHandler<HTMLButtonElement> | undefined
-    onMouseUp?: MouseEventHandler<HTMLButtonElement> | undefined
+    ariaLabel?: string
+    onClick?: MouseEventHandler<HTMLButtonElement>
+    onMouseDown?: MouseEventHandler<HTMLButtonElement>
+    onMouseUp?: MouseEventHandler<HTMLButtonElement>
 }) {
 
     const iconButton = (
@@ -61,7 +47,9 @@ export default function IconButton({
             onClick={onClick}
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}>
-            {icon}
+            <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {icon}
+            </span>
         </MuiIconButton>
     );
 
@@ -84,9 +72,9 @@ export default function IconButton({
                             ]
                         }
                     }}>
-                    {iconButton}
+                    <span style={{ display: 'flex' }}>{iconButton}</span>
                 </Tooltip>
-            </Box>
+            </Box >
         )
     } else {
         return iconButton

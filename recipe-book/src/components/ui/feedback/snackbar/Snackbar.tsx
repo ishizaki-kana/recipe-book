@@ -1,16 +1,19 @@
 import { Alert } from '@mui/material';
 import MuiSnackbar from '@mui/material/Snackbar';
 
+/**
+ * スナックバー
+ */
 export default function Snackbar({
     open,
     message,
     severity,
-    handleClose,
+    onClose,
 }: {
     open?: boolean
     message?: string
     severity?: 'success' | 'info' | 'warning' | 'error'
-    handleClose?: () => void
+    onClose?: () => void
 }) {
 
     return (
@@ -18,10 +21,10 @@ export default function Snackbar({
             open={open}
             autoHideDuration={5000}
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-            onClose={handleClose}>
+            onClose={onClose}>
             <Alert
                 severity={severity}
-                onClose={handleClose}>{message}</Alert>
+                onClose={onClose}>{message}</Alert>
         </MuiSnackbar>
     );
 }

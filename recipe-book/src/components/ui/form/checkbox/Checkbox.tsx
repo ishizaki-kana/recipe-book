@@ -3,6 +3,9 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import { CircularProgress } from '@mui/material';
 import MuiCheckBox from '@mui/material/Checkbox';
 
+/**
+ * チェックボックス
+ */
 export default function Checkbox({
     id,
     checked,

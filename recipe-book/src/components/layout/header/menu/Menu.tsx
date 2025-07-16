@@ -1,6 +1,6 @@
 'use client'
 
-import IconButton from "@/components/ui/button/IconButton";
+import IconButton from "@/components/ui/button/iconButton/IconButton";
 import { User } from "@prisma/client";
 
 import MenuIcon from "@mui/icons-material/Menu";

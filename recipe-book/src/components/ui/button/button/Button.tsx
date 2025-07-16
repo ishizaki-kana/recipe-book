@@ -5,15 +5,6 @@ import { MouseEventHandler, ReactNode } from "react"
 
 /**
  * ボタン
- * 
- * @param param.children 子要素
- * @param param.variant バリエーション
- * @param param.color 色
- * @param param.startIcon アイコン（左）
- * @param param.endIcon アイコン（右）
- * @param param.disabled 状態
- * @param param.onClick クリックイベント
- * @returns ボタン
  */
 export default function Button({
     children,
@@ -34,9 +25,9 @@ export default function Button({
 }: {
     children: ReactNode
     variant?: 'text' | 'contained' | 'outlined',
-    type?: "button" | "submit" | "reset" | undefined,
-    color?: OverridableStringUnion<"inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning", ButtonPropsColorOverrides> | undefined
-    size?: OverridableStringUnion<"small" | "medium" | "large", ButtonPropsSizeOverrides> | undefined
+    type?: "button" | "submit" | "reset",
+    color?: OverridableStringUnion<"inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning", ButtonPropsColorOverrides>
+    size?: OverridableStringUnion<"small" | "medium" | "large", ButtonPropsSizeOverrides>
     p?: number | string
     pt?: number | string
     pb?: number | string
@@ -46,7 +37,7 @@ export default function Button({
     endIcon?: ReactNode
     disabled?: boolean
     loading?: boolean
-    onClick?: MouseEventHandler<HTMLButtonElement> | undefined
+    onClick?: MouseEventHandler<HTMLButtonElement>
 }) {
 
     return (
