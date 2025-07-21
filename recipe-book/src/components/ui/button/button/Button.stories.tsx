@@ -2,7 +2,7 @@ import { disableAllArgTypes } from '@/stories/utils';
 import EditIcon from '@mui/icons-material/Edit';
 import { Stack } from '@mui/material';
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import Button from "./Button";
+import Button from './Button';
 
 const meta: Meta<typeof Button> = {
     title: 'UI/Button/Button',
@@ -12,7 +12,7 @@ const meta: Meta<typeof Button> = {
             control: { type: 'text' },
             description: 'ラベル',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         variant: {
@@ -20,7 +20,7 @@ const meta: Meta<typeof Button> = {
             control: { type: 'inline-radio' },
             description: '見た目',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'contained' }
             }
         },
@@ -29,7 +29,7 @@ const meta: Meta<typeof Button> = {
             control: { type: 'inline-radio' },
             description: '種類',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'button' }
             }
         },
@@ -38,7 +38,7 @@ const meta: Meta<typeof Button> = {
             control: { type: 'select' },
             description: '色',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'primary' }
             }
         },
@@ -47,8 +47,22 @@ const meta: Meta<typeof Button> = {
             control: { type: 'inline-radio' },
             description: '大きさ',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'medium' }
+            }
+        },
+        startIcon: {
+            control: false,
+            description: '右側アイコン',
+            table: {
+                category: 'base'
+            }
+        },
+        endIcon: {
+            control: false,
+            description: '左側アイコン',
+            table: {
+                category: 'base'
             }
         },
         p: {
@@ -56,7 +70,7 @@ const meta: Meta<typeof Button> = {
             control: { type: 'select' },
             description: 'ボタンを内包するコンテナの余白',
             table: {
-                category: 'container props'
+                category: 'layout'
             }
         },
         pt: {
@@ -64,7 +78,7 @@ const meta: Meta<typeof Button> = {
             control: { type: 'select' },
             description: 'ボタンを内包するコンテナの上側の余白',
             table: {
-                category: 'container props'
+                category: 'layout'
             }
         },
         pb: {
@@ -72,7 +86,7 @@ const meta: Meta<typeof Button> = {
             control: { type: 'select' },
             description: 'ボタンを内包するコンテナの下側の余白',
             table: {
-                category: 'container props'
+                category: 'layout'
             }
         },
         pr: {
@@ -80,7 +94,7 @@ const meta: Meta<typeof Button> = {
             control: { type: 'select' },
             description: 'ボタンを内包するコンテナの右側の余白',
             table: {
-                category: 'container props'
+                category: 'layout'
             }
         },
         pl: {
@@ -88,35 +102,21 @@ const meta: Meta<typeof Button> = {
             control: { type: 'select' },
             description: 'ボタンを内包するコンテナの左側の余白',
             table: {
-                category: 'container props'
+                category: 'layout'
             }
         },
         disabled: {
             control: { type: 'boolean' },
             description: '無効',
             table: {
-                category: 'props'
+                category: 'status'
             }
         },
         loading: {
             control: { type: 'boolean' },
             description: 'ローディング',
             table: {
-                category: 'props'
-            }
-        },
-        startIcon: {
-            control: false,
-            description: '右側アイコン',
-            table: {
-                category: 'props'
-            }
-        },
-        endIcon: {
-            control: false,
-            description: '左側アイコン',
-            table: {
-                category: 'props'
+                category: 'status'
             }
         },
         onClick: {
@@ -124,7 +124,7 @@ const meta: Meta<typeof Button> = {
             action: 'clicked',
             description: 'クリックイベント',
             table: {
-                category: 'events'
+                category: 'event'
             }
         }
     }

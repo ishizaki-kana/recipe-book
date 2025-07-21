@@ -1,8 +1,7 @@
 import ItemListContainer from "@/components/features/contents/list/components/ItemListContainer";
-import CenteredContainer from "@/components/layout/container/CenteredContainer";
-import FlexContainer from "@/components/layout/container/FlexContainer";
+import CenteredContainer from "@/components/layout/container/center/CenteredContainer";
 import { apiGetServer } from "@/lib/fetchServer";
-import { Paper } from "@mui/material";
+import { Paper, Stack } from "@mui/material";
 import { ListCategory, ListItem } from "@prisma/client";
 
 export const dynamic = 'force-dynamic';
@@ -24,9 +23,9 @@ export default async function ListPage() {
                     pr: 3,
                 }}>
 
-                <FlexContainer direction={'column'} gap={3} sx={{ py: 4 }}>
+                <Stack direction='column' gap={3} sx={{ py: 4 }}>
                     <ItemListContainer initialListItems={listItems} listCategories={listCategories} />
-                </FlexContainer>
+                </Stack>
 
             </Paper>
         </CenteredContainer>

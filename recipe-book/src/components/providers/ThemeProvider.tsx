@@ -1,6 +1,6 @@
 'use client'
-import theme from "@/styles/theme";
-import { CssBaseline, ThemeProvider as MuiThemeProvider } from "@mui/material";
+import theme from '@/styles/theme';
+import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
 
 /**
  * テーマプロバイダ

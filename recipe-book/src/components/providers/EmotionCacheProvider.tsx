@@ -1,8 +1,8 @@
 'use client'
-import { CacheProvider } from "@emotion/react";
-import { useServerInsertedHTML } from "next/navigation";
-import { ReactNode, useState } from "react";
-import createEmotionCache from "../../lib/emotion";
+import { CacheProvider } from '@emotion/react';
+import { useServerInsertedHTML } from 'next/navigation';
+import { ReactNode, useState } from 'react';
+import createEmotionCache from '../../lib/emotion';
 
 /**
  * Emotion キャッシュプロバイダ

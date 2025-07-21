@@ -1,8 +1,8 @@
-import { Box, Theme, Tooltip } from "@mui/material"
-import MuiIconButton, { IconButtonPropsColorOverrides, IconButtonPropsSizeOverrides } from "@mui/material/IconButton"
-import { SxProps } from "@mui/system"
-import { OverridableStringUnion } from "@mui/types"
-import { MouseEventHandler, ReactNode } from "react"
+import { Box, Theme, Tooltip } from '@mui/material'
+import MuiIconButton, { IconButtonPropsColorOverrides, IconButtonPropsSizeOverrides } from '@mui/material/IconButton'
+import { SxProps } from '@mui/system'
+import { OverridableStringUnion } from '@mui/types'
+import { MouseEventHandler, ReactNode } from 'react'
 
 /**
  * アイコンボタン
@@ -23,9 +23,9 @@ export default function IconButton({
     onMouseUp
 }: {
     icon: ReactNode
-    color?: OverridableStringUnion<"inherit" | "default" | "primary" | "secondary" | "error" | "info" | "success" | "warning" | "ui", IconButtonPropsColorOverrides>
-    size?: OverridableStringUnion<"small" | "medium" | "large", IconButtonPropsSizeOverrides>
-    edge?: false | "start" | "end"
+    color?: OverridableStringUnion<'inherit' | 'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'ui', IconButtonPropsColorOverrides>
+    size?: OverridableStringUnion<'small' | 'medium' | 'large', IconButtonPropsSizeOverrides>
+    edge?: false | 'start' | 'end'
     sx?: SxProps<Theme>
     tooltip?: boolean
     tipTitle?: string

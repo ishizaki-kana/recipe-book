@@ -1,7 +1,7 @@
-import { disableAllArgTypes } from "@/stories/utils";
-import { Stack } from "@mui/material";
-import { Meta, StoryObj } from "@storybook/nextjs";
-import TextBox from "./TextBox";
+import { disableAllArgTypes } from '@/stories/utils';
+import { Stack } from '@mui/material';
+import { Meta, StoryObj } from '@storybook/nextjs';
+import TextBox from './TextBox';
 
 const meta: Meta<typeof TextBox> = {
     title: 'UI/Form/Input/TextBox',
@@ -11,21 +11,21 @@ const meta: Meta<typeof TextBox> = {
             control: false,
             description: 'ID',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         name: {
             control: false,
             description: '名前',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         label: {
             control: { type: 'text' },
             description: 'ラベル',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         variant: {
@@ -33,7 +33,7 @@ const meta: Meta<typeof TextBox> = {
             control: { type: 'inline-radio' },
             description: '見た目',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'outlined' }
             }
         },
@@ -42,7 +42,7 @@ const meta: Meta<typeof TextBox> = {
             control: { type: 'inline-radio' },
             description: '種類',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'text' }
             }
         },
@@ -51,7 +51,7 @@ const meta: Meta<typeof TextBox> = {
             control: { type: 'inline-radio' },
             description: '大きさ',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'medium' }
             }
         },
@@ -59,77 +59,77 @@ const meta: Meta<typeof TextBox> = {
             control: { type: 'number' },
             description: '横幅',
             table: {
-                category: 'props'
-            }
-        },
-        required: {
-            control: { type: 'boolean' },
-            description: '必須',
-            table: {
-                category: 'props'
-            }
-        },
-        disabled: {
-            control: { type: 'boolean' },
-            description: '無効',
-            table: {
-                category: 'props'
-            }
-        },
-        readOnly: {
-            control: { type: 'boolean' },
-            description: '読み取り専用',
-            table: {
-                category: 'props'
-            }
-        },
-        error: {
-            control: { type: 'boolean' },
-            description: 'エラー',
-            table: {
-                category: 'props'
+                category: 'base'
             }
         },
         helperText: {
             control: { type: 'text' },
             description: 'ヘルパーテキスト',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         multiline: {
             control: { type: 'boolean' },
             description: '入力ボックスをマルチラインにするか',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         rows: {
             control: { type: 'number' },
             description: 'マルチラインの行数',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         startAdornment: {
             control: false,
             description: '先頭に表示する装飾',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         endAdornment: {
             control: false,
             description: '末尾に表示する装飾',
             table: {
-                category: 'props'
+                category: 'base'
+            }
+        },
+        required: {
+            control: { type: 'boolean' },
+            description: '必須',
+            table: {
+                category: 'status'
+            }
+        },
+        disabled: {
+            control: { type: 'boolean' },
+            description: '無効',
+            table: {
+                category: 'status'
+            }
+        },
+        readOnly: {
+            control: { type: 'boolean' },
+            description: '読み取り専用',
+            table: {
+                category: 'status'
+            }
+        },
+        error: {
+            control: { type: 'boolean' },
+            description: 'エラー',
+            table: {
+                category: 'status'
             }
         },
         ref: {
             control: false,
             description: '参照',
             table: {
-                category: 'props'
+                category: 'internal'
             }
         },
         onChange: {
@@ -137,7 +137,7 @@ const meta: Meta<typeof TextBox> = {
             action: 'changed',
             description: '変更イベント',
             table: {
-                category: 'events'
+                category: 'event'
             }
         }
     },
@@ -159,7 +159,7 @@ export const Default: Story = {
                 code: `
                 import TextBox from '@/components/ui/form/input/text/TextBox';
 
-                <TextBox id="textbox" name="textbox" label="ラベル" />
+                <TextBox id='textbox' name='textbox' label='ラベル' />
                 `.trim()
             }
         }
@@ -183,9 +183,9 @@ export const Variants: Story = {
                 code: `
                 import TextBox from '@/components/ui/form/input/text/TextBox';
 
-                <TextBox variant="outlined" label="Outlined" />
-                <TextBox variant="filled" label="Filled" />
-                <TextBox variant="standard" label="Standard" />
+                <TextBox variant='outlined' label='Outlined' />
+                <TextBox variant='filled' label='Filled' />
+                <TextBox variant='standard' label='Standard' />
                 `.trim()
             }
         }
@@ -219,9 +219,9 @@ export const Sizes: Story = {
                 code: `
                 import TextBox from '@/components/ui/form/input/text/TextBox';
 
-                <TextBox size="small" label="Small" />
-                <TextBox size="medium" label="Medium" />
-                <TextBox size="large" label="Large" />
+                <TextBox size='small' label='Small' />
+                <TextBox size='medium' label='Medium' />
+                <TextBox size='large' label='Large' />
                 `.trim()
             }
         }
@@ -258,9 +258,9 @@ export const Status: Story = {
                 code: `
                 import TextBox from '@/components/ui/form/input/text/TextBox';
 
-                <TextBox required label="Required" />
-                <TextBox disabled label="Disabled" />
-                <TextBox readOnly label="ReadOnly" />
+                <TextBox required label='Required' />
+                <TextBox disabled label='Disabled' />
+                <TextBox readOnly label='ReadOnly' />
                 `.trim()
             }
         }
@@ -285,7 +285,7 @@ export const Error: Story = {
                 code: `
                 import TextBox from '@/components/ui/form/input/text/TextBox';
 
-                <TextBox error label="Error" helperText="This field is required." />
+                <TextBox error label='Error' helperText='This field is required.' />
                 `.trim()
             }
         }
@@ -310,7 +310,7 @@ export const Multiline: Story = {
                 code: `
                 import TextBox from '@/components/ui/form/input/text/TextBox';
 
-                <TextBox multiline rows={4} label="Multiline" />
+                <TextBox multiline rows={4} label='Multiline' />
                 `.trim()
             }
         }
@@ -328,7 +328,7 @@ export const Adornment: Story = {
                     startAdornment={<span>$</span>} />
                 <TextBox
                     {...args}
-                    label="重量"
+                    label='重量'
                     endAdornment={<span>kg</span>} />
             </Stack>
             <Stack gap={2}>
@@ -340,7 +340,7 @@ export const Adornment: Story = {
                 <TextBox
                     {...args}
                     variant='filled'
-                    label="重量"
+                    label='重量'
                     endAdornment={<span>kg</span>} />
             </Stack>
             <Stack gap={2}>
@@ -352,7 +352,7 @@ export const Adornment: Story = {
                 <TextBox
                     {...args}
                     variant='standard'
-                    label="重量"
+                    label='重量'
                     endAdornment={<span>kg</span>} />
             </Stack>
         </Stack>
@@ -367,7 +367,7 @@ export const Adornment: Story = {
                 import TextBox from '@/components/ui/form/input/text/TextBox';
 
                 <TextBox label='金額' startAdornment={<span>$</span>} />
-                <TextBox label="重量" endAdornment={<span>kg</span>} />
+                <TextBox label='重量' endAdornment={<span>kg</span>} />
                 `.trim()
             }
         }

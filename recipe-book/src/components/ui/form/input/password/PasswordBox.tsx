@@ -1,11 +1,11 @@
 'use client'
-import IconButton from "@/components/ui/button/iconButton/IconButton";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { FormControlPropsSizeOverrides } from "@mui/material";
-import { OverridableStringUnion } from "@mui/types";
-import { ChangeEventHandler, ReactNode, Ref, useState } from "react";
-import TextBox from "../text/TextBox";
+import IconButton from '@/components/ui/button/iconButton/IconButton';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { FormControlPropsSizeOverrides } from '@mui/material';
+import { OverridableStringUnion } from '@mui/types';
+import { ChangeEventHandler, ReactNode, Ref, useState } from 'react';
+import TextBox from '../text/TextBox';
 
 /**
  * パスワード入力ボックス
@@ -27,7 +27,7 @@ export default function PasswordBox({
     name?: string
     label?: string
     variant?: 'outlined' | 'filled' | 'standard'
-    size?: OverridableStringUnion<"small" | "medium", FormControlPropsSizeOverrides>
+    size?: OverridableStringUnion<'small' | 'medium', FormControlPropsSizeOverrides>
     width?: number | string
     disabled?: boolean
     error?: boolean
@@ -73,7 +73,7 @@ export default function PasswordBox({
             endAdornment={
                 <IconButton
                     icon={showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                    color="default"
+                    color='default'
                     onClick={handleClickIcon}
                     onMouseDown={handleMouseDownAndUp}
                     onMouseUp={handleMouseDownAndUp}

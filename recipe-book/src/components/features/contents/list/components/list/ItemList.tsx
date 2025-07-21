@@ -1,7 +1,6 @@
-import FlexContainer from "@/components/layout/container/FlexContainer"
 import { getIcon } from "@/lib/constants/icon"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { List, ListSubheader, Typography } from "@mui/material"
+import { List, ListSubheader, Stack, Typography } from "@mui/material"
 import { categorizedItem } from "../../type"
 import ItemListItem from "./ItemListItem"
 
@@ -29,10 +28,10 @@ export default function ItemList({
                             borderRadius: '5px',
                             my: 1
                         }}>
-                            <FlexContainer direction="row" justifyContent="flex-start" gap={1.5} sx={{ py: 1 }} >
+                            <Stack direction="row" justifyContent="flex-start" gap={1.5} sx={{ py: 1 }} >
                                 <FontAwesomeIcon icon={getIcon(category.icon)} color={"#fff"} />
                                 <Typography color="#fff" variant="subtitle2">{category.name}</Typography>
-                            </FlexContainer>
+                            </Stack>
                         </ListSubheader>
 
                         {items.map((item) => (

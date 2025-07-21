@@ -1,7 +1,7 @@
-import { disableAllArgTypes } from "@/stories/utils";
-import { Stack } from "@mui/material";
-import { Meta, StoryObj } from "@storybook/nextjs";
-import SelectBox from "./SelectBox";
+import { disableAllArgTypes } from '@/stories/utils';
+import { Stack } from '@mui/material';
+import { Meta, StoryObj } from '@storybook/nextjs';
+import SelectBox from './SelectBox';
 
 const meta: Meta<typeof SelectBox> = {
     title: 'UI/Form/SelectBox',
@@ -11,21 +11,21 @@ const meta: Meta<typeof SelectBox> = {
             control: false,
             description: 'ID',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         name: {
             control: false,
             description: '名前',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         label: {
             control: { type: 'text' },
             description: 'ラベル',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         variant: {
@@ -33,7 +33,7 @@ const meta: Meta<typeof SelectBox> = {
             control: { type: 'inline-radio' },
             description: '見た目',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'outlined' }
             }
         },
@@ -42,7 +42,7 @@ const meta: Meta<typeof SelectBox> = {
             control: { type: 'inline-radio' },
             description: 'サイズ',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'medium' }
             }
         },
@@ -50,63 +50,63 @@ const meta: Meta<typeof SelectBox> = {
             control: { type: 'number' },
             description: '幅',
             table: {
-                category: 'props'
-            }
-        },
-        required: {
-            control: { type: 'boolean' },
-            description: '必須',
-            table: {
-                category: 'props',
-            }
-        },
-        disabled: {
-            control: { type: 'boolean' },
-            description: '無効',
-            table: {
-                category: 'props'
-            }
-        },
-        error: {
-            control: { type: 'boolean' },
-            description: 'エラー',
-            table: {
-                category: 'props'
+                category: 'base'
             }
         },
         helperText: {
             control: { type: 'text' },
             description: 'ヘルパーテキスト',
             table: {
-                category: 'props'
+                category: 'base'
+            }
+        },
+        required: {
+            control: { type: 'boolean' },
+            description: '必須',
+            table: {
+                category: 'state',
+            }
+        },
+        disabled: {
+            control: { type: 'boolean' },
+            description: '無効',
+            table: {
+                category: 'state'
+            }
+        },
+        error: {
+            control: { type: 'boolean' },
+            description: 'エラー',
+            table: {
+                category: 'state'
             }
         },
         value: {
             control: false,
             description: '選択値',
             table: {
-                category: 'props'
-            }
-        },
-        ref: {
-            control: false,
-            description: '参照',
-            table: {
-                category: 'props'
+                category: 'data'
             }
         },
         items: {
             control: false,
             description: '選択肢',
             table: {
-                category: 'props'
+                category: 'data'
             }
         },
         disableDefaultOption: {
             control: { type: 'boolean' },
             description: 'デフォルトオプション無効化',
             table: {
-                category: 'props'
+                category: 'data'
+            }
+        },
+        ref: {
+            control: false,
+            description: '参照',
+            table: {
+                category: 'internal'
             }
         },
         onChange: {
@@ -114,7 +114,7 @@ const meta: Meta<typeof SelectBox> = {
             action: 'changed',
             description: '変更イベント',
             table: {
-                category: 'events'
+                category: 'event'
             }
         }
     },
@@ -150,10 +150,10 @@ export const Default: Story = {
 
             return (           
                 <SelectBox
-                    id="fruit"
-                    name="fruit"
-                    label="fruit"
-                    width="200px"
+                    id='fruit'
+                    name='fruit'
+                    label='fruit'
+                    width='200px'
                     items={items} />
             );
             `.trim(),
@@ -165,9 +165,9 @@ export const Default: Story = {
 export const Variants: Story = {
     render: (args) => (
         <Stack direction='row' spacing={2}>
-            <SelectBox {...args} variant="outlined" />
-            <SelectBox {...args} variant="filled" />
-            <SelectBox {...args} variant="standard" />
+            <SelectBox {...args} variant='outlined' />
+            <SelectBox {...args} variant='filled' />
+            <SelectBox {...args} variant='standard' />
         </Stack>
     ),
     parameters: {
@@ -188,26 +188,26 @@ export const Variants: Story = {
             return (           
                 <Stack direction='row' spacing={2}>
                     <SelectBox
-                        id="fruit"
-                        name="fruit"
-                        label="fruit"
-                        width="200px"
+                        id='fruit'
+                        name='fruit'
+                        label='fruit'
+                        width='200px'
                         items={items}
-                        variant="outlined" />
+                        variant='outlined' />
                     <SelectBox
-                        id="fruit"
-                        name="fruit"
-                        label="fruit"
-                        width="200px"
+                        id='fruit'
+                        name='fruit'
+                        label='fruit'
+                        width='200px'
                         items={items}
-                        variant="filled" />
+                        variant='filled' />
                     <SelectBox
-                        id="fruit"
-                        name="fruit"
-                        label="fruit"
-                        width="200px"
+                        id='fruit'
+                        name='fruit'
+                        label='fruit'
+                        width='200px'
                         items={items}
-                        variant="standard" />
+                        variant='standard' />
                 </Stack>
             );
             `.trim(),
@@ -220,8 +220,8 @@ export const Variants: Story = {
 export const Sizes: Story = {
     render: (args) => (
         <Stack direction='row' spacing={2}>
-            <SelectBox {...args} size="small" />
-            <SelectBox {...args} size="medium" />
+            <SelectBox {...args} size='small' />
+            <SelectBox {...args} size='medium' />
         </Stack>
     ),
     parameters: {
@@ -242,19 +242,19 @@ export const Sizes: Story = {
             return (           
                 <Stack direction='row' spacing={2}>
                     <SelectBox
-                        id="fruit"
-                        name="fruit"
-                        label="fruit"
-                        width="200px"
+                        id='fruit'
+                        name='fruit'
+                        label='fruit'
+                        width='200px'
                         items={items}
-                        size="small" />
+                        size='small' />
                     <SelectBox
-                        id="fruit"
-                        name="fruit"
-                        label="fruit"
-                        width="200px"
+                        id='fruit'
+                        name='fruit'
+                        label='fruit'
+                        width='200px'
                         items={items}
-                        size="medium" />
+                        size='medium' />
                 </Stack>
             );
             `.trim(),
@@ -289,17 +289,17 @@ export const Status: Story = {
             return (           
                 <Stack direction='row' spacing={2}>
                     <SelectBox
-                        id="fruit"
-                        name="fruit"
-                        label="fruit"
-                        width="200px"
+                        id='fruit'
+                        name='fruit'
+                        label='fruit'
+                        width='200px'
                         items={items}
                         required />
                     <SelectBox
-                        id="fruit"
-                        name="fruit"
-                        label="fruit"
-                        width="200px"
+                        id='fruit'
+                        name='fruit'
+                        label='fruit'
+                        width='200px'
                         items={items}
                         disabled />
                 </Stack>
@@ -338,10 +338,10 @@ export const Error: Story = {
                 return (           
                     <Stack direction='row' spacing={2}>
                         <SelectBox
-                            id="fruit"
-                            name="fruit"
-                            label="fruit"
-                            width="200px"
+                            id='fruit'
+                            name='fruit'
+                            label='fruit'
+                            width='200px'
                             items={items}
                             error
                             helperText='error message' />

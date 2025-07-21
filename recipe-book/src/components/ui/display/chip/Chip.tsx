@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
-import MuiChip from "@mui/material/Chip";
+import { Box } from '@mui/material';
+import MuiChip from '@mui/material/Chip';
 
 export type ChipColors = 'red' | 'blue' | 'teal' | 'orange' | 'brown' | 'blueGrey'
 

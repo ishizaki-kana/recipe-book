@@ -1,7 +1,7 @@
-import { disableAllArgTypes } from "@/stories/utils";
-import { Stack } from "@mui/material";
-import { Meta, StoryObj } from "@storybook/nextjs";
-import PasswordBox from "./PasswordBox";
+import { disableAllArgTypes } from '@/stories/utils';
+import { Stack } from '@mui/material';
+import { Meta, StoryObj } from '@storybook/nextjs';
+import PasswordBox from './PasswordBox';
 
 const meta: Meta<typeof PasswordBox> = {
     title: 'UI/Form/Input/PasswordBox',
@@ -11,21 +11,21 @@ const meta: Meta<typeof PasswordBox> = {
             control: false,
             description: 'ID',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         name: {
             control: false,
             description: '名前',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         label: {
             control: { type: 'text' },
             description: 'ラベル',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         variant: {
@@ -33,7 +33,7 @@ const meta: Meta<typeof PasswordBox> = {
             control: { type: 'inline-radio' },
             description: '見た目',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'outlined' }
             }
         },
@@ -42,7 +42,7 @@ const meta: Meta<typeof PasswordBox> = {
             control: { type: 'inline-radio' },
             description: '大きさ',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'medium' }
             }
         },
@@ -50,35 +50,35 @@ const meta: Meta<typeof PasswordBox> = {
             control: { type: 'number' },
             description: '横幅',
             table: {
-                category: 'props'
-            }
-        },
-        disabled: {
-            control: { type: 'boolean' },
-            description: '無効',
-            table: {
-                category: 'props'
-            }
-        },
-        error: {
-            control: { type: 'boolean' },
-            description: 'エラー',
-            table: {
-                category: 'props'
+                category: 'base'
             }
         },
         helperText: {
             control: { type: 'text' },
             description: 'ヘルパーテキスト',
             table: {
-                category: 'props'
+                category: 'base'
+            }
+        },
+        disabled: {
+            control: { type: 'boolean' },
+            description: '無効',
+            table: {
+                category: 'status'
+            }
+        },
+        error: {
+            control: { type: 'boolean' },
+            description: 'エラー',
+            table: {
+                category: 'status'
             }
         },
         ref: {
             control: false,
             description: '参照',
             table: {
-                category: 'props'
+                category: 'internal'
             }
         },
         onChange: {
@@ -86,7 +86,7 @@ const meta: Meta<typeof PasswordBox> = {
             action: 'changed',
             description: '値変更イベント',
             table: {
-                category: 'events'
+                category: 'event'
             }
         }
     },
@@ -108,7 +108,7 @@ export const Default: Story = {
                 code: `
                 import PasswordBox from '@/components/ui/form/input/password/PasswordBox';
 
-                <PasswordBox id="password" name="password" label="password" />
+                <PasswordBox id='password' name='password' label='password' />
                 `.trim()
             }
         }
@@ -117,7 +117,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
     render: (args) => (
-        <Stack direction="row" spacing={2}>
+        <Stack direction='row' spacing={2}>
             <PasswordBox {...args} variant='outlined' />
             <PasswordBox {...args} variant='filled' />
             <PasswordBox {...args} variant='standard' />
@@ -132,9 +132,9 @@ export const Variants: Story = {
                 code: `
                 import PasswordBox from '@/components/ui/form/input/password/PasswordBox';
 
-                <PasswordBox id="password" name="password" label="password" variant='outlined' />
-                <PasswordBox id="password" name="password" label="password" variant='filled' />
-                <PasswordBox id="password" name="password" label="password" variant='standard' />
+                <PasswordBox id='password' name='password' label='password' variant='outlined' />
+                <PasswordBox id='password' name='password' label='password' variant='filled' />
+                <PasswordBox id='password' name='password' label='password' variant='standard' />
                 `.trim()
             }
         }
@@ -144,7 +144,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
     render: (args) => (
-        <Stack direction="row" spacing={2}>
+        <Stack direction='row' spacing={2}>
             <PasswordBox {...args} size='small' />
             <PasswordBox {...args} size='medium' />
         </Stack>
@@ -158,8 +158,8 @@ export const Sizes: Story = {
                 code: `
                 import PasswordBox from '@/components/ui/form/input/password/PasswordBox';
 
-                <PasswordBox id="password" name="password" label="password" size='small' />
-                <PasswordBox id="password" name="password" label="password" size='medium' />
+                <PasswordBox id='password' name='password' label='password' size='small' />
+                <PasswordBox id='password' name='password' label='password' size='medium' />
                 `.trim()
             }
         }
@@ -182,7 +182,7 @@ export const Status: Story = {
                 code: `
                 import PasswordBox from '@/components/ui/form/input/password/PasswordBox';
 
-                <PasswordBox id="password" name="password" label="password" disabled />
+                <PasswordBox id='password' name='password' label='password' disabled />
                 `.trim()
             }
         }
@@ -193,7 +193,7 @@ export const Status: Story = {
 export const Error: Story = {
     render: (args) => (
         <Stack direction='row' spacing={2}>
-            <PasswordBox {...args} error helperText="error message" />
+            <PasswordBox {...args} error helperText='error message' />
         </Stack>
     ),
     parameters: {
@@ -205,7 +205,7 @@ export const Error: Story = {
                 code: `
                 import PasswordBox from '@/components/ui/form/input/password/PasswordBox';
 
-                <PasswordBox id="password" name="password" label="password" error helperText="error message" />
+                <PasswordBox id='password' name='password' label='password' error helperText='error message' />
                 `.trim()
             }
         }

@@ -3,7 +3,7 @@ import { expect, fn, userEvent, within } from 'storybook/test';
 import LogoutButton from './LogoutButton';
 
 const meta: Meta<typeof LogoutButton> = {
-    title: 'Components/Header/LogoutButton',
+    title: 'Layout/Header/Menu/Drawer/LogoutButton',
     component: LogoutButton,
     argTypes: {
         onLogout: {

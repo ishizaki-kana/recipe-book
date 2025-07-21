@@ -1,6 +1,6 @@
-import { Box, FilledInput, FormControl, FormControlPropsSizeOverrides, FormHelperText, Input, InputAdornment, InputLabel, TextField } from "@mui/material";
-import { OverridableStringUnion } from "@mui/types";
-import { ChangeEventHandler, HTMLInputTypeAttribute, ReactNode, Ref } from "react";
+import { Box, FilledInput, FormControl, FormControlPropsSizeOverrides, FormHelperText, Input, InputAdornment, InputLabel, TextField } from '@mui/material';
+import { OverridableStringUnion } from '@mui/types';
+import { ChangeEventHandler, HTMLInputTypeAttribute, ReactNode, Ref } from 'react';
 
 /**
  * テキスト入力ボックス
@@ -30,7 +30,7 @@ export default function TextBox({
     label?: string
     type?: HTMLInputTypeAttribute
     variant?: 'outlined' | 'filled' | 'standard'
-    size?: OverridableStringUnion<"small" | "medium", FormControlPropsSizeOverrides>
+    size?: OverridableStringUnion<'small' | 'medium', FormControlPropsSizeOverrides>
     width?: string | number
     required?: boolean
     disabled?: boolean
@@ -87,8 +87,8 @@ export default function TextBox({
             helperText: helperText,
             multiline: multiline,
             rows: rows,
-            startAdornment: <InputAdornment position="start">{startAdornment}</InputAdornment>,
-            endAdornment: <InputAdornment position="end">{endAdornment}</InputAdornment>,
+            startAdornment: <InputAdornment position='start'>{startAdornment}</InputAdornment>,
+            endAdornment: <InputAdornment position='end'>{endAdornment}</InputAdornment>,
             inputRef: ref,
             onChange: onChange
         }

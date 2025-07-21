@@ -1,4 +1,4 @@
-import CenteredContainer from "@/components/layout/container/CenteredContainer";
+import CenteredContainer from "@/components/layout/container/center/CenteredContainer";
 import { RecipeDetail } from "@/types/entity";
 import { Box, Divider, Paper, Stack } from "@mui/material";
 import IngredientList from "./item/IngredientList";

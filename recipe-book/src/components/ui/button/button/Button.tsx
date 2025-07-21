@@ -1,7 +1,7 @@
-import { Box } from "@mui/material"
-import MuiButton, { ButtonPropsColorOverrides, ButtonPropsSizeOverrides } from "@mui/material/Button"
-import { OverridableStringUnion } from "@mui/types"
-import { MouseEventHandler, ReactNode } from "react"
+import { Box } from '@mui/material'
+import MuiButton, { ButtonPropsColorOverrides, ButtonPropsSizeOverrides } from '@mui/material/Button'
+import { OverridableStringUnion } from '@mui/types'
+import { MouseEventHandler, ReactNode } from 'react'
 
 /**
  * ボタン
@@ -25,9 +25,9 @@ export default function Button({
 }: {
     children: ReactNode
     variant?: 'text' | 'contained' | 'outlined',
-    type?: "button" | "submit" | "reset",
-    color?: OverridableStringUnion<"inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning", ButtonPropsColorOverrides>
-    size?: OverridableStringUnion<"small" | "medium" | "large", ButtonPropsSizeOverrides>
+    type?: 'button' | 'submit' | 'reset',
+    color?: OverridableStringUnion<'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning', ButtonPropsColorOverrides>
+    size?: OverridableStringUnion<'small' | 'medium' | 'large', ButtonPropsSizeOverrides>
     p?: number | string
     pt?: number | string
     pb?: number | string
@@ -42,7 +42,7 @@ export default function Button({
 
     return (
         <Box
-            display={"flex"} alignItems={"center"} justifyContent={"center"}
+            display={'flex'} alignItems={'center'} justifyContent={'center'}
             p={p} pt={pt} pb={pb} pr={pr} pl={pl}>
 
             <MuiButton

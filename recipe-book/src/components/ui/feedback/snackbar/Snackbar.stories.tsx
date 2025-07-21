@@ -1,26 +1,19 @@
-import { disableAllArgTypes } from "@/stories/utils";
-import { Box, Stack } from "@mui/material";
-import { Meta, StoryObj } from "@storybook/nextjs";
-import { useState } from "react";
-import Button from "../../button/button/Button";
-import Snackbar from "./Snackbar";
+import { disableAllArgTypes } from '@/stories/utils';
+import { Box, Stack } from '@mui/material';
+import { Meta, StoryObj } from '@storybook/nextjs';
+import { useState } from 'react';
+import Button from '../../button/button/Button';
+import Snackbar from './Snackbar';
 
 const meta: Meta<typeof Snackbar> = {
     title: 'UI/Feedback/Snackbar',
     component: Snackbar,
     argTypes: {
-        open: {
-            control: false,
-            description: '表示状態',
-            table: {
-                category: 'props',
-            }
-        },
         message: {
             control: { type: 'text' },
             description: 'メッセージ',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         severity: {
@@ -28,15 +21,22 @@ const meta: Meta<typeof Snackbar> = {
             control: { type: 'select' },
             description: '種類',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'info' }
+            }
+        },
+        open: {
+            control: false,
+            description: '表示状態',
+            table: {
+                category: 'status',
             }
         },
         onClose: {
             action: 'closed',
             description: '非表示イベント',
             table: {
-                category: 'events'
+                category: 'event'
             }
         }
     },
@@ -99,10 +99,10 @@ export const Servery: Story = {
             <Box sx={{ position: 'relative', width: '100vh', height: '150px' }}>
 
                 <Stack direction='row' justifyContent='center' gap={2}>
-                    <Button color="success" onClick={() => setSuccessOpen(true)}>Success</Button>
-                    <Button color="info" onClick={() => setInfoOpen(true)}>Info</Button>
-                    <Button color="warning" onClick={() => setWarningOpen(true)}>Warning</Button>
-                    <Button color="error" onClick={() => setErrorOpen(true)}>Error</Button>
+                    <Button color='success' onClick={() => setSuccessOpen(true)}>Success</Button>
+                    <Button color='info' onClick={() => setInfoOpen(true)}>Info</Button>
+                    <Button color='warning' onClick={() => setWarningOpen(true)}>Warning</Button>
+                    <Button color='error' onClick={() => setErrorOpen(true)}>Error</Button>
                 </Stack>
 
                 <Snackbar
@@ -150,10 +150,10 @@ export const Servery: Story = {
                 return (
                     <Box sx={{ position: 'relative', width: '100vh', height: '150px' }}>
                         <Stack direction='row' justifyContent='center' gap={2}>
-                            <Button color="success" onClick={() => setSuccessOpen(true)}>Success</Button>
-                            <Button color="info" onClick={() => setInfoOpen(true)}>Info</Button>
-                            <Button color="warning" onClick={() => setWarningOpen(true)}>Warning</Button>
-                            <Button color="error" onClick={() => setErrorOpen(true)}>Error</Button>
+                            <Button color='success' onClick={() => setSuccessOpen(true)}>Success</Button>
+                            <Button color='info' onClick={() => setInfoOpen(true)}>Info</Button>
+                            <Button color='warning' onClick={() => setWarningOpen(true)}>Warning</Button>
+                            <Button color='error' onClick={() => setErrorOpen(true)}>Error</Button>
                         </Stack>
 
                         <Snackbar

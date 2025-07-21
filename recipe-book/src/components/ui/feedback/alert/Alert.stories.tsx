@@ -1,7 +1,7 @@
-import { disableAllArgTypes } from "@/stories/utils";
-import { Stack } from "@mui/material";
-import { Meta } from "@storybook/nextjs";
-import Alert from "./Alert";
+import { disableAllArgTypes } from '@/stories/utils';
+import { Stack } from '@mui/material';
+import { Meta } from '@storybook/nextjs';
+import Alert from './Alert';
 
 const meta: Meta<typeof Alert> = {
     title: 'UI/Feedback/Alert',
@@ -11,7 +11,7 @@ const meta: Meta<typeof Alert> = {
             control: { type: 'text' },
             description: '内容',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         severity: {
@@ -19,7 +19,7 @@ const meta: Meta<typeof Alert> = {
             control: { type: 'select' },
             description: '種類',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'success' }
             }
         },
@@ -27,7 +27,7 @@ const meta: Meta<typeof Alert> = {
             control: false,
             description: '表示状態',
             table: {
-                category: 'props'
+                category: 'status'
             }
         }
     },

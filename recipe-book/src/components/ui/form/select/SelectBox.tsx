@@ -29,7 +29,7 @@ export default function SelectBox({
     name?: string
     label?: string
     variant?: 'outlined' | 'filled' | 'standard' | undefined
-    size?: OverridableStringUnion<"small" | "medium", FormControlPropsSizeOverrides> | undefined
+    size?: OverridableStringUnion<'small' | 'medium', FormControlPropsSizeOverrides> | undefined
     width?: number | string
     required?: boolean
     disabled?: boolean
@@ -71,7 +71,7 @@ export default function SelectBox({
 
                     {/* デフォルトオプション */}
                     {!disableDefaultOption &&
-                        <MenuItem value="0">---</MenuItem>
+                        <MenuItem value='0'>---</MenuItem>
                     }
 
                     {items?.map((item) => (

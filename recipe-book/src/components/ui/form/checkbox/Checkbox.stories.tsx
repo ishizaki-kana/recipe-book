@@ -1,7 +1,7 @@
-import { disableAllArgTypes } from "@/stories/utils";
-import { Stack } from "@mui/material";
-import { Meta, StoryObj } from "@storybook/nextjs";
-import Checkbox from "./Checkbox";
+import { disableAllArgTypes } from '@/stories/utils';
+import { Stack } from '@mui/material';
+import { Meta, StoryObj } from '@storybook/nextjs';
+import Checkbox from './Checkbox';
 
 const meta: Meta<typeof Checkbox> = {
     title: 'UI/Form/Checkbox',
@@ -11,21 +11,21 @@ const meta: Meta<typeof Checkbox> = {
             control: false,
             description: 'ID',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         checked: {
             control: { type: 'boolean' },
             description: '状態',
             table: {
-                category: 'props',
+                category: 'status',
             }
         },
         loading: {
             control: { type: 'boolean' },
             description: 'ローディング',
             table: {
-                category: 'props',
+                category: 'status',
             }
         },
         onChange: {
@@ -33,7 +33,7 @@ const meta: Meta<typeof Checkbox> = {
             action: 'changed',
             description: '変更イベント',
             table: {
-                category: 'events'
+                category: 'event'
             }
         },
     },

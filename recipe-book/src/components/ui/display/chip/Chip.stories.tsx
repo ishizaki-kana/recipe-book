@@ -1,7 +1,7 @@
-import { disableAllArgTypes } from "@/stories/utils";
-import { Stack } from "@mui/material";
-import { Meta, StoryObj } from "@storybook/nextjs";
-import Chip from "./Chip";
+import { disableAllArgTypes } from '@/stories/utils';
+import { Stack } from '@mui/material';
+import { Meta, StoryObj } from '@storybook/nextjs';
+import Chip from './Chip';
 
 const meta: Meta<typeof Chip> = {
     title: 'UI/Display/Chip',
@@ -11,7 +11,7 @@ const meta: Meta<typeof Chip> = {
             control: { type: 'text' },
             description: 'ラベル',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         color: {
@@ -19,7 +19,7 @@ const meta: Meta<typeof Chip> = {
             control: { type: 'select' },
             description: '色',
             table: {
-                category: 'props'
+                category: 'base'
             }
         }
     },

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export function useDrawer() {
 
@@ -12,7 +12,7 @@ export function useDrawer() {
     const closeDrawer = () => setDrawerOpen(false);
 
     /**
-     * ドロワー表示状態切り替え
+     * ドロワー開閉状態切り替え
      * @returns {void}
      */
     const toggleDrawer = () => setDrawerOpen(prev => !prev);

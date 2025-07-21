@@ -1,9 +1,9 @@
-import { Meta, StoryObj } from "@storybook/nextjs";
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { expect, fn, userEvent, within } from 'storybook/test';
-import MenuLinks from "./MenuLinks";
+import MenuLinks from './MenuLinks';
 
 const meta: Meta<typeof MenuLinks> = {
-    title: 'Components/Header/MenuLinks',
+    title: 'Layout/Header/Menu/Drawer/MenuLinks',
     component: MenuLinks,
     globals: {
         backgrounds: { value: 'dark' }

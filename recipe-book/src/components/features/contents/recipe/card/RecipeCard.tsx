@@ -1,8 +1,7 @@
 'use client'
-import FlexContainer from "@/components/layout/container/FlexContainer";
 import Chip, { ChipColors } from "@/components/ui/display/chip/Chip";
 import { RecipeSummary } from "@/types/entity";
-import { Card, CardActionArea, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
+import { Card, CardActionArea, CardContent, CardHeader, CardMedia, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -52,7 +51,7 @@ export default function RecipeCard({
 
                 <CardContent>
                     <Chip label={recipe.category.name} color={recipe.category.color as ChipColors} />
-                    <FlexContainer direction="row" justifyContent="flex-start" gap={1}>
+                    <Stack direction="row" justifyContent="flex-start" gap={1}>
 
                         {recipe.shelfLife &&
                             <Typography variant="body2" color="text.secondary">
@@ -67,7 +66,7 @@ export default function RecipeCard({
                                 {recipe.calories}kcal
                             </Typography>
                         }
-                    </FlexContainer>
+                    </Stack>
                 </CardContent>
 
             </CardActionArea>

@@ -1,5 +1,5 @@
-import { apiGet } from "@/lib/fetch";
-import { useRouter } from "next/navigation";
+import { apiGet } from '@/lib/fetch';
+import { useRouter } from 'next/navigation';
 
 export function useLogout() {
     const router = useRouter();

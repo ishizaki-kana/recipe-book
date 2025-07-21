@@ -1,8 +1,8 @@
-import { disableAllArgTypes } from "@/stories/utils";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { Stack } from "@mui/material";
-import { Meta, StoryObj } from "@storybook/nextjs";
-import IconButton from "./IconButton";
+import { disableAllArgTypes } from '@/stories/utils';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Stack } from '@mui/material';
+import { Meta, StoryObj } from '@storybook/nextjs';
+import IconButton from './IconButton';
 
 const meta: Meta<typeof IconButton> = {
     title: 'UI/Button/IconButton',
@@ -12,7 +12,7 @@ const meta: Meta<typeof IconButton> = {
             control: false,
             description: 'アイコン',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
         color: {
@@ -20,7 +20,7 @@ const meta: Meta<typeof IconButton> = {
             control: { type: 'select' },
             description: '色',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'primary' }
             }
         },
@@ -29,7 +29,7 @@ const meta: Meta<typeof IconButton> = {
             control: { type: 'inline-radio' },
             description: '大きさ',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'medium' }
             }
         },
@@ -38,7 +38,7 @@ const meta: Meta<typeof IconButton> = {
             control: { type: 'select' },
             description: 'エッジ（paddingの打ち消し）',
             table: {
-                category: 'props',
+                category: 'base',
                 defaultValue: { summary: 'false' }
             }
         },
@@ -46,14 +46,21 @@ const meta: Meta<typeof IconButton> = {
             control: false,
             description: 'スタイルのカスタマイズ',
             table: {
-                category: 'props'
+                category: 'base'
+            }
+        },
+        ariaLabel: {
+            control: false,
+            description: 'アクセシビリティラベル',
+            table: {
+                category: 'base'
             }
         },
         tooltip: {
             control: { type: 'boolean' },
             description: 'ツールチップの表示状態',
             table: {
-                category: 'tooltip props',
+                category: 'tooltip',
                 defaultValue: { summary: 'false' }
             }
         },
@@ -61,7 +68,7 @@ const meta: Meta<typeof IconButton> = {
             control: { type: 'text' },
             description: 'ツールチップのタイトル',
             table: {
-                category: 'tooltip props'
+                category: 'tooltip'
             }
         },
         tipPlacement: {
@@ -69,7 +76,7 @@ const meta: Meta<typeof IconButton> = {
             control: { type: 'select' },
             description: 'ツールチップの配置',
             table: {
-                category: 'tooltip props',
+                category: 'tooltip',
                 defaultValue: { summary: 'bottom' }
             }
         },
@@ -77,15 +84,8 @@ const meta: Meta<typeof IconButton> = {
             control: { type: 'object' },
             description: 'ツールチップの距離',
             table: {
-                category: 'tooltip props',
+                category: 'tooltip',
                 defaultValue: { summary: '[0, 0]' }
-            }
-        },
-        ariaLabel: {
-            control: false,
-            description: 'アクセシビリティラベル',
-            table: {
-                category: 'props'
             }
         },
         onClick: {
@@ -93,7 +93,7 @@ const meta: Meta<typeof IconButton> = {
             action: 'clicked',
             description: 'クリックイベント',
             table: {
-                category: 'events'
+                category: 'event'
             }
         },
         onMouseDown: {
@@ -101,7 +101,7 @@ const meta: Meta<typeof IconButton> = {
             action: 'mouseDown',
             description: 'マウスダウンイベント',
             table: {
-                category: 'events'
+                category: 'event'
             }
         },
         onMouseUp: {
@@ -109,19 +109,19 @@ const meta: Meta<typeof IconButton> = {
             action: 'mouseUp',
             description: 'マウスアップイベント',
             table: {
-                category: 'events'
+                category: 'event'
             }
         }
     },
     args: {
-        icon: <DeleteIcon fontSize="inherit" />,
+        icon: <DeleteIcon fontSize='inherit' />,
         color: 'ui',
     }
 }
 
 export default meta;
 type Story = StoryObj<typeof IconButton>;
-type IconButtonProps = typeof meta.args;
+type IconButtonbase = typeof meta.args;
 
 export const Default: Story = {
     parameters: {
@@ -132,9 +132,9 @@ export const Default: Story = {
                 import DeleteIcon from '@mui/icons-material/Delete';
                 
                 <IconButton
-                    icon={<DeleteIcon fontSize="inherit" />}
-                    color="ui"
-                    ariaLabel="Delete"
+                    icon={<DeleteIcon fontSize='inherit' />}
+                    color='ui'
+                    ariaLabel='Delete'
                 />
                 `.trim()
             }
@@ -159,11 +159,11 @@ export const Tooltip: Story = {
                 import DeleteIcon from '@mui/icons-material/Delete';
                 
                 <IconButton
-                    icon={<DeleteIcon fontSize="inherit" />}
-                    color="ui"
+                    icon={<DeleteIcon fontSize='inherit' />}
+                    color='ui'
                     tooltip={true}
-                    tipTitle="アイコンボタン"
-                    tipPlacement="bottom"
+                    tipTitle='アイコンボタン'
+                    tipPlacement='bottom'
                 />
                 `.trim()
             }
@@ -190,13 +190,13 @@ export const Sizes: Story = {
                 import DeleteIcon from '@mui/icons-material/Delete';
                 
                 <Stack direction='row' alignItems='center' gap={2}>
-                    <IconButton icon={<DeleteIcon fontSize="inherit" />} size='small' />
-                    <IconButton icon={<DeleteIcon fontSize="inherit" />} size='medium' />
-                    <IconButton icon={<DeleteIcon fontSize="inherit" />} size='large' />
+                    <IconButton icon={<DeleteIcon fontSize='inherit' />} size='small' />
+                    <IconButton icon={<DeleteIcon fontSize='inherit' />} size='medium' />
+                    <IconButton icon={<DeleteIcon fontSize='inherit' />} size='large' />
                 </Stack>
                 `.trim()
             }
         }
     },
-    argTypes: disableAllArgTypes<IconButtonProps>(meta.argTypes)
+    argTypes: disableAllArgTypes<IconButtonbase>(meta.argTypes)
 }

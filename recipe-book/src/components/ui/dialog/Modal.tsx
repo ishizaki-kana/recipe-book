@@ -1,9 +1,9 @@
-import Button from "@/components/ui/button/button/Button";
-import IconButton from "@/components/ui/button/iconButton/IconButton";
+import Button from '@/components/ui/button/button/Button';
+import IconButton from '@/components/ui/button/iconButton/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { DialogActions, DialogContent, DialogTitle, ModalProps, SlotProps } from "@mui/material";
-import Dialog, { DialogBackdropSlotPropsOverrides, DialogContainerSlotPropsOverrides, DialogOwnerState, DialogPaperSlotPropsOverrides, DialogRootSlotPropsOverrides } from "@mui/material/Dialog";
-import { ElementType, JSX, ReactNode } from "react";
+import { DialogActions, DialogContent, DialogTitle, ModalProps, SlotProps } from '@mui/material';
+import Dialog, { DialogBackdropSlotPropsOverrides, DialogContainerSlotPropsOverrides, DialogOwnerState, DialogPaperSlotPropsOverrides, DialogRootSlotPropsOverrides } from '@mui/material/Dialog';
+import { ElementType, JSX, ReactNode } from 'react';
 
 /**
  * モーダル
@@ -61,14 +61,14 @@ export default function Modal({
     // 非表示イベント
     const handleClose = (
         e: object,
-        reason: "backdropClick" | "escapeKeyDown"
+        reason: 'backdropClick' | 'escapeKeyDown'
     ) => {
 
         // 外側クリック無効フラグが有効なとき、バックドロップのクリックイベントを無効化
-        if (disableBackDropClick && reason === "backdropClick") return;
+        if (disableBackDropClick && reason === 'backdropClick') return;
 
         // ESCキー無効フラグが有効なとき、ESCキーイベントを無効化
-        if (disableEscapeKeyDown && reason === "escapeKeyDown") return;
+        if (disableEscapeKeyDown && reason === 'escapeKeyDown') return;
 
         onClose?.();
     }
@@ -76,11 +76,11 @@ export default function Modal({
     return (
         <Dialog open={open} onClose={handleClose} slotProps={slotProps}>
             <DialogTitle
-                sx={{ px: 2, py: 1.5, borderBottom: "1px solid #ccc" }}
-                color={"ui.contrastText"}
-                display={"flex"}
-                alignItems={"center"}
-                justifyContent={"space-between"}
+                sx={{ px: 2, py: 1.5, borderBottom: '1px solid #ccc' }}
+                color={'ui.contrastText'}
+                display={'flex'}
+                alignItems={'center'}
+                justifyContent={'space-between'}
             >
                 {title}
                 <IconButton
@@ -95,12 +95,12 @@ export default function Modal({
 
             {(hasSubmitButton || hasCancelButton) && (
                 <DialogActions
-                    sx={{ px: 2, py: 1, borderTop: "1px solid #ccc" }}>
+                    sx={{ px: 2, py: 1, borderTop: '1px solid #ccc' }}>
 
                     {hasCancelButton && (
                         <Button
-                            color={"ui"}
-                            variant="text"
+                            color={'ui'}
+                            variant='text'
                             onClick={onClose}>
                             キャンセル
                         </Button>
@@ -108,8 +108,8 @@ export default function Modal({
 
                     {hasSubmitButton && (
                         <Button
-                            variant="text"
-                            type="submit"
+                            variant='text'
+                            type='submit'
                             loading={loading}>
                             登録
                         </Button>

@@ -1,5 +1,5 @@
-import LoginForm from "@/components/features/login/LoginForm";
-import CenteredContainer from "@/components/layout/container/CenteredContainer";
+import LoginForm from "@/components/features/login/components/LoginForm";
+import CenteredContainer from "@/components/layout/container/center/CenteredContainer";
 import { getUserFromAuthToken } from "@/lib/token";
 import { redirect } from "next/navigation";
 

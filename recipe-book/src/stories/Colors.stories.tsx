@@ -1,5 +1,5 @@
-import { Box, Stack, Typography } from "@mui/material";
-import { Meta } from "@storybook/nextjs";
+import { Box, Stack, Typography } from '@mui/material';
+import { Meta } from '@storybook/nextjs';
 
 const meta: Meta<typeof Box> = {
     title: 'Theme/Colors',

@@ -20,7 +20,7 @@ export default function Checkbox({
 
     return (
         <MuiCheckBox
-            edge="start"
+            edge='start'
             checked={checked}
             tabIndex={-1}
             disableRipple

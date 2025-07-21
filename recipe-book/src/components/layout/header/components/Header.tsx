@@ -1,7 +1,7 @@
-import EggAltIcon from "@mui/icons-material/EggAlt";
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
-import { User } from "@prisma/client";
-import Menu from "./menu/Menu";
+import EggAltIcon from '@mui/icons-material/EggAlt';
+import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import { User } from '@prisma/client';
+import Menu from './menu/Menu';
 
 /**
  * ヘッダー
@@ -13,14 +13,14 @@ export default function Header({
 }) {
 
     return (
-        <AppBar component={"nav"}>
+        <AppBar component='nav'>
             <Toolbar>
                 <Menu user={user} />
-                <Box display={"flex"} gap={1} alignItems={"center"}>
+                <Box display='flex' alignItems='center' gap={1}>
                     <EggAltIcon />
                     <Typography
-                        variant="h6"
-                        component={"div"}
+                        variant='h6'
+                        component='div'
                         sx={{ flexGrow: 1 }}>
                         RECIPE BOOK
                     </Typography>

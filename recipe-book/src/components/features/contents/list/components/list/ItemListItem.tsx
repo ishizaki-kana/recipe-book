@@ -1,7 +1,6 @@
 'use client'
-import FlexContainer from "@/components/layout/container/FlexContainer";
 import Checkbox from "@/components/ui/form/checkbox/Checkbox";
-import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { ListItemButton, ListItemIcon, ListItemText, Stack } from "@mui/material";
 import MuiListItem from "@mui/material/ListItem";
 import { ListItem } from "@prisma/client";
 import { useState } from "react";
@@ -48,13 +47,10 @@ export default function ItemListItem({
                 <ListItemText
                     id={id}
                     primary={
-                        <FlexContainer
-                            direction="row"
-                            justifyContent="space-between"
-                            gap={1.5}>
+                        <Stack direction="row" justifyContent="space-between" gap={1.5}>
                             <span>{item.name}</span>
                             <span>{item.volume}</span>
-                        </FlexContainer>
+                        </Stack>
                     }
                     secondary={item.recipeName} />
             </ListItemButton>

@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
-import MuiAlert from "@mui/material/Alert";
-import { ReactNode } from "react";
+import { Box } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
+import { ReactNode } from 'react';
 
 /**
  * アラート

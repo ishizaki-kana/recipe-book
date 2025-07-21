@@ -1,5 +1,6 @@
-import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
-import { useNavigation } from "../../hooks/useNavigation";
+'use client'
+import { useNavigation } from '@/components/layout/header/hooks/useNavigation';
+import { List, ListItem, ListItemButton, ListItemText } from '@mui/material';
 
 const links = [
     { text: 'レシピ', path: '/recipe' },

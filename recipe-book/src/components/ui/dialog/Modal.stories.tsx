@@ -1,8 +1,8 @@
-import { disableAllArgTypes } from "@/stories/utils";
-import { Meta, StoryObj } from "@storybook/nextjs";
-import { useState } from "react";
-import Button from "../button/button/Button";
-import Modal from "./Modal";
+import { disableAllArgTypes } from '@/stories/utils';
+import { Meta, StoryObj } from '@storybook/nextjs';
+import { useState } from 'react';
+import Button from '../button/button/Button';
+import Modal from './Modal';
 
 const meta: Meta<typeof Modal> = {
     title: 'UI/Dialog/Modal',
@@ -12,53 +12,28 @@ const meta: Meta<typeof Modal> = {
             control: { type: 'text' },
             description: '内容',
             table: {
-                category: 'props'
-            }
-        },
-        open: {
-            control: false,
-            description: '開閉状態',
-            table: {
-                category: 'props',
-                defaultValue: { summary: 'false' }
+                category: 'base'
             }
         },
         title: {
             control: { type: 'text' },
             description: 'タイトル',
             table: {
-                category: 'props'
+                category: 'base'
             }
         },
-        hasSubmitButton: {
-            control: { type: 'boolean' },
-            description: '登録ボタンの表示/非表示',
+        slotProps: {
+            control: false,
+            description: 'スロットプロパティ',
             table: {
-                category: 'props',
-                defaultValue: { summary: 'true' }
+                category: 'base'
             }
         },
-        hasCancelButton: {
-            control: { type: 'boolean' },
-            description: 'キャンセルボタンの表示/非表示',
+        open: {
+            control: false,
+            description: '開閉状態',
             table: {
-                category: 'props',
-                defaultValue: { summary: 'true' }
-            }
-        },
-        disableBackDropClick: {
-            control: { type: 'boolean' },
-            description: 'バックドロップクリック有効状態',
-            table: {
-                category: 'props',
-                defaultValue: { summary: 'false' }
-            }
-        },
-        disableEscapeKeyDown: {
-            control: { type: 'boolean' },
-            description: 'Escキー有効状態',
-            table: {
-                category: 'props',
+                category: 'status',
                 defaultValue: { summary: 'false' }
             }
         },
@@ -66,15 +41,40 @@ const meta: Meta<typeof Modal> = {
             control: { type: 'boolean' },
             description: '送信ボタンのローディング状態',
             table: {
-                category: 'submit button props',
+                category: 'status',
                 defaultValue: { summary: 'false' }
             }
         },
-        slotProps: {
-            control: false,
-            description: 'スロットプロパティ',
+        disableBackDropClick: {
+            control: { type: 'boolean' },
+            description: 'バックドロップクリック有効状態',
             table: {
-                category: 'props'
+                category: 'status',
+                defaultValue: { summary: 'false' }
+            }
+        },
+        disableEscapeKeyDown: {
+            control: { type: 'boolean' },
+            description: 'Escキー有効状態',
+            table: {
+                category: 'status',
+                defaultValue: { summary: 'false' }
+            }
+        },
+        hasSubmitButton: {
+            control: { type: 'boolean' },
+            description: '登録ボタンの表示/非表示',
+            table: {
+                category: 'status',
+                defaultValue: { summary: 'true' }
+            }
+        },
+        hasCancelButton: {
+            control: { type: 'boolean' },
+            description: 'キャンセルボタンの表示/非表示',
+            table: {
+                category: 'status',
+                defaultValue: { summary: 'true' }
             }
         },
         onClose: {
@@ -82,7 +82,7 @@ const meta: Meta<typeof Modal> = {
             action: 'closed',
             description: 'モーダル非表示イベント',
             table: {
-                category: 'events'
+                category: 'event'
             }
         }
     },
@@ -128,7 +128,7 @@ export const Default: Story = {
 
                         <Modal 
                             open={open} 
-                            title="Modal"
+                            title='Modal'
                             onClose={() => setOpen(false)}>
                             content
                         </Modal>
@@ -149,7 +149,7 @@ export const ReadOnly: Story = {
                 <Button onClick={() => setOpen(true)}>open</Button>
                 <Modal
                     open={open}
-                    title="Read Only Modal"
+                    title='Read Only Modal'
                     hasSubmitButton={false}
                     hasCancelButton={false}
                     onClose={() => setOpen(false)}>
@@ -177,7 +177,7 @@ export const ReadOnly: Story = {
 
                         <Modal 
                             open={open} 
-                            title="Read Only Modal"
+                            title='Read Only Modal'
                             hasSubmitButton={false}
                             hasCancelButton={false}
                             onClose={() => setOpen(false)}>
@@ -200,7 +200,7 @@ export const Blocking: Story = {
                 <Button onClick={() => setOpen(true)}>open</Button>
                 <Modal
                     open={open}
-                    title="Blocking Modal"
+                    title='Blocking Modal'
                     disableBackDropClick
                     disableEscapeKeyDown
                     onClose={() => setOpen(false)}>
@@ -228,7 +228,7 @@ export const Blocking: Story = {
 
                         <Modal 
                             open={open} 
-                            title="Blocking Modal"
+                            title='Blocking Modal'
                             disableBackDropClick
                             disableEscapeKeyDown
                             onClose={() => setOpen(false)}>
@@ -251,7 +251,7 @@ export const Loading: Story = {
                 <Button onClick={() => setOpen(true)}>open</Button>
                 <Modal
                     open={open}
-                    title="Loading Modal"
+                    title='Loading Modal'
                     loading
                     onClose={() => setOpen(false)}>
                     loading content
@@ -278,7 +278,7 @@ export const Loading: Story = {
 
                         <Modal 
                             open={open} 
-                            title="Loading Modal"
+                            title='Loading Modal'
                             loading
                             onClose={() => setOpen(false)}>
                             loading content
