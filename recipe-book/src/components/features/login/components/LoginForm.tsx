@@ -3,8 +3,9 @@ import Button from '@/components/ui/button/button/Button';
 import Alert from '@/components/ui/feedback/alert/Alert';
 import PasswordBox from '@/components/ui/form/input/password/PasswordBox';
 import TextBox from '@/components/ui/form/input/text/TextBox';
+import { FormReturn } from '@/types/form';
 import { Stack } from '@mui/material';
-import { UseLoginFormReturn, useLoginForm as defaultUseLoginForm } from '../hooks/useLoginForm';
+import { useLoginForm as defaultUseLoginForm, LoginFormInput } from '../hooks/useLoginForm';
 
 /**
  * ログインフォーム
@@ -12,9 +13,9 @@ import { UseLoginFormReturn, useLoginForm as defaultUseLoginForm } from '../hook
 export default function LoginForm({
     useLoginForm = defaultUseLoginForm
 }: {
-    useLoginForm?: () => UseLoginFormReturn
+    useLoginForm?: () => FormReturn<LoginFormInput>
 }) {
-    const { register, onSubmit, submitError, formErrors, isSubmitting, } = useLoginForm();
+    const { register, submitError, formErrors, loading, onSubmit } = useLoginForm();
 
     return (
         <form onSubmit={onSubmit}>
@@ -29,19 +30,19 @@ export default function LoginForm({
                         label='ユーザーID'
                         width='100%'
                         {...register('userId')}
-                        error={!!formErrors.userId}
-                        helperText={formErrors.userId?.message}
+                        error={!!formErrors?.userId}
+                        helperText={formErrors?.userId?.message}
                         data-testid='user-id-input' />
                     <PasswordBox
                         label='パスワード'
                         width='100%'
                         {...register('password')}
-                        error={!!formErrors.password}
-                        helperText={formErrors.password?.message} />
+                        error={!!formErrors?.password}
+                        helperText={formErrors?.password?.message} />
 
                     <Button
                         type='submit'
-                        loading={isSubmitting}
+                        loading={loading}
                         pt={1}>
                         ログイン
                     </Button>

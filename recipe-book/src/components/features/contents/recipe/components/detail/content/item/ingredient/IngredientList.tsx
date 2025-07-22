@@ -1,5 +1,8 @@
-import { Box, Divider, List, ListItem, Typography } from "@mui/material";
+import { Box, Divider, List, ListItem, Typography } from '@mui/material';
 
+/**
+ * 材料リスト
+ */
 export default function IngredientList({
     ingredients
 }: {
@@ -21,10 +24,10 @@ export default function IngredientList({
                     <div key={ingredient.id}>
                         <ListItem disablePadding>
                             <Box sx={{ display: 'flex', width: '100%' }}>
-                                <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                                <Typography variant='body1' sx={{ flexGrow: 1 }}>
                                     {ingredient.name}
                                 </Typography>
-                                <Typography variant="body1">
+                                <Typography variant='body1'>
                                     {ingredient.volume}
                                 </Typography>
                             </Box>

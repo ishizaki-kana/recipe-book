@@ -1,5 +1,5 @@
-import RecipeCard from '@/components/features/contents/recipe/components/card/RecipeCard';
-import SearchContainer from '@/components/features/contents/recipe/components/search/SearchContainer';
+import SearchAccordion from '@/components/features/contents/recipe/components/search/SearchAccordion';
+import RecipeCard from '@/components/features/contents/recipe/components/summary/RecipeSummaryCard';
 import { RecipeSearchInput } from '@/components/features/contents/recipe/types';
 import { apiGetServer } from '@/lib/fetchServer';
 import { RecipeSummary } from '@/types/entity';
@@ -44,7 +44,7 @@ export default async function RecipeBookPage({
   return (
     <Box sx={{ height: '100%', width: '100%' }}>
 
-      <SearchContainer categories={recipeCategories} searchInput={searchInput} />
+      <SearchAccordion categories={recipeCategories} searchInput={searchInput} />
 
       <Grid container rowSpacing={3} columnSpacing={5}
         columns={{ xs: 1, sm: 3, md: 4, lg: 5 }}

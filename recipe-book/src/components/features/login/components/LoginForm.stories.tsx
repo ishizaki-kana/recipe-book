@@ -1,7 +1,8 @@
+import { FormReturn } from '@/types/form';
 import { expect } from '@storybook/jest';
 import { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
-import { UseLoginFormReturn } from '../hooks/useLoginForm';
+import { LoginFormInput } from '../hooks/useLoginForm';
 import LoginForm from './LoginForm';
 
 const meta: Meta<typeof LoginForm> = {
@@ -40,12 +41,12 @@ export const Loading: Story = {
         }
     },
     args: {
-        useLoginForm: (): UseLoginFormReturn => ({
+        useLoginForm: (): FormReturn<LoginFormInput> => ({
             register: () => ({}),
             onSubmit: () => Promise.resolve(),
             submitError: null,
             formErrors: {},
-            isSubmitting: true
+            loading: true
         })
     },
 }
@@ -59,12 +60,12 @@ export const ValidationError: Story = {
         }
     },
     args: {
-        useLoginForm: (): UseLoginFormReturn => ({
+        useLoginForm: (): FormReturn<LoginFormInput> => ({
             register: () => ({}),
             onSubmit: () => Promise.resolve(),
             submitError: null,
             formErrors: { userId: { type: 'required', message: '入力してください' }, password: { type: 'required', message: '入力してください' } },
-            isSubmitting: false
+            loading: false
         })
     },
     play: async ({ canvasElement }) => {
@@ -87,12 +88,12 @@ export const SubmitError: Story = {
         }
     },
     args: {
-        useLoginForm: (): UseLoginFormReturn => ({
+        useLoginForm: (): FormReturn<LoginFormInput> => ({
             register: () => ({}),
             onSubmit: () => Promise.resolve(),
             submitError: '送信エラー',
             formErrors: {},
-            isSubmitting: false
+            loading: false
         })
     },
     play: async ({ canvasElement }) => {
@@ -112,12 +113,12 @@ export const MultipleErrors: Story = {
         }
     },
     args: {
-        useLoginForm: (): UseLoginFormReturn => ({
+        useLoginForm: (): FormReturn<LoginFormInput> => ({
             register: () => ({}),
             onSubmit: () => Promise.resolve(),
             submitError: '送信エラー',
             formErrors: { userId: { type: 'required', message: '入力してください' }, password: { type: 'required', message: '入力してください' } },
-            isSubmitting: false
+            loading: false
         })
     },
     play: async ({ canvasElement }) => {

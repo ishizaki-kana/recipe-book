@@ -1,4 +1,4 @@
-import RecipeDialog from "@/components/features/contents/recipe/detail/RecipeDialog";
+import RecipeDialog from '@/components/features/contents/recipe/components/detail/RecipeDialog';
 import { apiGetServer } from "@/lib/fetchServer";
 import { RecipeDetail } from "@/types/entity";
 

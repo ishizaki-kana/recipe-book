@@ -1,9 +1,12 @@
-import { Box } from "@mui/material";
-import Image from "next/image";
+import { Box } from '@mui/material';
+import Image from 'next/image';
 
+/**
+ * レシピ画像
+ */
 export default function RecipeImage({
     imageUrl,
-    recipeName = "Recipe"
+    recipeName = 'Recipe'
 }: {
     imageUrl: string;
     recipeName?: string;

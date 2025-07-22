@@ -2,19 +2,12 @@
 
 import { ERROR_MESSAGES } from '@/lib/constants/messages';
 import { apiPost } from '@/lib/fetch';
+import { FormReturn } from '@/types/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { FieldErrors, useForm, UseFormRegister } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
-export type UseLoginFormReturn = {
-    register: UseFormRegister<{ userId: string; password: string; }> | (() => ({})),
-    onSubmit: (e?: React.FormEvent) => Promise<void> | void,
-    submitError: string | null,
-    formErrors: FieldErrors<{ userId: string; password: string; }>,
-    isSubmitting: boolean
-}
 
 // バリデーションスキーマ
 const schema = z.object({
@@ -23,9 +16,9 @@ const schema = z.object({
 });
 
 // 入力型推論
-type LoginFormInput = z.infer<typeof schema>;
+export type LoginFormInput = z.infer<typeof schema>;
 
-export const useLoginForm = (): UseLoginFormReturn => {
+export const useLoginForm = (): FormReturn<LoginFormInput> => {
     const router = useRouter();
     const {
         register,
@@ -54,6 +47,6 @@ export const useLoginForm = (): UseLoginFormReturn => {
         onSubmit: handleSubmit(onSubmit),
         submitError,
         formErrors: errors,
-        isSubmitting,
+        loading: isSubmitting,
     }
 }

@@ -1,6 +1,9 @@
-import { StepSummary } from "@/types/entity";
-import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
+import { StepSummary } from '@/types/entity';
+import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
 
+/**
+ * 作業手順リスト
+ */
 export default function StepList({
     steps
 }: {
@@ -21,7 +24,7 @@ export default function StepList({
                                 <List>
                                     {step.seasonings.map(seasoning => (
                                         <ListItem key={seasoning.id} disablePadding>
-                                            <Typography component={'span'} fontSize={14}>
+                                            <Typography component='span' fontSize={14}>
                                                 {seasoning.name} - {seasoning.volume}
                                             </Typography>
                                         </ListItem>
