@@ -1,5 +1,5 @@
 import EggAltIcon from '@mui/icons-material/EggAlt';
-import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import { AppBar, Stack, Toolbar, Typography } from '@mui/material';
 import { User } from '@prisma/client';
 import Menu from './menu/Menu';
 
@@ -16,7 +16,7 @@ export default function Header({
         <AppBar component='nav'>
             <Toolbar>
                 <Menu user={user} />
-                <Box display='flex' alignItems='center' gap={1}>
+                <Stack direction='row' alignItems='center' gap={1}>
                     <EggAltIcon />
                     <Typography
                         variant='h6'
@@ -24,7 +24,7 @@ export default function Header({
                         sx={{ flexGrow: 1 }}>
                         RECIPE BOOK
                     </Typography>
-                </Box>
+                </Stack>
             </Toolbar>
         </AppBar>
     )

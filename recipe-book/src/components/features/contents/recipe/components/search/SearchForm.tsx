@@ -1,12 +1,12 @@
 'use client'
-import Button from "@/components/ui/button/button/Button";
-import Alert from "@/components/ui/feedback/alert/Alert";
-import TextBox from "@/components/ui/form/input/text/TextBox";
-import { Checkbox, FormControlLabel, FormGroup, Stack } from "@mui/material";
-import { RecipeCategory } from "@prisma/client";
-import { Controller, useForm } from "react-hook-form";
-import { useRecipe } from "../hooks";
-import { RecipeSearchInput } from "../types";
+import Button from '@/components/ui/button/button/Button';
+import Alert from '@/components/ui/feedback/alert/Alert';
+import TextBox from '@/components/ui/form/input/text/TextBox';
+import { Checkbox, FormControlLabel, FormGroup, Stack } from '@mui/material';
+import { RecipeCategory } from '@prisma/client';
+import { Controller, useForm } from 'react-hook-form';
+import { useRecipeSearch } from '../../hooks/useRecipeSearch';
+import { RecipeSearchInput } from '../../types';
 
 export default function SearchForm({
     categories,
@@ -24,7 +24,7 @@ export default function SearchForm({
         defaultValues: searchInput
     });
 
-    const { error, search } = useRecipe();
+    const { error, search } = useRecipeSearch();
 
     // 検索ボタンクリックイベント
     const onSubmit = async (data: RecipeSearchInput) => {
@@ -33,20 +33,20 @@ export default function SearchForm({
 
     return (
         <>
-            <Alert severity="error" visible={!!error}>{error}</Alert>
+            <Alert severity='error' visible={!!error}>{error}</Alert>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack>
 
                     {/* キーワード */}
                     <TextBox
-                        label="キーワード"
-                        {...register("keyword")}
+                        label='キーワード'
+                        {...register('keyword')}
                     />
 
                     {/* カテゴリ */}
                     <Controller
-                        name="categoryIds"
+                        name='categoryIds'
                         control={control}
                         render={({ field }) => (
                             <FormGroup row>
@@ -72,7 +72,7 @@ export default function SearchForm({
                         )} />
 
                     <Button
-                        type="submit"
+                        type='submit'
                         loading={isSubmitting}>
                         検索
                     </Button>

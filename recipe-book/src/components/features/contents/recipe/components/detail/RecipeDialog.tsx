@@ -3,10 +3,10 @@ import { RecipeDetail } from "@/types/entity";
 import { Box, DialogContent, DialogTitle } from "@mui/material";
 import MuiDialog from "@mui/material/Dialog";
 import { useRouter } from "next/navigation";
-import IngredientList from "./item/IngredientList";
-import RecipeImage from "./item/RecipeImage";
-import RecipeTitle from "./item/RecipeTitle";
-import StepList from "./item/StepList";
+import IngredientList from "../components/detail/item/IngredientList";
+import RecipeImage from "../components/detail/item/RecipeImage";
+import RecipeTitle from "../components/detail/item/RecipeTitle";
+import StepList from "../components/detail/item/StepList";
 
 export default function RecipeDialog({
     recipe

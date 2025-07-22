@@ -5,8 +5,16 @@ import { apiPost } from '@/lib/fetch';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { FieldErrors, useForm, UseFormRegister } from 'react-hook-form';
 import { z } from 'zod';
+
+export type UseLoginFormReturn = {
+    register: UseFormRegister<{ userId: string; password: string; }> | (() => ({})),
+    onSubmit: (e?: React.FormEvent) => Promise<void> | void,
+    submitError: string | null,
+    formErrors: FieldErrors<{ userId: string; password: string; }>,
+    isSubmitting: boolean
+}
 
 // バリデーションスキーマ
 const schema = z.object({
@@ -17,7 +25,7 @@ const schema = z.object({
 // 入力型推論
 type LoginFormInput = z.infer<typeof schema>;
 
-export const useLoginForm = () => {
+export const useLoginForm = (): UseLoginFormReturn => {
     const router = useRouter();
     const {
         register,

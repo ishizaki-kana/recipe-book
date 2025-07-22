@@ -4,12 +4,16 @@ import Alert from '@/components/ui/feedback/alert/Alert';
 import PasswordBox from '@/components/ui/form/input/password/PasswordBox';
 import TextBox from '@/components/ui/form/input/text/TextBox';
 import { Stack } from '@mui/material';
-import { useLoginForm } from '../hooks/useLoginForm';
+import { UseLoginFormReturn, useLoginForm as defaultUseLoginForm } from '../hooks/useLoginForm';
 
 /**
  * ログインフォーム
  */
-export default function LoginForm() {
+export default function LoginForm({
+    useLoginForm = defaultUseLoginForm
+}: {
+    useLoginForm?: () => UseLoginFormReturn
+}) {
     const { register, onSubmit, submitError, formErrors, isSubmitting, } = useLoginForm();
 
     return (

@@ -1,5 +1,5 @@
-import RecipeCard from '@/components/features/contents/recipe/card/RecipeCard';
-import SearchContainer from '@/components/features/contents/recipe/search/SearchContainer';
+import RecipeCard from '@/components/features/contents/recipe/components/card/RecipeCard';
+import SearchContainer from '@/components/features/contents/recipe/components/search/SearchContainer';
 import { RecipeSearchInput } from '@/components/features/contents/recipe/types';
 import { apiGetServer } from '@/lib/fetchServer';
 import { RecipeSummary } from '@/types/entity';

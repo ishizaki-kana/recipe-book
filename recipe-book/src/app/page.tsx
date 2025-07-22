@@ -1,4 +1,4 @@
-import StartButton from "@/components/features/index/StartButton";
+import StartButton from "@/components/features/index/components/StartButton";
 import CenteredContainer from "@/components/layout/container/center/CenteredContainer";
 import { Typography } from "@mui/material";
 

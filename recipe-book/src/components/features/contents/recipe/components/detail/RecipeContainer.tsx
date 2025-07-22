@@ -1,10 +1,10 @@
 import CenteredContainer from "@/components/layout/container/center/CenteredContainer";
 import { RecipeDetail } from "@/types/entity";
 import { Box, Divider, Paper, Stack } from "@mui/material";
-import IngredientList from "./item/IngredientList";
-import RecipeImage from "./item/RecipeImage";
-import RecipeTitle from "./item/RecipeTitle";
-import StepList from "./item/StepList";
+import IngredientList from "../components/detail/item/IngredientList";
+import RecipeImage from "../components/detail/item/RecipeImage";
+import RecipeTitle from "../components/detail/item/RecipeTitle";
+import StepList from "../components/detail/item/StepList";
 
 export default function RecipeContainer({
     recipe
