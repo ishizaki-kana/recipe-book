@@ -1,32 +1,34 @@
 'use client'
 import Chip, { ChipColors } from "@/components/ui/display/chip/Chip";
+import { useNavigation } from '@/hooks/useNavigation';
 import { RecipeSummary } from "@/types/entity";
 import { Card, CardActionArea, CardContent, CardHeader, CardMedia, Stack, Typography } from "@mui/material";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function RecipeCard({
+/**
+ * レシピ概要カード
+ */
+export default function RecipeSummaryCard({
     recipe
 }: {
     recipe: RecipeSummary
 }) {
-    const router = useRouter();
+    const { navigateTo } = useNavigation();
 
     // 選択状態管理
     const [selected, setSelected] = useState(false);
 
     // クリックイベント
-    const handleClick = () => {
+    const onClick = () => {
         setSelected(!selected);
-        router.push(`/recipe/${recipe.id}`);
+        navigateTo(`/recipe/${recipe.id}`);
     }
 
     return (
-        <Card raised elevation={3}
-            sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <Card raised elevation={3} component={Stack} sx={{ width: '100%', height: '100%' }}>
             <CardActionArea
                 data-active={selected}
-                onClick={handleClick}
+                onClick={onClick}
                 sx={{
                     height: '100%', display: 'flex', flexDirection: 'column',
                     alignItems: 'flex-start', justifyContent: 'flex-start', pb: 2
@@ -34,11 +36,7 @@ export default function RecipeCard({
 
                 <CardHeader
                     title={recipe.name}
-                    slotProps={{
-                        title: {
-                            variant: 'body1'
-                        }
-                    }} />
+                    slotProps={{ title: { variant: 'body1' } }} />
 
                 <CardMedia
                     component="img"
@@ -49,7 +47,8 @@ export default function RecipeCard({
                     sx={{ objectFit: 'cover' }}
                 />
 
-                <CardContent>
+                <CardContent component={Stack} sx={{ gap: 1 }}>
+
                     <Chip label={recipe.category.name} color={recipe.category.color as ChipColors} />
                     <Stack direction="row" justifyContent="flex-start" gap={1}>
 

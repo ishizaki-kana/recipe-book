@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Stack } from '@mui/material'
 import MuiButton, { ButtonPropsColorOverrides, ButtonPropsSizeOverrides } from '@mui/material/Button'
 import { OverridableStringUnion } from '@mui/types'
 import { MouseEventHandler, ReactNode } from 'react'
@@ -41,8 +41,7 @@ export default function Button({
 }) {
 
     return (
-        <Box
-            display={'flex'} alignItems={'center'} justifyContent={'center'}
+        <Stack alignItems='center' justifyContent='center'
             p={p} pt={pt} pb={pb} pr={pr} pl={pl}>
 
             <MuiButton
@@ -57,6 +56,6 @@ export default function Button({
                 onClick={onClick}>
                 {children}
             </MuiButton>
-        </Box>
+        </Stack>
     )
 }

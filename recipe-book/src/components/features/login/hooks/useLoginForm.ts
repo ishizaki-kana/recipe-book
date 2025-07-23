@@ -2,6 +2,7 @@
 
 import { ERROR_MESSAGES } from '@/lib/constants/messages';
 import { apiPost } from '@/lib/fetch';
+import { FormReturn } from '@/types/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -15,9 +16,9 @@ const schema = z.object({
 });
 
 // 入力型推論
-type LoginFormInput = z.infer<typeof schema>;
+export type LoginFormInput = z.infer<typeof schema>;
 
-export const useLoginForm = () => {
+export const useLoginForm = (): FormReturn<LoginFormInput> => {
     const router = useRouter();
     const {
         register,
@@ -46,6 +47,6 @@ export const useLoginForm = () => {
         onSubmit: handleSubmit(onSubmit),
         submitError,
         formErrors: errors,
-        isSubmitting,
+        loading: isSubmitting,
     }
 }

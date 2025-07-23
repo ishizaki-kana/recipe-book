@@ -1,5 +1,5 @@
 'use client'
-import { useNavigation } from '@/components/layout/header/hooks/useNavigation';
+import { useNavigation } from '@/hooks/useNavigation';
 import { List, ListItem, ListItemButton, ListItemText } from '@mui/material';
 
 const links = [
@@ -15,6 +15,7 @@ export default function MenuLinks({
 }) {
     const { navigateTo } = useNavigation();
 
+    // クリックイベント
     const onClick = (path: string) => {
         onNavigation?.(path);
         navigateTo(path);

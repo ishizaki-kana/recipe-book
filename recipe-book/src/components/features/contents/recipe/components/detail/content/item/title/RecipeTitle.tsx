@@ -1,7 +1,10 @@
-import Chip, { ChipColors } from "@/components/ui/display/chip/Chip";
-import { RecipeCategorySummary, RecipeDetail } from "@/types/entity";
-import { Stack, Typography } from "@mui/material";
+import Chip, { ChipColors } from '@/components/ui/display/chip/Chip';
+import { RecipeCategorySummary, RecipeDetail } from '@/types/entity';
+import { Stack, Typography } from '@mui/material';
 
+/**
+ * レシピタイトル
+ */
 export default function RecipeTitle({
     recipe,
 }: {
@@ -14,7 +17,7 @@ export default function RecipeTitle({
         <>
             <Stack sx={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Stack sx={{ flexDirection: 'row', gap: 2 }}>
-                    <Typography variant="h6" component="h2" fontWeight={500}>{recipe.name}</Typography>
+                    <Typography variant='h6' component='h2' fontWeight={500}>{recipe.name}</Typography>
                     <Chip
                         label={category.name}
                         color={category.color as ChipColors} />
@@ -23,11 +26,11 @@ export default function RecipeTitle({
                 {recipe.calories && recipe.shelfLife && (
                     <Stack sx={{ flexDirection: 'row', gap: 1 }}>
                         {recipe.shelfLife &&
-                            <Typography variant="body2">{recipe.shelfLife}</Typography>}
+                            <Typography variant='body2'>{recipe.shelfLife}</Typography>}
                         {recipe.calories && recipe.shelfLife &&
-                            <Typography variant="body2">/</Typography>}
+                            <Typography variant='body2'>/</Typography>}
                         {recipe.calories &&
-                            <Typography variant="body2">{recipe.calories}kcal</Typography>}
+                            <Typography variant='body2'>{recipe.calories}kcal</Typography>}
                     </Stack>
                 )}
             </Stack>
